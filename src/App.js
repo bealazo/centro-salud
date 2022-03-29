@@ -2,102 +2,57 @@ import './App.css';
 
 /*AÑADIDOS*/
 import * as React from 'react';
-import { useState } from 'react';
-import { Link } from '@material-ui/core';
-import { Grid } from '@material-ui/core';
-import { Icon } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-import { Menu } from '@material-ui/core';
-import { MenuItem } from '@material-ui/core';
 import {Typography} from '@material-ui/core';
-import { Avatar } from '@material-ui/core';
-
-//imagenes
+//COMPONENTES PROPIOS
+import TeamMember from "./components/TeamMember";
+import Header from "./components/Header";
+import Banner from "./components/Banner";
+import Footer from "./components/Footer";
+import Socials from "./components/Socials";
+//IMAGENES IMPORTADAS YA QUE ESTOY EN LOCAL
 import avatar1 from "./images/avatar1.jpg";
 import avatar2 from "./images/avatar2.jpg";
 import avatar3 from "./images/avatar3.jpg";
 import avatar4 from "./images/avatar4.jpg";
+import banner from "./images/banner.jpg";
+import bannersocials from "./images/bannersocials.jpg";
+
+
 
 function App() {
 
-  //Opciones del Menú
-  const options = [
-   "Quiénes Somos",
-   "Contacto",
-   "Login"
-  ];
+  //Miembros del equipo
+  const equipo= [
+      {
+        "name":"Beatriz Lazo",
+        "description":"Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.",
+        "avatar":avatar1
+      },
+      {
+        "name":"Yanelis Serrano",
+        "description":"Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.",
+        "avatar":avatar2
+      },
+      {
+        "name":"Javier Rodriguez",
+        "description":"Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.",
+        "avatar":avatar3
+      },
+      {
+        "name":"David Cabe",
+        "description":"Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.",
+        "avatar":avatar4
+      },
+
+    ]
+   
   
-  //Despliegue menú en movil
-  const [anchorEl, setAnchorEl] = useState(null);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
-    <div className="App">
-      <header>
-
-      <div className="App-header">
-      <Grid item xs={2}>
-      <Icon fontSize="large">medical_information</Icon>
-      </Grid>
-
-        <Grid className="menu-container" item xs={10}>
-         
-         <Grid xs={2}>
-          <Link href="#" color="inherit"> Quiénes Somos</Link>
-          </Grid>
-          <Grid xs={2}>
-          <Link href="#" color="inherit"> Contacto</Link>
-          </Grid>
-          <Grid xs={2}>
-          <Link href="#" color="inherit"> Login </Link>
-          </Grid>
-        
-        </Grid>
-
-      
-
-    <Grid className="menu-movil-container" item xs={10}>
-      <Button
-        aria-haspopup="true"
-        aria-controls="simple-menu"       
-        color="inherit"
-        onClick={handleClick}
-
-      >
-        <Icon>list</Icon>
-      </Button>
-      <Menu
-         id="simple-menu"
-         anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}       
-      >
-        <MenuItem>Quiénes Somos</MenuItem>
-        <MenuItem>Contacto</MenuItem>
-        <MenuItem>Login</MenuItem>
-      </Menu>
-    
-    </Grid>
-    </div>
-
-    <div className="container-banner">
-    <div className="container-banner-text">
-    <Typography variant="h3">
-        Centro de salud privado
-    </Typography>
-    <Typography variant="h5">
-        "...Tu salud nos importa..."
-    </Typography>
-    </div>
-    </div>
-
-    </header>
+  <div className="App">
+     <header>
+        <Header/>
+        <Banner banner={banner} title="Centro de Salud Privado" subtitle="...Tu salud nos importa..."/>  
+     </header>
 
     <main className="main-container">
       <section>
@@ -117,71 +72,26 @@ function App() {
         </article> 
 
         <article className="container-team">
-        <Typography variant="h4">
+        <Typography className="title-who" variant="h4">
           ¿Quiénes Somos?
         </Typography>
 
-      <div className="container-member">
-            <img src={avatar1} className="avatar"/>
-            <div className="member-text">
-            <Typography variant="h6">
-            Nombre y apellidos
-            </Typography>        
-            <Typography variant="body1" gutterBottom>
-          Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.
-          </Typography>
-            </div>
-          </div>
-     
-       <div className="member-wrapper-rigth">
-          <div className="container-member">
-          <div className="member-text">
-            <Typography variant="h6">
-            Nombre y apellidos
-            </Typography>        
-            <Typography variant="body1" gutterBottom>
-          Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.
-          </Typography>
-            </div>       
-            <img src={avatar2} className="avatar"/>
-         
-          </div>
-      </div>
-      
-        <div className="container-member">
-          <img src={avatar3} className="avatar"/>
-          <div className="member-text">
-          <Typography variant="h6">
-           Nombre y apellidos
-          </Typography>        
-          <Typography variant="body1" gutterBottom>
-        Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.
-        </Typography>
-          </div>
-        </div>
-      <div className="member-wrapper-rigth">
-        <div className="container-member">
-        <div className="member-text">
-          <Typography variant="h6">
-           Nombre y apellidos
-          </Typography>        
-          <Typography variant="body1" gutterBottom>
-        Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.
-        </Typography>
-          </div>
-          <img src={avatar4} className="avatar"/>
-        
-        </div>
-      </div>
-        
+       {equipo.map((miembro,index) =>  <TeamMember key={index} position={index} avatar={miembro.avatar} name={miembro.name} description={miembro.description}/>)}
+  
+        </article>              
+      </section>
 
-        </article>        
-        
-             
+      <section>
+
+        <Banner banner={bannersocials}/>
+        <Socials/>
+
       </section>
     </main>
       
-    
+    <footer>
+      <Footer/>
+    </footer>
      
     </div>
   );
