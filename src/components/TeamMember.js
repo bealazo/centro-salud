@@ -9,6 +9,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 function TeamMember(props) {
 
+   
      if(props.position%2==0){
         return(
             
@@ -36,7 +37,7 @@ function TeamMember(props) {
         return(
         
         <div className="member-wrapper-rigth">
-          <div className="container-member">
+          <div className="container-member member-right-pc">
                <div className="member-text">
                     <Typography variant="h6">
                     {props.name}
@@ -52,9 +53,29 @@ function TeamMember(props) {
                 </div>       
                 <img src={props.avatar} className="avatar"/>         
           </div>
+          <div className="container-member member-right-movil">
+             <img src={props.avatar} className="avatar"/>  
+               <div className="member-text">
+                    <Typography variant="h6">
+                    {props.name}
+                    </Typography>        
+                    <Typography variant="body1" gutterBottom>
+                    {props.description}
+                    </Typography>
+                    <Grid >
+                    <Icon color="primary" fontSize="small">facebook</Icon>
+                    <InstagramIcon color="secondary" fontSize="small"/>
+                    <LinkedInIcon fontSize="small"/>
+                    </Grid>
+                </div>       
+                      
+          </div>
       </div>
+      
       
         );
     }
+
+
 }
 export default TeamMember;

@@ -44,24 +44,82 @@
   justify-content: right;
 }
 
-/*Menu para pantallas moviles*/
-@media only screen and (max-width : 900px) {
-  .menu-movil-container{
-    display:true;
-    }
-    .menu-container{
-      display:none;
-    }
-  }
-/*Menu para ordenadores*/
+
+/*AJUSTES PANTALLAS ORDENADORES*/
   @media only screen and (min-width : 901px) {
+
+     /*Menu para pantallas ordenadores*/
   .menu-movil-container {
       display:none;
     }
     .menu-container{
       display:true;
     }
+
+     /*Equipo para pantallas ordenadores*/
+    .avatar{
+      width:50%;
+      height:auto;
+      border-radius: 150px;
+     
+     
     }
+    .container-member{
+      width:50%;
+      display:flex;
+      flex-direction: row;
+      
+    }
+    .member-text{
+      width: 50%;
+    }
+    .member-right-movil{
+      display: none;
+    }
+    .member-right-pc{
+      display: true;
+    }
+
+    }
+
+/*AJUSTES PANTALLAS MÓVILES*/
+
+@media only screen and (max-width : 900px) {
+
+  /*Menu para pantallas moviles*/
+  .menu-movil-container{
+    display:true;
+    }
+    .menu-container{
+      display:none;
+    }
+
+    /*Equipo para pantallas moviles*/
+
+    .avatar{
+      width:100%;
+      height:auto;
+      border-radius: 150px;
+     
+     
+    }
+    .container-member{
+      width:100%;
+      display:flex;
+      flex-direction: column;
+      
+    }
+    .member-text{
+      width: 100%;
+    }
+    .member-right-movil{
+      display: true;
+    }
+    .member-right-pc{
+      display: none;
+    }
+  }
+ 
 
   /*Contenedor banner*/
   .container-banner{
@@ -106,24 +164,7 @@
   padding-bottom: 5%;
 }
 
-.avatar{
-  width:50%;
-  height:auto;
-  border-radius: 150px;
- 
- 
-}
-.container-member{
-  width:50%;
-  display:flex;
-  flex-direction: row;
-  
-}
-.member-text{
-  width: 50%;
-}
-
-
+/*Para que los miembros del equipo en posicion impar esten a la derecha*/
 .member-wrapper-rigth{
   display: flex;
   flex-direction: row;
