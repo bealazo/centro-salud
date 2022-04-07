@@ -52,6 +52,9 @@
   .menu-movil-container {
       display:none;
     }
+    #simple-menu {
+      display:none;
+    }
     .menu-container{
       display:true;
     }
