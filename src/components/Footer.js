@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../App.css';
+//import '../App.css'; NO HACE FALTA, YA LA IMPORTÉ EN APP
 import {Typography} from '@material-ui/core';
 
 function Footer(){

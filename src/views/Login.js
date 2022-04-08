@@ -1,15 +1,15 @@
 import * as React from 'react';
-import Header from "./components/Header";
-import Banner from "./components/Banner";
-import Footer from "./components/Footer";
-import banner from "./images/banner.jpg";
+import Header from "../components/Header";
+import Banner from "../components/Banner";
+import Footer from "../components/Footer";
+import banner from "../images/banner.jpg";
 
-function Contacto() {
+function Login() {
 
     
     
     return (
-    <div className="Contacto">
+    <div className="App">
        <header>
           <Header/>
           <Banner banner={banner} title="Centro de Salud Privado" subtitle="...Tu salud nos importa..."/>  
@@ -17,7 +17,7 @@ function Contacto() {
   
       <main className="main-container">
         <section>
-         <p>CONTACTO</p>
+         <p>LOGIN</p>
         </section>
       </main>
         
@@ -29,5 +29,5 @@ function Contacto() {
     );
   }
   
-  export default Contacto;
+  export default Login;
   
