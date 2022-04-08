@@ -82,6 +82,13 @@
     .member-right-pc{
       display: true;
     }
+      /*Formulario de contacto para pantallas ordenadores*/
+      .input-form-movil{
+        display: none;
+      }
+      .container-input{
+        display: true;
+      }
 
     }
 
@@ -97,6 +104,7 @@
       display:none;
     }
 
+    
     /*Equipo para pantallas moviles*/
 
     .avatar{
@@ -120,6 +128,17 @@
     }
     .member-right-pc{
       display: none;
+    }
+
+    /*Formulario de contacto para pantallas móviles*/
+    .container-input{
+      display: none;
+    }
+    .input-form-pc{
+      display: none;
+    }
+    .input-form-movil{
+      display: true;
     }
   }
  
@@ -157,7 +176,7 @@
  
 }
 
-.container-history, .container-team{
+.container-history, .container-team, .container-form{
   width:70vw;
   padding-top: 5%;
   padding-bottom: 5%;
@@ -191,4 +210,25 @@
   justify-content: center;
   align-items: center;
   padding-top: 5%;
+}
+.container-form{
+  width:70vw;
+  
+  
+}
+.input-form,.input-form-movil,.input-form-pc, .button-form{
+  padding-top: 2%;
+ 
+}
+.container-input{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+ 
+  
+}
+.container-input div{
+ margin-right:2px;
+  
 }

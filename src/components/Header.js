@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../App.css';
+//import '../App.css'; NO HACE FALTA, YA LA IMPORTÉ EN APP
 import { useState } from 'react';
 //import { Link } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
@@ -98,7 +98,7 @@ function Header(){
      
         
           {options.map((option,index) =>     
-         <div>
+         <div key={index}>
           {option=="Inicio"?
           <Link to="/home" style={{ textDecoration: 'none', display: 'block', color:"#011a35" }}>
           <MenuItem key={index}>
