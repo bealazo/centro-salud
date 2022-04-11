@@ -232,3 +232,21 @@
  margin-right:2px;
   
 }
+/*Contenedor principal login*/
+.main-container-login{
+  display: flex;
+  flex-direction: row;
+  background-image:url("D:\TRABAJO\Desarrollo\Reactjs\centro-salud-privado\src\images\banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  color:#011a35;
+  
+}
+.container-form-login{
+  width:100vw;
+ 
+}

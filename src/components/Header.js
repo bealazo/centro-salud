@@ -44,31 +44,22 @@ function Header(){
         <Grid key={index} item xs={2}>
          {option=="Inicio"?
               <NavLink
-              to="/home"
-              style={isActive => ({
-                color: isActive ? "#61dafb" : "white",
-                textDecoration: 'none' 
-              })}
-            >
+             to="/home"
+             style={({isActive}) => ({color: isActive ? "#61dafb" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
+          >
              {option} 
              </NavLink>
            
           : option=="Contacto"?
           <NavLink
           to="/contacto"
-          style={isActive => ({
-            color: isActive ? "#61dafb" : "white",
-            textDecoration: 'none' 
-          })}
+          style={({isActive}) => ({color: isActive ? "#61dafb" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
         >
          {option} 
          </NavLink>
          :  <NavLink
          to="/login"
-         style={isActive => ({
-           color: isActive ? "#61dafb" : "white",
-           textDecoration: 'none' 
-         })}
+         style={({isActive}) => ({color: isActive ? "#61dafb" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
        >
          {option}
         </NavLink>

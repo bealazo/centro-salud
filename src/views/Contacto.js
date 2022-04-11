@@ -30,6 +30,7 @@ function Contacto() {
     setMessageValue(event.target.value);
   };
   const handleClickSend = (event) => {
+    event.preventDefault();
     console.log(name_value)
     console.log(phone_value)
     console.log(email_value)
