@@ -1,22 +1,30 @@
 import * as React from 'react';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import banner from "../images/banner.jpg";
 import {Typography} from '@material-ui/core';
 import {Box} from '@material-ui/core';
 import {TextField} from '@material-ui/core';
 import {Button} from '@material-ui/core';
 import {useNavigate} from "react-router-dom";
 
+import {useContext} from 'react';
+import { StoreContext } from '../store/StoreProvider';
+import { types } from '../store/StoreReducer';
+
 function Login() {
 
   //Para navegar a otra página
   const navigate = useNavigate();
 
+  //Para obtener el user del contexto
+  const [store, dispatch] = useContext(StoreContext);
+  const{user}=store;//usuario actual del estado global
+
   const [user_value, setUserValue] = React.useState("");
   const [pass_value, setPassValue] = React.useState("");
   const [show_error, setShowError] = React.useState(false);
-  
+
+ 
   const handleChangeUser = (event) => {
     setUserValue(event.target.value);
   };
@@ -32,20 +40,34 @@ function Login() {
                 {username: "Prueba",
                 password: "Prueba*22"}]
     
-    console.log(localStorage);
-    users.map((user,index) => 
+   
+    users.map((datauser,index) => 
     {
-      if(user.username==user_value&&user.password==pass_value){
+      if(datauser.username==user_value&&datauser.password==pass_value){
+        console.log("user y pass correctos")
         setShowError(false);
+     
+        //Actualizar (modificar) el estado global
+        dispatch({
+          //Defino el tipo de la acción
+          type:types.authLogin,
+          //Usuario nuevo a actualizar en el estado global(si tuviera api paso lo que me de la api), los datos a modificar los envío en payload
+          payload:{user: user_value}
+        });
+
         localStorage.setItem("user",user_value);
         localStorage.setItem("password",pass_value);
-        navigate("/gestion-centro");
+       
+         navigate("/gestion-centro");
       }
-      else{
-        setShowError(true)
-        localStorage.clear()
-      }
-    });    
+     
+     else {
+         setShowError(true)
+         localStorage.clear()
+       }    
+    
+    });
+  
  
   };
     
@@ -83,7 +105,7 @@ function Login() {
            }
           <div  className="button-form">
           <Button onClick={handleClickSend} variant="contained" color="primary">Enviar</Button>
-          </div>
+          </div>        
          
         </Box>     
 

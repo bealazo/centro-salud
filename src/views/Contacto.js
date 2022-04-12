@@ -8,6 +8,8 @@ import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import banner from "../images/banner.jpg";
 
+import Map from "../components/Map";
+
 function Contacto() {
 
   const [name_value, setNameValue] = React.useState("");
@@ -16,6 +18,7 @@ function Contacto() {
   const [message_value, setMessageValue] = React.useState("");
   /*Para mostrar u ocultar el mensaje de envío exitoso */
   const [show_message, setShowMessage] = React.useState(false);
+
 
   const handleChangeName = (event) => {
     setNameValue(event.target.value);
@@ -55,11 +58,15 @@ function Contacto() {
   
       <main className="main-container">
         <section>
-        <article className="container-history">
+        <article className="container-history ">
         <Typography variant="h4">
           Contacto
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <div className="container-contact">
+    
+         <Map/>
+        
+        <Typography variant="body1" gutterBottom className="contact-text">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
         unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
         dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
@@ -67,13 +74,18 @@ function Contacto() {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
         unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
         dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-      </Typography>
-        </article> 
+      </Typography>   
+      
+      </div>
+        </article>       
       
         <article className="container-form"> 
         <Typography variant="h5">
           ¡Ven a conocernos. Contacta con nosotros!
         </Typography>
+
+     
+
         <Box
           component="form"
          

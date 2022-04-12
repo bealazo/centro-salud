@@ -3,24 +3,19 @@ import './App.css';
 /*AÑADIDOS*/
 import * as React from 'react';
 import Layout from './navigation/Layout';
-import {useEffect}from 'react';
+import StoreProvider from './store/StoreProvider';
+
 
 
 function App() {
-  //Obtengo el user que guardé en localStorage, porque estoy en Local
-const [user, setUser] = React.useState("");
-useEffect(() => {
-  const loggedInUser = localStorage.getItem("user");
-  if (loggedInUser) {         
-    setUser(loggedInUser);
-  }
- }, []);
 
-   
+ 
   return (
-   
-          <Layout user={user}/>
-      
+    /*Envuelvo toda la app en un provider para manejar un estado global*/
+          <StoreProvider>
+          <Layout/>
+          </StoreProvider>
+         
   );
 }
 

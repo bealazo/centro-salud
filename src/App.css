@@ -90,6 +90,19 @@
         display: true;
       }
 
+      /*Mapa y texto para pantallas ordenadores*/
+      .container-contact{
+        display: flex;
+        flex-direction: row;
+        margin-top: 3%;
+      }
+      
+      .contact-text{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
     }
 
 /*AJUSTES PANTALLAS MÓVILES*/
@@ -140,6 +153,16 @@
     .input-form-movil{
       display: true;
     }
+
+    /*Mapa y texto para pantallas móviles*/
+    .container-contact{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+ 
+    }
+   
   }
  
 
@@ -250,3 +273,4 @@
   width:100vw;
  
 }
+
