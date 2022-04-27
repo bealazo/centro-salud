@@ -9,7 +9,7 @@ function Map(){
      return(
         <div>
             <GoogleMaps
-            
+            //Tengo que crearla en console.developers. google.com
             apiKey={"AIzaSyCWAvgKKSGxFhNwXa-E08_zMZCTZtKNXhI"}
             style={{width:screenwidth>900?"35vw":"50vw", height:"50vh"}}
             zoom={12}

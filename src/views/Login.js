@@ -13,6 +13,12 @@ import { types } from '../store/StoreReducer';
 
 function Login() {
 
+  //Para pasar las opciones del menú al header
+  const options=[
+    "Inicio",
+    "Contacto"    
+  ];
+
   //Para navegar a otra página
   const navigate = useNavigate();
 
@@ -23,7 +29,7 @@ function Login() {
   const [user_value, setUserValue] = React.useState("");
   const [pass_value, setPassValue] = React.useState("");
   const [show_error, setShowError] = React.useState(false);
-
+  
  
   const handleChangeUser = (event) => {
     setUserValue(event.target.value);
@@ -74,7 +80,7 @@ function Login() {
     return (
     <div className="App">
        <header>
-          <Header/>         
+          <Header options={options}/>         
        </header>
   
       <main className="main-container-login">
