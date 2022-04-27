@@ -12,12 +12,21 @@ import Map from "../components/Map";
 
 function Contacto() {
 
+   //Para pasar las opciones del menú al header
+   const options=[
+    "Inicio",
+    "Contacto",
+    "Login"
+  ];
+   
   const [name_value, setNameValue] = React.useState("");
   const [phone_value, setPhoneValue] = React.useState("");
   const [email_value, setEmailValue] = React.useState("");
   const [message_value, setMessageValue] = React.useState("");
   /*Para mostrar u ocultar el mensaje de envío exitoso */
   const [show_message, setShowMessage] = React.useState(false);
+   /*Para mostrar u ocultar el mensaje de error de envío */
+   const [show_error_message, setShowErrorMessage] = React.useState(false);
 
 
   const handleChangeName = (event) => {
@@ -38,13 +47,23 @@ function Contacto() {
     console.log(phone_value)
     console.log(email_value)
     console.log(message_value)
+
+    //Valido si algún campo requerido está vacío para mostrar mensaje de error o de éxito
+    if(name_value||email_value||message_value==""){
+      setShowErrorMessage(true)
+      setShowMessage(false);
+    }
+    if(name_value&&email_value&&message_value!=""){
+      setShowErrorMessage(false)
+      setShowMessage(true);
+    }
+
     /*ENVIAR A API */
 
     setNameValue("");
     setPhoneValue("");
     setEmailValue("");
-    setMessageValue("");
-    setShowMessage(true);
+    setMessageValue("");   
  
   };
  
@@ -52,7 +71,7 @@ function Contacto() {
      
     <div className="App">
        <header>
-          <Header/>
+          <Header options={options}/>
           <Banner banner={banner} title="Centro de Salud Privado" subtitle="...Tu salud nos importa..."/>  
        </header>
   
@@ -63,7 +82,7 @@ function Contacto() {
           Contacto
         </Typography>
         <div className="container-contact">
-    
+       
          <Map/>
         
         <Typography variant="body1" gutterBottom className="contact-text">
@@ -114,6 +133,14 @@ function Contacto() {
               (<div>
             <Typography variant="subtitle1" color="secondary">
               Gracias por contactar con nosotros. Te responderemos lo antes posible.
+            </Typography>
+            </div>):
+            ("")           
+           }
+            {show_error_message?
+              (<div>
+            <Typography variant="subtitle1" color="secondary">
+             Rellene los campos requeridos antes de enviar.
             </Typography>
             </div>):
             ("")           

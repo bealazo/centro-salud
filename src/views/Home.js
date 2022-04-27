@@ -21,6 +21,13 @@ import bannersocials from "../images/bannersocials.jpg";
 
 function Home() {
 
+   //Para pasar las opciones del menú al header
+   const options=[
+    "Inicio",
+    "Contacto",
+    "Login"
+  ];
+   
   //Miembros del equipo
   const equipo= [
       {
@@ -51,7 +58,7 @@ function Home() {
 
   <div className="App">
      <header>
-        <Header/>
+        <Header options={options}/>
         <Banner banner={banner} title="Centro de Salud Privado" subtitle="...Tu salud nos importa..."/>  
      </header>
 
