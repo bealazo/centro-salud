@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ListComponent from "../components/List";
 
 import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
@@ -9,11 +10,8 @@ import { StoreContext } from '../store/StoreProvider';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -22,8 +20,15 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import {Typography} from '@material-ui/core';
+
+//ICONOS MENU LATERAL
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import GroupIcon from '@material-ui/icons/Group';
+import ContactsIcon from '@material-ui/icons/Contacts';
+import HealingIcon from '@material-ui/icons/Healing';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+
 
 const drawerWidth = 240;
 
@@ -89,6 +94,7 @@ function GestionCentro() {
     ];
 
 
+    //Para el menú lateral
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -101,7 +107,27 @@ function GestionCentro() {
       setOpen(false);
     };
   
-  
+  //Para mostrar y/o ocultar listados de pacientes, sanitarios...
+  const [listapac, setListaPac] = React.useState(false);
+  const [listasan, setListaSan] = React.useState(false);
+  const [listaper, setListaPer] = React.useState(false);
+  const [listacon, setListaCon] = React.useState(false);
+  const [listadep, setListaDep] = React.useState(false);
+
+  const handleListItem=(text)=>{
+
+    if(text=="PACIENTES")
+    {setListaPac(true); setListaSan(false); setListaPer(false); setListaCon(false); setListaDep(false);}
+    if(text=="SANITARIOS")
+    {setListaPac(false); setListaSan(true); setListaPer(false); setListaCon(false); setListaDep(false);}
+    if(text=="PERSONAL")
+    {setListaPac(false); setListaSan(false); setListaPer(true); setListaCon(false); setListaDep(false);}
+    if(text=="CONSULTAS")
+    {setListaPac(false); setListaSan(false); setListaPer(false); setListaCon(true); setListaDep(false);}
+    if(text=="DEPARTAMENTOS")
+    {setListaPac(false); setListaSan(false); setListaPer(false); setListaCon(false); setListaDep(true);}
+  }
+
 
     return (
      
@@ -114,6 +140,7 @@ function GestionCentro() {
        <div className={classes.root}>
       <CssBaseline />
      
+     {/**Renderizado del menú lateral*/}
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -147,18 +174,18 @@ function GestionCentro() {
         :null}
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          {['PACIENTES', 'SANITARIOS', 'PERSONAL'].map((text, index) => (
+            <ListItem button key={text} onClick={()=>handleListItem(text)}>
+              <ListItemIcon>{text=="PACIENTES" ? <AssignmentIndIcon /> :text=="SANITARIOS"? <GroupIcon />:<ContactsIcon/>}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          {['CONSULTAS', 'DEPARTAMENTOS'].map((text, index) => (
+            <ListItem button key={text}onClick={()=>handleListItem(text)}>
+              <ListItemIcon>{text=="CONSULTAS" ? <HealingIcon /> : <ListAltIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -169,7 +196,17 @@ function GestionCentro() {
       
       <main className="main-container">
         <section>
-       <p> Bienvenido {user.user} </p>
+        <Typography variant="h5">
+        Bienvenido {user.user} 
+       </Typography>
+      
+        {listapac==true?<ListComponent listar="Pacientes"/>:
+        listasan==true?<ListComponent listar="Sanitarios"/>:
+        listaper==true?<ListComponent listar="Personal"/>:
+        listacon==true?<ListComponent listar="Consultas"/>:
+        listadep==true?<ListComponent listar="Departamentos"/>:
+        <p> Seleccione una opción del menú </p>
+        }
     
         </section>
       </main>
