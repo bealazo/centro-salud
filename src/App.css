@@ -163,6 +163,11 @@
      
  
     }
+
+    /*Table container para pantallas móviles*/
+    .container-table{
+      padding-left: 10vw;
+    }
    
   }
  
@@ -273,5 +278,10 @@
 .container-form-login{
   width:100vw;
  
+}
+
+.container-table{
+  margin-top: 5vh;
+  width: 88vw;
 }
 
