@@ -1,12 +1,22 @@
 const types={
     authLogin:"auth - login",
     authLogout:"auth - logout",
+    changelistapac:"change-listapac",
+    changelistasan:"change-listasan",
+    changelistaper:"change-listaper",
+    changelistacon:"change-listacon",
+    changelistadep:"change-listadep"
 }
 
 
 //Estado global inicial
 const initialStore={
-    user:""
+    user:"",
+    listapac:false,
+    listasan:false,
+    listaper:false,
+    listacon:false,
+    listadep:false
 }
 
 const StoreReducer = (state,action)=> {
@@ -20,6 +30,46 @@ const StoreReducer = (state,action)=> {
             return{
                 ...state,
                 user:action.payload}
+        case types.changelistapac:
+            return{
+                ...state,
+                listapac:action.payload,
+                listasan:false,
+                listaper:false,
+                listacon:false,
+                listadep:false}
+        case types.changelistasan:
+             return{
+                        ...state,
+                        listapac:false,
+                        listasan:action.payload,
+                        listaper:false,
+                        listacon:false,
+                        listadep:false}
+       case types.changelistaper:
+              return{
+                          ...state,
+                       listapac:false,
+                       listasan:false,
+                        listaper:action.payload,
+                          listacon:false,
+                          listadep:false}
+        case types.changelistacon:
+                return{
+                         ...state,
+                         listapac:false,
+                          listasan:false,
+                         listaper:false,
+                         listacon:action.payload,
+                         listadep:false}
+         case types.changelistadep:
+                 return{
+                            ...state,
+                               listapac:false,
+                             listasan:false,
+                           listaper:false,
+                            listacon:false,
+                             listadep:action.payload}
         default:
             return state;
     }

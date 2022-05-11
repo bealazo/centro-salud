@@ -179,8 +179,9 @@ function Header(props){
           <ListItemText primary="Cerrar Sesión"  sx={{ color: "white" }} onClick={()=>{dispatch({type: types.authLogout})}}/>
         </StyledMenuItem>
        </StyledMenu>
-      </>:
-        <>
+      </>: 
+       <>
+        {/*Si no hay un user logueado lo que recibe el header en las props son las opciones del menu normales*/}
       <Button
         aria-haspopup="true"
         aria-controls="simple-menu"       
