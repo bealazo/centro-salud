@@ -5,7 +5,6 @@ import Home from "../views/Home";
 import Contacto from "../views/Contacto";
 import Login from "../views/Login";
 import GestionCentro from "../views/GestionCentro";
-import AddPatient from "../views/AddPatient";
 
 import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
@@ -35,8 +34,7 @@ function Layout() {
         {/*SI TENGO UN USUARIO LOGUEADO VOY A GESTION CENTRO, DE LO CONTRARIO REDIRECCIONO A LOGIN */}
         <Route exact path="/gestion-centro" element={ user!=""? <GestionCentro/> : <Navigate to="/login" />} />
 
-        <Route path="/gestion-centro/nuevo-paciente"  element={ user!=""? <AddPatient/> : <Navigate to="/login" />}/>
-        
+               
       </Routes>
      
       

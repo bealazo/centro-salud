@@ -103,6 +103,18 @@
         justify-content: center;
       }
 
+       /*Contenedor de formulario de añadir para pantallas ordenador*/
+    .containter-form-addpatient-inputs-movil{
+      display: none;
+    }
+    .containter-form-addpatient-inputs-pc{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding-top: 5vh;
+     
+      }
+    
     }
 
 /*AJUSTES PANTALLAS MÓVILES*/
@@ -167,6 +179,21 @@
     /*Table container para pantallas móviles*/
     .container-table{
       padding-left: 10vw;
+    }
+
+    /*Contenedor de formulario de añadir para pantallas móviles*/
+    .containter-form-addpatient-inputs-movil{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 5vh;
+     
+    }
+    .containter-form-addpatient-inputs-item-movil{
+      padding-top: 1vh;
+    }
+    .containter-form-addpatient-inputs-pc{
+      display: none;
     }
    
   }

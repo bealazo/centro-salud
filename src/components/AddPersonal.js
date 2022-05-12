@@ -2,24 +2,19 @@ import * as React from 'react';
 import {Box} from '@material-ui/core';
 import {TextField} from '@material-ui/core';
 import {Button} from '@material-ui/core';
-import LateralMenu from "../components/LateralMenu";
+import {Typography} from '@material-ui/core';
 
-function AddPatient(){
+function AddPersonal(){
     return(
 
-        <div className="App">
-      
-            
-      
-       {/**Renderizado del menú lateral, paso la funcion handleListItem para que este componente hijo LateralMenu modifique sus parametros de acuerdo al onclick*/}
-         <LateralMenu/>
-     
-        <main className="main-container">
-        <section>
+      <div className="container-table">
+          <Typography variant="h6">
+          Agregar nuevo personal
+        </Typography>
         <Box
           component="form"
          
-        >
+        >          
              <TextField  required id="outlined-basic" label="Nombre" variant="outlined" />
              <TextField  required id="outlined-basic" label="Nombre" variant="outlined" />
              <TextField  required id="outlined-basic" label="Nombre" variant="outlined" />
@@ -28,10 +23,7 @@ function AddPatient(){
               <Button  variant="contained" color="primary">Guardar</Button>
              </div>
       </Box>
-      </section>
-      </main>
-
-      </div>
+     </div>
     );
 }
-export default AddPatient;
+export default AddPersonal;
