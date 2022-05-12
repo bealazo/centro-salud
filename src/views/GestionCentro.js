@@ -10,12 +10,16 @@ import { StoreContext } from '../store/StoreProvider';
 import { types } from '../store/StoreReducer';
 
 import {Button} from '@material-ui/core';
-import {useNavigate} from "react-router-dom";
+import AddPatient from '../components/AddPatient';
+import AddDoctor from '../components/AddDoctor';
+import AddPersonal from '../components/AddPersonal';
+import AddConsult from '../components/AddConsult';
+import AddDepartment from '../components/AddDepartment';
 
  
 function GestionCentro() {
     
-  //Para obtener el user y el valor booleano de las listas(para saber cual pasar al componente ListComponent) del contexto
+  //Para obtener el user y el valor booleano de las listas(para saber cual pasar al componente ListComponent) y de las variables controlan que formulario para agregar mostrar, todo esto lo obtengo del contexto
   const [store, dispatch] = useContext(StoreContext);
   const{user}=store;
   const{listapac}=store;
@@ -23,16 +27,18 @@ function GestionCentro() {
   const{listaper}=store;
   const{listacon}=store;
   const{listadep}=store;
+  const {addpac} = store;
+  const {addsan} = store;
+  const {addper} = store;
+  const {addcon} = store;
+  const {adddep} = store;
 
   
   //Para pasar las opciones del menú al header
   const options=[
      user.user
    
-    ];   
-    
-  //Para navegar a otra página
-  const navigate = useNavigate();
+    ];      
 
   
   //Para mostrar y/o ocultar listados de pacientes, sanitarios... 
@@ -57,14 +63,28 @@ function GestionCentro() {
     if(text=="DEPARTAMENTOS")
     {  dispatch({type:types.changelistadep,  payload:{listadep: true}});}
   }
-
+ 
+  //Para mostrar el formulario de agregar en dependencia del listado que este mostrando
   const handleClickNew=()=>{
       if(listapac.listapac==true){
-      navigate("/gestion-centro/nuevo-paciente");
+        dispatch({type:types.changeaddpac,  payload:{addpac: true}});
+      
+     // navigate("/gestion-centro/nuevo-paciente");
+    }
+    else if(listasan.listasan==true){
+      dispatch({type:types.changeaddsan,  payload:{addsan: true}});
+    }
+    else if(listaper.listaper==true){
+      dispatch({type:types.changeaddper,  payload:{addper: true}});
+      
+    }
+    else if(listacon.listacon==true){
+      dispatch({type:types.changeaddcon,  payload:{addcon: true}});
+    }
+    else if(listadep.listadep==true){
+      dispatch({type:types.changeadddep,  payload:{adddep: true}});
     }
   }
-
-
     return (
      
     <div className="App">
@@ -79,7 +99,7 @@ function GestionCentro() {
       
       <main className="main-container">
         <section>
-     
+        <article>
        {listapac|| listasan|| listaper|| listacon|| listadep?
         <div  className="button-new">
           <Button  onClick={handleClickNew} variant="contained" color="primary">Nuevo</Button>
@@ -95,6 +115,17 @@ function GestionCentro() {
         listadep.listadep==true?<ListComponent listar="Departamentos"/>:
         <p> Seleccione una opción del menú </p>
         }
+        </article>
+        <article>
+        {
+          addpac.addpac==true?<AddPatient/>:
+          addsan.addsan==true?<AddDoctor/>:
+          addper.addper==true?<AddPersonal/>:
+          addcon.addcon==true?<AddConsult/>:
+          adddep.adddep==true?<AddDepartment/>:
+          null
+        }
+        </article>
     
         </section>
       </main>

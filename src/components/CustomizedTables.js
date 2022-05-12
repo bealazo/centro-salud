@@ -31,6 +31,7 @@ const StyledTableCell = withStyles((theme) => ({
   const useStyles = makeStyles({
       table: {
         minWidth: "auto",
+        marginTop:"5vh"
       },
     });
 
@@ -119,8 +120,8 @@ function createDataPacientes(dni, nombre, apellidos, telefono, numero_seguridad_
     
     if(props.listar=="Sanitarios"){
     return (
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="customized table">
+      <TableContainer className={classes.table} component={Paper}>
+        <Table  aria-label="customized table">
           <TableHead>
             <TableRow>
             {headingSanitarios.map((head) => (
@@ -149,8 +150,8 @@ function createDataPacientes(dni, nombre, apellidos, telefono, numero_seguridad_
   
   else if(props.listar=="Pacientes"){
       return (
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="customized table">
+        <TableContainer className={classes.table} component={Paper}>
+          <Table  aria-label="customized table">
             <TableHead>
               <TableRow>
               {headingPacientes.map((head) => (
@@ -176,8 +177,8 @@ function createDataPacientes(dni, nombre, apellidos, telefono, numero_seguridad_
     }
     else if(props.listar=="Personal"){
         return (
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
+          <TableContainer className={classes.table} component={Paper}>
+            <Table  aria-label="customized table">
               <TableHead>
                 <TableRow>
                 {headingPersonal.map((head) => (
@@ -207,8 +208,8 @@ function createDataPacientes(dni, nombre, apellidos, telefono, numero_seguridad_
       }
       else if(props.listar=="Consultas"){
         return (
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
+          <TableContainer  className={classes.table} component={Paper}>
+            <Table aria-label="customized table">
               <TableHead>
                 <TableRow>
                 {headingConsultas.map((head) => (
@@ -232,8 +233,8 @@ function createDataPacientes(dni, nombre, apellidos, telefono, numero_seguridad_
       }
       else if(props.listar=="Departamentos"){
         return (
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
+          <TableContainer className={classes.table} component={Paper}>
+            <Table  aria-label="customized table">
               <TableHead>
                 <TableRow>
                 {headingDepartamentos.map((head) => (
