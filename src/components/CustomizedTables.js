@@ -8,9 +8,12 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import { Icon } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
 
 import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
+import { types } from '../store/StoreReducer';
 
 
 //Estilos de las tablas
@@ -49,6 +52,42 @@ const StyledTableCell = withStyles((theme) => ({
   const{personal}=store;
   const{consultas}=store;
   const{departamentos}=store;
+
+  const handleDelete=(row,list_name)=>{
+      console.log(row)
+      if(list_name=="pacientes")      
+      {
+       var new_pacientes=pacientes.filter((item) => item.dni !== row.dni);
+        //envio la accion en el payload al store reducer para modificar el estado global
+        //OJO: ME SIRVE EL MISMO TIPO QUE PARA AÑADIR NUEVOS ITEMS A LA LISTA, PUESTO QUE LA ACCION PARA ESE TIPO ES MODIFICAR EL LISTADO EXISTENTE SUSTITUYENDOLO 
+        //CON EL NUEVO LISTADO PASADO
+           dispatch({type:types.addpaclistapac,  payload:{pacientes:new_pacientes}});
+       }
+      else if(list_name=="sanitarios")      
+       {
+        var new_sanitarios=sanitarios.filter((item) => item.dni !== row.dni);
+         
+            dispatch({type:types.addsanlistasan,  payload:{sanitarios:new_sanitarios}});
+        }
+        else if(list_name=="personal")      
+        {
+         var new_personal=personal.filter((item) => item.dni !== row.dni);
+          
+             dispatch({type:types.addperlistaper,  payload:{personal:new_personal}});
+         }
+         else if(list_name=="consultas")      
+        {
+         var new_consultas=consultas.filter((item) => item.numero_consulta !== row.numero_consulta);
+          
+             dispatch({type:types.addconlistacon,  payload:{consultas:new_consultas}});
+         }
+         else if(list_name=="departamentos")      
+         {
+          var new_departamentos=departamentos.filter((item) => item.codigo_departamento !== row.codigo_departamento);
+           
+              dispatch({type:types.adddeplistadep,  payload:{departamentos:new_departamentos}});
+          }
+  };
  
      
   const classes = useStyles();
@@ -82,6 +121,7 @@ const StyledTableCell = withStyles((theme) => ({
                 <StyledTableCell align="right">{row.especialidad}</StyledTableCell>
                 <StyledTableCell align="right">{row.antiguedad}</StyledTableCell>
                 <StyledTableCell align="right">{row.salario}</StyledTableCell>
+                <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"sanitarios")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
@@ -110,6 +150,7 @@ const StyledTableCell = withStyles((theme) => ({
                   <StyledTableCell align="right">{row.telefono}</StyledTableCell>
                   <StyledTableCell align="right">{row.numero_seguridad_social}</StyledTableCell>
                   <StyledTableCell align="right">{row.codigo_historia_clinica}</StyledTableCell>
+                  <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"pacientes")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -141,6 +182,7 @@ const StyledTableCell = withStyles((theme) => ({
                     <StyledTableCell align="right">{row.salario}</StyledTableCell>
                     <StyledTableCell align="right">{row.codigo_dpto}</StyledTableCell>
                     <StyledTableCell align="right">{row.derecho_ascenso}</StyledTableCell>
+                    <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"personal")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
@@ -166,6 +208,7 @@ const StyledTableCell = withStyles((theme) => ({
                     <StyledTableCell align="center">{row.codigo_servicio}</StyledTableCell>
                     <StyledTableCell align="right">{row.nombre_servicio}</StyledTableCell>
                     <StyledTableCell align="right">{row.planta}</StyledTableCell>
+                    <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"consultas")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
@@ -189,6 +232,7 @@ const StyledTableCell = withStyles((theme) => ({
                    
                     <StyledTableCell align="right">{row.codigo_departamento}</StyledTableCell>
                     <StyledTableCell align="right">{row.nombre_departamento}</StyledTableCell>
+                    <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"departamentos")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
                   
                   </StyledTableRow>
                 ))}
