@@ -11,7 +11,7 @@ import { types } from '../store/StoreReducer';
 
 function AddPatient(){
 
-    //Para obtener el estado global
+    //Para obtener el estado global, en este caso la lista de pacientes actual
     const [store, dispatch] = useContext(StoreContext);
     const{pacientes}=store;
 
@@ -55,7 +55,16 @@ function AddPatient(){
   }
   pacientes.push(item);
   
+  //envio la accion en el payload al store reducer para modificar el estado global
   dispatch({type:types.addpaclistapac,  payload:{pacientes:pacientes}});
+
+  //Limpio el formulario
+  setDniValue("");
+  setNameValue("");
+  setLastnameValue("");
+  setPhoneValue("");
+  setSecValue("");
+  setCodValue("");
 
   }
 
@@ -71,13 +80,13 @@ function AddPatient(){
         >    <Grid className="containter-form-addpatient-inputs-pc" item xs={12}>
 
              <Grid item xs={2}>
-             <TextField onChange={handleChangeDni} required id="outlined-basic" label="Dni" variant="outlined" />
+             <TextField  value={dni_value} onChange={handleChangeDni} required id="outlined-basic" label="Dni" variant="outlined" />
              </Grid>
              <Grid item xs={2}>
-             <TextField onChange={handleChangeName} required id="outlined-basic" label="Nombre" variant="outlined" />
+             <TextField  value={name_value} onChange={handleChangeName} required id="outlined-basic" label="Nombre" variant="outlined" />
              </Grid>
              <Grid item xs={2}>
-             <TextField  onChange={handleChangeLastname} required id="outlined-basic" label="Apellidos" variant="outlined" />
+             <TextField   value={lastname_value} onChange={handleChangeLastname} required id="outlined-basic" label="Apellidos" variant="outlined" />
              </Grid>
              
              </Grid>
@@ -85,13 +94,13 @@ function AddPatient(){
              <Grid className="containter-form-addpatient-inputs-pc" item xs={12}>
 
               <Grid item xs={2}>
-              <TextField onChange={handleChangePhone} id="outlined-basic" label="Teléfono" variant="outlined" />
+              <TextField  value={phone_value} onChange={handleChangePhone} id="outlined-basic" label="Teléfono" variant="outlined" />
               </Grid>
               <Grid item xs={2}>
-              <TextField  onChange={handleChangeSecurity} required id="outlined-basic" label="Número seguridad social" variant="outlined" />
+              <TextField   value={sec_value} onChange={handleChangeSecurity} required id="outlined-basic" label="Número seguridad social" variant="outlined" />
               </Grid>
               <Grid item xs={2}>
-              <TextField onChange={handleChangeCod} required id="outlined-basic" label="Código historia clínica" variant="outlined" />
+              <TextField  value={cod_value} onChange={handleChangeCod} required id="outlined-basic" label="Código historia clínica" variant="outlined" />
               </Grid>
 
               </Grid>
@@ -99,23 +108,23 @@ function AddPatient(){
               <Grid className="containter-form-addpatient-inputs-movil" item xs={12}>
 
               <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-              <TextField  onChange={handleChangeDni} required id="outlined-basic" label="Dni" variant="outlined" />
+              <TextField  value={dni_value}  onChange={handleChangeDni} required id="outlined-basic" label="Dni" variant="outlined" />
               </Grid>
               <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-              <TextField  onChange={handleChangeName} required id="outlined-basic" label="Nombre" variant="outlined" />
+              <TextField  value={name_value} onChange={handleChangeName} required id="outlined-basic" label="Nombre" variant="outlined" />
               </Grid>
               <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-              <TextField   onChange={handleChangeLastname} required id="outlined-basic" label="Apellidos" variant="outlined" />
+              <TextField   value={lastname_value} onChange={handleChangeLastname} required id="outlined-basic" label="Apellidos" variant="outlined" />
               </Grid>
 
               <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-              <TextField onChange={handleChangePhone}  id="outlined-basic" label="Teléfono" variant="outlined" />
+              <TextField  value={phone_value} onChange={handleChangePhone}  id="outlined-basic" label="Teléfono" variant="outlined" />
               </Grid>
               <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-              <TextField  onChange={handleChangeSecurity} required id="outlined-basic" label="Número seguridad social" variant="outlined" />
+              <TextField  value={sec_value} onChange={handleChangeSecurity} required id="outlined-basic" label="Número seguridad social" variant="outlined" />
               </Grid>
               <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-              <TextField  onChange={handleChangeCod} required id="outlined-basic" label="Código historia clínica" variant="outlined" />
+              <TextField  value={cod_value} onChange={handleChangeCod} required id="outlined-basic" label="Código historia clínica" variant="outlined" />
               </Grid>
 
               </Grid>

@@ -17,7 +17,12 @@ const types={
     changeadddep:"change-adddep",
 
     //tipos para agregar nuevos elementos a las listas
-    addpaclistapac:"add-paciente"
+    addpaclistapac:"add-paciente",
+    addsanlistasan:"add-sanitario",
+    addperlistaper:"add-personal",
+    addconlistacon:"add-consultas",
+    adddeplistadep:"add-departamentos",
+    
 }
 
 
@@ -438,6 +443,23 @@ const StoreReducer = (state,action)=> {
                 return{
                 ...state,
                 pacientes:action.payload.pacientes}
+            case types.addsanlistasan:
+                 return{
+                 ...state,
+                sanitarios:action.payload.sanitarios}
+            case types.addperlistaper:
+                 return{
+                 ...state,
+                 personal:action.payload.personal}
+            case types.addconlistacon:
+                 return{
+                 ...state,
+                consultas:action.payload.consultas}
+            case types.adddeplistadep:
+                return{
+                ...state,
+                departamentos:action.payload.departamentos}
+              
         default:
             return state;
     }
