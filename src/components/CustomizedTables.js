@@ -53,6 +53,11 @@ const StyledTableCell = withStyles((theme) => ({
   const{consultas}=store;
   const{departamentos}=store;
 
+  //Para obtener el método implementado y pasado desde la vista GestionCentro para modificar un elemento de la lista y poder aqui pasarle
+  //los parametros que espera(la fila que quiero modificar y el nombre de la lista a la que pertenece)
+  const handleModify=props.handleModify;
+
+  //Para eliminar un elemento de la lista
   const handleDelete=(row,list_name)=>{
       console.log(row)
       if(list_name=="pacientes")      
@@ -122,6 +127,7 @@ const StyledTableCell = withStyles((theme) => ({
                 <StyledTableCell align="right">{row.antiguedad}</StyledTableCell>
                 <StyledTableCell align="right">{row.salario}</StyledTableCell>
                 <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"sanitarios")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+                <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleModify(row,"sanitarios")}>  <Icon color="secondary" fontSize="small">create</Icon></IconButton></StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
