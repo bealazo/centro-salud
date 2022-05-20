@@ -15,11 +15,12 @@ import AddDoctor from '../components/AddDoctor';
 import AddPersonal from '../components/AddPersonal';
 import AddConsult from '../components/AddConsult';
 import AddDepartment from '../components/AddDepartment';
+import EditDoctor from '../components/EditDoctor';
 
  
 function GestionCentro() {
     
-  //Para obtener el user y el valor booleano de las listas(para saber cual pasar al componente ListComponent) y de las variables controlan que formulario para agregar mostrar, todo esto lo obtengo del contexto
+  //Para obtener el user y el valor booleano de las listas(para saber cual pasar al componente ListComponent) y de las variables controlan que formulario para agregar y editar mostrar, todo esto lo obtengo del contexto
   const [store, dispatch] = useContext(StoreContext);
   const{user}=store;
   const{listapac}=store;
@@ -32,6 +33,13 @@ function GestionCentro() {
   const {addper} = store;
   const {addcon} = store;
   const {adddep} = store;
+  const {editpac} = store;
+  const {editsan} = store;
+  const {editper} = store;
+  const {editcon} = store;
+  const {editdep} = store;
+  //Para controlar los datos de la fila a mostrar en el formulario de edición
+  const {row_edit_doctor} = store;
 
   
   //Para pasar las opciones del menú al header
@@ -85,6 +93,22 @@ function GestionCentro() {
       dispatch({type:types.changeadddep,  payload:{adddep: true}});
     }
   }
+  
+   
+  //Para mostrar el formulario de editar en dependencia del listado que este mostrando para modificar un elemento de la lista, lo paso
+  // a traves de los componentes listComponent a CustomizedTables para poder obtener los parametros
+  //que necesito(la fila de la lista que quiero modificar y el nombre de la lista a la que pertence dicha fila)
+  const handleModify=(row,list_name)=>{
+    console.log("entre a handlemodify")
+    console.log(row)
+    console.log(row_edit_doctor)
+    if(list_name=="sanitarios"&&listasan.listasan==true){
+       console.log("entre al if del handlemodify")
+        dispatch({type:types.changeeditsan,  payload:{editsan: true}});
+        dispatch({type:types.change_row_edit_doctor,  payload:{row_edit_doctor: row}});
+     }
+  
+  }
     return (
      
     <div className="App">
@@ -108,9 +132,9 @@ function GestionCentro() {
         :null
         }
 
-        {listapac.listapac==true?<ListComponent listar="Pacientes"/>:
-        listasan.listasan==true?<ListComponent listar="Sanitarios"/>:
-        listaper.listaper==true?<ListComponent listar="Personal"/>:
+        {listapac.listapac==true?<ListComponent listar="Pacientes" />:
+        listasan.listasan==true?<ListComponent listar="Sanitarios" handleModify={handleModify}/>:
+        listaper.listaper==true?<ListComponent listar="Personal" />:
         listacon.listacon==true?<ListComponent listar="Consultas"/>:
         listadep.listadep==true?<ListComponent listar="Departamentos"/>:
         <p> Seleccione una opción del menú </p>
@@ -123,6 +147,12 @@ function GestionCentro() {
           addper.addper==true?<AddPersonal/>:
           addcon.addcon==true?<AddConsult/>:
           adddep.adddep==true?<AddDepartment/>:
+          null
+        }
+        </article>
+        <article>
+        {
+          editsan.editsan==true?<EditDoctor/>:         
           null
         }
         </article>

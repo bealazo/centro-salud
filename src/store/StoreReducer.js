@@ -22,6 +22,16 @@ const types={
     addperlistaper:"add-personal",
     addconlistacon:"add-consultas",
     adddeplistadep:"add-departamentos",
+
+      //tipos para cambiar variable de control para cambiar los formularios de edición de acuerdo a la lista actual
+      changeeditpac:"change-editpac",
+      changeeditsan:"change-editsan",
+      changeeditper:"change-editper",
+      changeeditcon:"change-editcon",
+      changeeditdep:"change-editdep",
+
+      //tipos para cambiar los datos del formulario de edicion en dependencia de la fila seleccionada
+      change_row_edit_doctor:"row_edit_doctor"
     
 }
 
@@ -41,6 +51,12 @@ const initialStore={
     addper:false,
     addcon:false,
     adddep:false,
+      //variable de control para cambiar los formularios de edición de acuerdo a la lista actual
+      editpac:false,
+      editsan:false,
+      editper:false,
+      editcon:false,
+      editdep:false,
     //Listas porque no tengo conexión a api para obtenerlos de bases de datos
     pacientes:[
         {dni: '29033641M',
@@ -320,10 +336,15 @@ const initialStore={
          nombre_departamento: "Administración",
                     
         }
-    ]
+    ],
+
+    //Para los datos de la fila seleccionada para la edicion
+    row_edit_doctor:""
 }
 
+
 const StoreReducer = (state,action)=> {
+    console.log(state.row_edit_doctor)
    //De acuerdo a la accion recibida por parámetro modifico el estado inicial, los datos a modificar vienen en payload
     switch (action.type) {
         case types.authLogout:
@@ -439,6 +460,46 @@ const StoreReducer = (state,action)=> {
                                        addper:false,
                                        addcon:false,
                                        adddep:action.payload}
+                                       case types.changeeditpac:
+                                        return{
+                                            ...state,
+                                            editpac:action.payload,
+                                            editsan:false,
+                                            editper:false,
+                                            editcon:false,
+                                            editdep:false}
+                                    case types.changeeditsan:
+                                         return{
+                                             ...state,
+                                             editpac:false,
+                                             editsan:action.payload,
+                                             editper:false,
+                                             editcon:false,
+                                             editdep:false}
+                                   case types.changeeditper:
+                                          return{
+                                               ...state,
+                                             editpac:false,
+                                             editsan:false,
+                                             editper:action.payload,
+                                             editcon:false,
+                                             editdep:false}
+                                    case types.changeeditcon:
+                                            return{
+                                               ...state,
+                                              editpac:false,
+                                              editsan:false,
+                                              editper:false,
+                                              editcon:action.payload,
+                                              editdep:false}
+                                     case types.changeeditdep:
+                                             return{
+                                                ...state,
+                                               editpac:false,
+                                               editsan:false,
+                                               editper:false,
+                                               editcon:false,
+                                               editdep:action.payload}
             case types.addpaclistapac:
                 return{
                 ...state,
@@ -459,6 +520,10 @@ const StoreReducer = (state,action)=> {
                 return{
                 ...state,
                 departamentos:action.payload.departamentos}
+          case types.change_row_edit_doctor:
+                    return{
+                    ...state,
+                    row_edit_doctor:action.payload.row_edit_doctor}
               
         default:
             return state;
