@@ -15,7 +15,7 @@ function ListComponent(props){
                   <Typography variant="h6" align="left">
                   Listado de {props.listar}
                  </Typography>
-                <CustomizedTables listar={props.listar}/>
+                <CustomizedTables listar={props.listar} handleModify={props.handleModify}/>
                 </>:
                 props.listar=="Sanitarios"?
                 <>
@@ -29,21 +29,21 @@ function ListComponent(props){
                    <Typography variant="h6" align="left">
                    Listado de {props.listar}
                   </Typography>
-                 <CustomizedTables listar={props.listar}/>
+                 <CustomizedTables listar={props.listar} handleModify={props.handleModify}/>
                  </>:
                   props.listar=="Consultas"?
                   <>
                     <Typography variant="h6" align="left">
                     Listado de {props.listar}
                    </Typography>
-                  <CustomizedTables listar={props.listar}/>
+                  <CustomizedTables listar={props.listar} handleModify={props.handleModify}/>
                   </>:
                   props.listar=="Departamentos"?
                   <>
                     <Typography variant="h6" align="left">
                     Listado de {props.listar}
                    </Typography>
-                  <CustomizedTables listar={props.listar}/>
+                  <CustomizedTables listar={props.listar} handleModify={props.handleModify}/>
                   </>:
                 <Typography variant="h6">
                 {props.listar}

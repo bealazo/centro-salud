@@ -31,7 +31,11 @@ const types={
       changeeditdep:"change-editdep",
 
       //tipos para cambiar los datos del formulario de edicion en dependencia de la fila seleccionada
-      change_row_edit_doctor:"row_edit_doctor"
+      change_row_edit_doctor:"row_edit_doctor",
+      change_row_edit_pac:"row_edit_pac",
+      change_row_edit_per:"row_edit_per",
+      change_row_edit_con:"row_edit_con",
+      change_row_edit_dep:"row_edit_dep",
     
 }
 
@@ -339,12 +343,16 @@ const initialStore={
     ],
 
     //Para los datos de la fila seleccionada para la edicion
-    row_edit_doctor:""
+    row_edit_doctor:"",
+    row_edit_pac:"",
+    row_edit_per:"",
+    row_edit_con:"",
+    row_edit_dep:""
 }
 
 
 const StoreReducer = (state,action)=> {
-    console.log(state.row_edit_doctor)
+   
    //De acuerdo a la accion recibida por parámetro modifico el estado inicial, los datos a modificar vienen en payload
     switch (action.type) {
         case types.authLogout:
@@ -524,6 +532,22 @@ const StoreReducer = (state,action)=> {
                     return{
                     ...state,
                     row_edit_doctor:action.payload.row_edit_doctor}
+         case types.change_row_edit_pac:
+                    return{
+                    ...state,
+                   row_edit_pac:action.payload.row_edit_pac}
+        case types.change_row_edit_per:
+                    return{
+                    ...state,
+                    row_edit_per:action.payload.row_edit_per}
+        case types.change_row_edit_con:
+                    return{
+                    ...state,
+                     row_edit_con:action.payload.row_edit_con}
+        case types.change_row_edit_dep:
+                    return{
+                    ...state,
+                    row_edit_dep:action.payload.row_edit_dep}
               
         default:
             return state;

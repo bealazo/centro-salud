@@ -59,7 +59,7 @@ const StyledTableCell = withStyles((theme) => ({
 
   //Para eliminar un elemento de la lista
   const handleDelete=(row,list_name)=>{
-      console.log(row)
+     
       if(list_name=="pacientes")      
       {
        var new_pacientes=pacientes.filter((item) => item.dni !== row.dni);
@@ -97,11 +97,11 @@ const StyledTableCell = withStyles((theme) => ({
      
   const classes = useStyles();
     
-    const headingSanitarios=[ "DNI","NOMBRE","APELLIDOS", "TELÉFONO", "CATEGORÍA", "ESPECIALIDAD", "ANTIGUEDAD", "SALARIO" ];
-    const headingPacientes=[ "DNI","NOMBRE","APELLIDOS", "TELÉFONO", "NÚMERO SEG. SOCIAL", "CÓDIGO HIST. CLÍNICA"];
-    const headingPersonal=[ "DNI","NOMBRE","APELLIDOS", "TELÉFONO", "CÓDIGO PERSONAL", "ANTIGUEDAD","CARGO", "SALARIO", "CÓD. DEPARTAMENTO", "DERECHO ASCENSO"];
-    const headingConsultas=[ "NÚMERO DE CONSULTA","CÓDIGO DE SERVICIO","NOMBRE DE SERVICIO", "PLANTA"];
-    const headingDepartamentos=[ "CÓDIGO DEPARTAMENTO","NOMBRE DE DEPARTAMENTO"];
+    const headingSanitarios=[ "DNI","NOMBRE","APELLIDOS", "TELÉFONO", "CATEGORÍA", "ESPECIALIDAD", "ANTIGUEDAD", "SALARIO","ACCIONES" ];
+    const headingPacientes=[ "DNI","NOMBRE","APELLIDOS", "TELÉFONO", "NÚMERO SEG. SOCIAL", "CÓDIGO HIST. CLÍNICA","ACCIONES"];
+    const headingPersonal=[ "DNI","NOMBRE","APELLIDOS", "TELÉFONO", "CÓDIGO PERSONAL", "ANTIGUEDAD","CARGO", "SALARIO", "CÓD. DEPARTAMENTO", "DERECHO ASCENSO","ACCIONES"];
+    const headingConsultas=[ "NÚMERO DE CONSULTA","CÓDIGO DE SERVICIO","NOMBRE DE SERVICIO", "PLANTA","ACCIONES"];
+    const headingDepartamentos=[ "CÓDIGO DEPARTAMENTO","NOMBRE DE DEPARTAMENTO","ACCIONES"];
   
     
     if(props.listar=="Sanitarios"){
@@ -126,9 +126,8 @@ const StyledTableCell = withStyles((theme) => ({
                 <StyledTableCell align="right">{row.especialidad}</StyledTableCell>
                 <StyledTableCell align="right">{row.antiguedad}</StyledTableCell>
                 <StyledTableCell align="right">{row.salario}</StyledTableCell>
-                <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"sanitarios")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
-                <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleModify(row,"sanitarios")}>  <Icon color="secondary" fontSize="small">create</Icon></IconButton></StyledTableCell>
-              </StyledTableRow>
+                <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"sanitarios")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"sanitarios")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+               </StyledTableRow>
             ))}
           </TableBody>
         </Table>
@@ -156,7 +155,7 @@ const StyledTableCell = withStyles((theme) => ({
                   <StyledTableCell align="right">{row.telefono}</StyledTableCell>
                   <StyledTableCell align="right">{row.numero_seguridad_social}</StyledTableCell>
                   <StyledTableCell align="right">{row.codigo_historia_clinica}</StyledTableCell>
-                  <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"pacientes")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+                  <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"pacientes")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"pacientes")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -188,7 +187,7 @@ const StyledTableCell = withStyles((theme) => ({
                     <StyledTableCell align="right">{row.salario}</StyledTableCell>
                     <StyledTableCell align="right">{row.codigo_dpto}</StyledTableCell>
                     <StyledTableCell align="right">{row.derecho_ascenso}</StyledTableCell>
-                    <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"personal")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+                    <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"personal")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"personal")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
@@ -214,7 +213,7 @@ const StyledTableCell = withStyles((theme) => ({
                     <StyledTableCell align="center">{row.codigo_servicio}</StyledTableCell>
                     <StyledTableCell align="right">{row.nombre_servicio}</StyledTableCell>
                     <StyledTableCell align="right">{row.planta}</StyledTableCell>
-                    <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"consultas")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+                    <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"consultas")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"consultas")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
@@ -238,7 +237,7 @@ const StyledTableCell = withStyles((theme) => ({
                    
                     <StyledTableCell align="right">{row.codigo_departamento}</StyledTableCell>
                     <StyledTableCell align="right">{row.nombre_departamento}</StyledTableCell>
-                    <StyledTableCell align="right">  <IconButton aria-label="delete" onClick={()=>handleDelete(row,"departamentos")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+                    <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"departamentos")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"departamentos")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
                   
                   </StyledTableRow>
                 ))}

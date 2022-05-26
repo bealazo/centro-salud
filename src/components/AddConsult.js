@@ -14,6 +14,7 @@ function AddConsult(){
     //Para obtener el estado global, en este caso la lista de consultas actual
     const [store, dispatch] = useContext(StoreContext);
     const{consultas}=store;
+    const{addcon}=store;
 
     //Estado inicial para guardar los valores de los inputs
     const [num_value, setNumValue] = React.useState("");   
@@ -54,6 +55,12 @@ function AddConsult(){
   setCodSerValue("");
   setNomSerValue("");
   setPlaValue("");
+  
+  }
+  const handleClickCancel=()=>{   
+
+    //Oculto el formulario
+    dispatch({type:types.changeaddcon,  payload:{addcon: false}});
   
   }
 
@@ -104,9 +111,21 @@ function AddConsult(){
               </Grid>
             
               </Grid>
-              <div  className="button-form">
-            <Button  onClick={handleClickSave} variant="contained" color="primary">Guardar</Button>
-           </div>
+              <Grid className="group-button-form" item xs={12}>
+
+            <Grid item xs={5}>
+            <div className="button-form">              
+            <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+            </div>
+            </Grid>
+            <Grid item xs={5}>
+            <div  className="button-form">    
+            <Button  onClick={handleClickSave} variant="contained" color="primary">Guardar</Button>    
+
+            </div>
+            </Grid>
+
+            </Grid>
       </Box>
      </div>
     );

@@ -16,7 +16,7 @@ function Contacto() {
    const options=[
     "Inicio",
     "Contacto",
-    "Login"
+    "Iniciar sesión"
   ];
    
   const [name_value, setNameValue] = React.useState("");
