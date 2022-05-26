@@ -110,7 +110,7 @@ function Header(props){
         >
          {option} 
          </NavLink>
-         : option=="Login"? <NavLink
+         : option=="Iniciar sesión"? <NavLink
          to="/login"
          style={({isActive}) => ({color: isActive ? "#61dafb" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
        >

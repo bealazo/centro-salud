@@ -318,4 +318,9 @@
  justify-content: flex-end;
  
 }
+.group-button-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 

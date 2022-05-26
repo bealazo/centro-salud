@@ -25,7 +25,7 @@ function Home() {
    const options=[
     "Inicio",
     "Contacto",
-    "Login"
+    "Iniciar sesión"
   ];
    
   //Miembros del equipo

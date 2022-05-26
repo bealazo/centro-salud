@@ -14,6 +14,7 @@ function AddDepartment(){
     //Para obtener el estado global, en este caso la lista de departamentos actual
     const [store, dispatch] = useContext(StoreContext);
     const{departamentos}=store;
+    const{adddep}=store;
 
     //Estado inicial para guardar los valores de los inputs
     const [cod_value, setCodValue] = React.useState("");   
@@ -43,6 +44,12 @@ function AddDepartment(){
   //Limpio el formulario
   setCodValue("");
   setNomValue("");
+  }
+  const handleClickCancel=()=>{   
+
+    //Oculto el formulario
+    dispatch({type:types.changeadddep,  payload:{adddep: false}});
+  
   }
 
     return(
@@ -75,9 +82,21 @@ function AddDepartment(){
               </Grid>
             
               </Grid>
-              <div  className="button-form">
-            <Button  onClick={handleClickSave} variant="contained" color="primary">Guardar</Button>
-           </div>
+              <Grid className="group-button-form" item xs={12}>
+
+              <Grid item xs={5}>
+              <div className="button-form">              
+              <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+              </div>
+              </Grid>
+              <Grid item xs={5}>
+              <div  className="button-form">    
+              <Button  onClick={handleClickSave} variant="contained" color="primary">Guardar</Button>    
+
+              </div>
+              </Grid>
+
+              </Grid>
       </Box>
      </div>
     );

@@ -15,6 +15,7 @@ function AddDoctor(){
    //Para obtener el estado global, en este caso la lista de sanitarios actual
    const [store, dispatch] = useContext(StoreContext);
    const{sanitarios}=store;
+   const {addsan} = store;
 
    //Estado inicial para guardar los valores de los inputs
    const [dni_value, setDniValue] = React.useState("");
@@ -79,6 +80,12 @@ function AddDoctor(){
  setAntValue("");
  setSalValue("");
  }
+ const handleClickCancel=()=>{   
+
+  //Oculto el formulario
+  dispatch({type:types.changeaddsan,  payload:{addsan: false}});
+
+}
 
    return(
 
@@ -157,9 +164,21 @@ function AddDoctor(){
              </Grid>
 
              </Grid>
-             <div  className="button-form">
-           <Button  onClick={handleClickSave} variant="contained" color="primary">Guardar</Button>
-          </div>
+             <Grid className="group-button-form" item xs={12}>
+
+            <Grid item xs={5}>
+            <div className="button-form">              
+            <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+            </div>
+            </Grid>
+            <Grid item xs={5}>
+            <div  className="button-form">    
+            <Button  onClick={handleClickSave} variant="contained" color="primary">Guardar</Button>    
+
+            </div>
+            </Grid>
+
+            </Grid>
      </Box>
     </div>
    );
