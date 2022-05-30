@@ -14,13 +14,15 @@ import IconButton from '@material-ui/core/IconButton';
 import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
 import { types } from '../store/StoreReducer';
+import {TextField} from '@material-ui/core';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 //Estilos de las tablas
 const StyledTableCell = withStyles((theme) => ({
     head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+      backgroundColor: "#DEEDEE",
+      color: theme.palette.common.black,
     },
     body: {
       fontSize: 14,
@@ -52,6 +54,9 @@ const StyledTableCell = withStyles((theme) => ({
   const{personal}=store;
   const{consultas}=store;
   const{departamentos}=store;
+  //Para la palabra del buscar
+  const [word, setWord] = React.useState("");
+  const [filterDisplay, setFilterDisplay] = React.useState(sanitarios);
 
   //Para obtener el método implementado y pasado desde la vista GestionCentro para modificar un elemento de la lista y poder aqui pasarle
   //los parametros que espera(la fila que quiero modificar y el nombre de la lista a la que pertenece)
@@ -93,6 +98,23 @@ const StyledTableCell = withStyles((theme) => ({
               dispatch({type:types.adddeplistadep,  payload:{departamentos:new_departamentos}});
           }
   };
+
+  //Para filtro de búsqueda
+  const handleChangeSearch=(e)=>{
+      let oldList=sanitarios.map(sanitario=>{
+        return {dni:sanitario.dni.toLowerCase(),nombre:sanitario.nombre.toLowerCase(),
+          apellidos:sanitario.apellidos.toLowerCase(),telefono:sanitario.telefono,categoria:sanitario.categoria.toLowerCase(),
+          especialidad:sanitario.especialidad.toLowerCase(),antiguedad:sanitario.antiguedad,salario:sanitario.salario}
+      })
+
+      if(e!==""){
+        let newList=[];
+        setWord(e);
+        newList=oldList.filter(sanitario=>sanitario.dni.includes(word.toLowerCase()));
+        setFilterDisplay(newList);
+      }
+      else{setFilterDisplay(sanitarios)};
+  }
  
      
   const classes = useStyles();
@@ -102,20 +124,42 @@ const StyledTableCell = withStyles((theme) => ({
     const headingPersonal=[ "DNI","NOMBRE","APELLIDOS", "TELÉFONO", "CÓDIGO PERSONAL", "ANTIGUEDAD","CARGO", "SALARIO", "CÓD. DEPARTAMENTO", "DERECHO ASCENSO","ACCIONES"];
     const headingConsultas=[ "NÚMERO DE CONSULTA","CÓDIGO DE SERVICIO","NOMBRE DE SERVICIO", "PLANTA","ACCIONES"];
     const headingDepartamentos=[ "CÓDIGO DEPARTAMENTO","NOMBRE DE DEPARTAMENTO","ACCIONES"];
+
   
     
     if(props.listar=="Sanitarios"){
     return (
-      <TableContainer className={classes.table} component={Paper}>
+      <>
+  
+     <TableContainer className={classes.table} component={Paper}>
+    
         <Table  aria-label="customized table">
           <TableHead>
             <TableRow>
             {headingSanitarios.map((head) => (
-              <StyledTableCell align="right">{head}</StyledTableCell>))}
+           
+                <StyledTableCell align="right">  
+              {head}  <TextField
+                id="input-with-icon-textfield"
+             
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                     <Icon color="primary" fontSize="small">search</Icon>
+                    </InputAdornment>
+                  ),
+                }}
+             
+                color="primary"
+                onChange={e=>handleChangeSearch(e.target.value)} 
+              /></StyledTableCell>
+              ))
+              }
+            
            </TableRow>
           </TableHead>
           <TableBody>
-            {sanitarios.map((row) => (
+            {filterDisplay.map((row) => (
               <StyledTableRow key={row.dni}>
                
                <StyledTableCell align="right">{row.dni}</StyledTableCell>
@@ -132,6 +176,8 @@ const StyledTableCell = withStyles((theme) => ({
           </TableBody>
         </Table>
       </TableContainer>
+      </>
+    
     );
   }
   
