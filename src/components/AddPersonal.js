@@ -93,7 +93,7 @@ setDerValue("");
 const handleClickCancel=()=>{   
 
   //Oculto el formulario
-  dispatch({type:types.changeaddper,  payload:{addper: true}});
+  dispatch({type:types.changeaddper,  payload:{addper: false}});
 }
 
   return(

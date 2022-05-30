@@ -1,0 +1,18 @@
+[
+    {"codigo_departamento": 223,
+    "nombre_departamento": "Mantenimiento"
+    
+    },
+    {"codigo_departamento": 224,
+     "nombre_departamento": "Recursos Humanos"
+        
+     },
+    {"codigo_departamento": 225,
+     "nombre_departamento": "Informática"
+            
+     },
+    {"codigo_departamento": 226,
+     "nombre_departamento": "Administración"
+                
+    }
+]

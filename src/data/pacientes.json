@@ -1,0 +1,28 @@
+[{"dni": "29033641M",
+    "nombre": "Caridad",
+    "apellidos":"Ballesteros Castillo",
+    "telefono":625789102,
+    "numero_seguridad_social":247295332921,
+    "codigo_historia_clinica":"0000000211"
+   },
+   {"dni": "51310395V",
+    "nombre": "Constantino",
+   "apellidos":"Diaz Barrios",
+   "telefono":755861389,
+   "numero_seguridad_social":165651962891,
+   "codigo_historia_clinica":"0000000212"
+  },
+  {"dni": "72088633D",
+  "nombre": "Enrique",
+  "apellidos":"Conde Huerta",
+  "telefono":605483756,
+  "numero_seguridad_social":214215400790,
+  "codigo_historia_clinica":"0000000213"
+ },
+ {"dni": "75763067D",
+ "nombre": "Nadia",
+ "apellidos":"Amaya Barbero",
+ "telefono":714436150,
+ "numero_seguridad_social":148175851090,
+ "codigo_historia_clinica":"0000000214"
+}]
