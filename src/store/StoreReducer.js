@@ -5,6 +5,7 @@ import * as personal from '../data/personal.json';
 import * as consultas from '../data/consultas.json';
 import * as departamentos from '../data/departamentos.json';
 
+
 const types={
     authLogin:"auth - login",
     authLogout:"auth - logout",
@@ -68,11 +69,11 @@ const initialStore={
       editcon:false,
       editdep:false,
     //Listas que cargo desde los .json porque no tengo conexión a api para obtenerlos de bases de datos
-    pacientes:pacientes,  
-    sanitarios:sanitarios,
-    personal:personal,
-    consultas:consultas,
-    departamentos:departamentos,
+    pacientes:pacientes.default,  
+    sanitarios:sanitarios.default,
+    personal:personal.default,
+    consultas:consultas.default,
+    departamentos:departamentos.default,
 
     //Para los datos de la fila seleccionada para la edicion
     row_edit_doctor:"",
