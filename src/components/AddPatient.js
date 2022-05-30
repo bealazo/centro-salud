@@ -71,7 +71,7 @@ function AddPatient(){
   const handleClickCancel=()=>{   
 
     //Oculto el formulario
-    dispatch({type:types.changeaddpac,  payload:{addpac: true}});
+    dispatch({type:types.changeaddpac,  payload:{addpac: false}});
   
   }
 

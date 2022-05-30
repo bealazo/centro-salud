@@ -1,0 +1,147 @@
+[
+    {"numero_consulta": 1,
+    "codigo_servicio":123,
+    "nombre_servicio":"Pediatría",
+    "planta":1
+   
+    },
+    {  "numero_consulta": 2,
+        "codigo_servicio":123,
+        "nombre_servicio":"Pediatría",
+        "planta":1
+       
+   },
+   {"numero_consulta": 3,
+    "codigo_servicio":123,
+    "nombre_servicio":"Pediatría",
+    "planta":1
+   
+    },
+    {"numero_consulta": 4,
+        "codigo_servicio":124,
+        "nombre_servicio":"Geriatría",
+        "planta":2
+       
+   },
+    {"numero_consulta": 5,
+        "codigo_servicio":124,
+        "nombre_servicio":"Geriatría",
+        "planta":2
+    
+},
+    {"numero_consulta": 6,
+        "codigo_servicio":124,
+        "nombre_servicio":"Geriatría",
+        "planta":2
+    
+    },
+    {"numero_consulta": 7,
+        "codigo_servicio":125,
+        "nombre_servicio":"Psicología",
+        "planta":2
+    
+    },
+    {"numero_consulta": 8,
+        "codigo_servicio":125,
+        "nombre_servicio":"Psicología",
+        "planta":2
+    
+    },
+    {"numero_consulta": 9,
+        "codigo_servicio":125,
+        "nombre_servicio":"Psicología",
+        "planta":2
+    
+    },
+    {"numero_consulta": 10,
+        "codigo_servicio":126,
+        "nombre_servicio":"Oftalmología",
+        "planta":2
+    
+    },
+    {"numero_consulta": 11,
+        "codigo_servicio":126,
+        "nombre_servicio":"Oftalmología",
+        "planta":2
+    
+    },
+    {"numero_consulta": 12,
+        "codigo_servicio":126,
+        "nombre_servicio":"Oftalmología",
+        "planta":2
+    
+    },
+    {"numero_consulta": 13,
+        "codigo_servicio":127,
+        "nombre_servicio":"Cardiología",
+        "planta":1
+    
+    },
+    {"numero_consulta": 14,
+        "codigo_servicio":127,
+        "nombre_servicio":"Cardiología",
+        "planta":1
+    
+    },
+    {"numero_consulta": 15,
+        "codigo_servicio":127,
+        "nombre_servicio":"Cardiología",
+        "planta":1
+    
+    },
+    {"numero_consulta": 16,
+        "codigo_servicio":128,
+        "nombre_servicio":"Medicina Interna",
+        "planta":3
+    
+    },
+    {"numero_consulta": 17,
+        "codigo_servicio":128,
+        "nombre_servicio":"Medicina Interna",
+        "planta":3
+    
+    },
+    {"numero_consulta": 18,
+        "codigo_servicio":128,
+        "nombre_servicio":"Medicina Interna",
+        "planta":3
+    
+    },
+    {"numero_consulta": 19,
+        "codigo_servicio":129,
+        "nombre_servicio":"Reumatología",
+        "planta":3
+    
+    },
+    {"numero_consulta": 20,
+        "codigo_servicio":129,
+        "nombre_servicio":"Reumatología",
+        "planta":3
+    
+    },
+    {"numero_consulta": 21,
+        "codigo_servicio":129,
+        "nombre_servicio":"Reumatología",
+        "planta":3
+    
+    },
+    {"numero_consulta": 22,
+        "codigo_servicio":130,
+        "nombre_servicio":"Neumología",
+        "planta":3
+    
+    },
+    {"numero_consulta": 23,
+        "codigo_servicio":130,
+        "nombre_servicio":"Neumología",
+        "planta":3
+    
+    },
+    {"numero_consulta": 24,
+        "codigo_servicio":130,
+        "nombre_servicio":"Neumología",
+        "planta":3
+    
+    }
+    
+]

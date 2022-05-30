@@ -1,0 +1,38 @@
+[
+    {"dni": "20569836Q",
+     "nombre": "Mariano",
+     "apellidos":"Cardenas Oliver",
+     "telefono":693840304,
+     "categoria":"Médico",
+     "especialidad":"Psicología",
+     "antiguedad":5,
+     "salario":36000
+    },
+    {"dni": "30210818L",
+    "nombre": "Bartolome",
+    "apellidos":"Piñero Andreu",
+    "telefono":645813149,
+    "categoria":"Médico",
+    "especialidad":"Medicina Interna",
+    "antiguedad":2,
+    "salario":36000
+   },
+   {"dni": "68215574N",
+   "nombre": "Sonia",
+   "apellidos":"Ferreira Becerra",
+   "telefono":689929226,
+   "categoria":"Enfermera",
+   "especialidad":"Cardiología",
+   "antiguedad":3,
+   "salario":24000
+  },
+  {"dni": "88103187P",
+     "nombre": "Ana Isabel",
+     "apellidos":"Mata Costa",
+     "telefono":632121414,
+     "categoria":"Médico",
+     "especialidad":"Oftalmología",
+     "antiguedad":6,
+     "salario":36000
+    }
+]
