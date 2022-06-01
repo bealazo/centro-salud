@@ -5,7 +5,7 @@ pages:
     paths:
       - node_modules/
   script:
-    - npm install
+    - yarn install
     - npm run build
     - rm -rf public
     - cp build/index.html build/404.html
