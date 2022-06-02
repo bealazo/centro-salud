@@ -10,10 +10,11 @@ import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import Socials from "../components/Socials";
 //IMAGENES IMPORTADAS YA QUE ESTOY EN LOCAL
-import avatar1 from "../images/avatar1.jpg";
-import avatar2 from "../images/avatar2.jpg";
-import avatar3 from "../images/avatar3.jpg";
-import avatar4 from "../images/avatar4.jpg";
+import avatar1 from "../images/avatar8.png";
+import avatar2 from "../images/avatar9.png";
+import avatar3 from "../images/avatar10.png";
+import avatar4 from "../images/avatar11.png";
+import home1 from "../images/home1.png";
 import banner from "../images/banner.jpg";
 import bannersocials from "../images/bannersocials.jpg";
 
@@ -33,12 +34,12 @@ function Home() {
       {
         "name":"Beatriz Lazo",
         "description":"Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.",
-        "avatar":avatar1
+        "avatar":avatar4
       },
       {
         "name":"Yanelis Serrano",
         "description":"Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.",
-        "avatar":avatar2
+        "avatar":avatar1
       },
       {
         "name":"Javier Rodriguez",
@@ -46,9 +47,9 @@ function Home() {
         "avatar":avatar3
       },
       {
-        "name":"David Cabe",
+        "name":"Leyre Velasco",
         "description":"Soy muy profesional y me gusta atender a mis pacientes con mucho cariño, escucharles y hacerles sentir mejor.",
-        "avatar":avatar4
+        "avatar":avatar2
       },
 
     ]
@@ -59,14 +60,14 @@ function Home() {
   <div className="App">
      <header>
         <Header options={options}/>
-        <Banner banner={banner} title="Centro de Salud Privado" subtitle="...Tu salud nos importa..."/>  
+        <Banner banner={banner} title="Centro de salud" subtitle="...tu salud nos importa..."/>  
      </header>
 
     <main className="main-container">
       <section>
         <article className="container-history">
-        <Typography variant="h4">
-          Historia
+        <Typography variant="h4" style={{paddingBottom:"5%"}}>
+          ¿Quiénes somos?
         </Typography>
         <Typography variant="body1" gutterBottom>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
@@ -78,11 +79,14 @@ function Home() {
         dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>
         </article> 
+      <article className="container-home-image">
+           <img src={home1} className="home-image"/>
+        </article>
 
         <article className="container-team">
         <Typography className="title-who" variant="h4">
-          ¿Quiénes Somos?
-        </Typography>
+         Nuestro equipo  
+         </Typography>
 
        {equipo.map((miembro,index) =>  <TeamMember key={index} position={index} avatar={miembro.avatar} name={miembro.name} description={miembro.description}/>)}
   

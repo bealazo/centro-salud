@@ -98,7 +98,7 @@ function Header(props){
          {option=="Inicio"?
               <NavLink
              to="/home"
-             style={({isActive}) => ({color: isActive ? "#61dafb" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
+             style={({isActive}) => ({color: isActive ? "#ADBEC7" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
           >
              {option} 
              </NavLink>
@@ -106,13 +106,13 @@ function Header(props){
           : option=="Contacto"?
           <NavLink
           to="/contacto"
-          style={({isActive}) => ({color: isActive ? "#61dafb" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
+          style={({isActive}) => ({color: isActive ? "#ADBEC7" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
         >
          {option} 
          </NavLink>
          : option=="Iniciar sesión"? <NavLink
          to="/login"
-         style={({isActive}) => ({color: isActive ? "#61dafb" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
+         style={({isActive}) => ({color: isActive ? "#ADBEC7" : "white" , textDecoration: 'none' })} className={({isActive}) => `nav_link${isActive ? " active" : ""}`} 
        >
          {option}
         </NavLink>

@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import banner from "../images/banner.jpg";
+import contact1 from "../images/contact1.png";
 
 import Map from "../components/Map";
 
@@ -43,10 +44,7 @@ function Contacto() {
   };
   const handleClickSend = (event) => {
     event.preventDefault();
-    console.log(name_value)
-    console.log(phone_value)
-    console.log(email_value)
-    console.log(message_value)
+ 
 
     //Valido si algún campo requerido está vacío para mostrar mensaje de error o de éxito
     if(name_value||email_value||message_value==""){
@@ -72,15 +70,19 @@ function Contacto() {
     <div className="App">
        <header>
           <Header options={options}/>
-          <Banner banner={banner} title="Centro de Salud Privado" subtitle="...Tu salud nos importa..."/>  
+          <Banner banner={banner} title="Centro de salud" subtitle="...tu salud nos importa..."/>  
        </header>
   
       <main className="main-container">
         <section>
         <article className="container-history ">
         <Typography variant="h4">
-          Contacto
+          Ven a conocernos
         </Typography>
+        <article className="container-home-image">
+           <img src={contact1} className="contact-image"/>
+        </article>      
+      
         <div className="container-contact">
        
          <Map/>
@@ -96,11 +98,11 @@ function Contacto() {
       </Typography>   
       
       </div>
-        </article>       
-      
+        </article> 
+    
         <article className="container-form"> 
         <Typography variant="h5">
-          ¡Ven a conocernos. Contacta con nosotros!
+          Contacta con nosotros
         </Typography>
 
      

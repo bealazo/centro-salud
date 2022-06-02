@@ -8,7 +8,7 @@ function Footer(){
         <div className="container-footer">
 
             <div>
-                <Typography variant="h6">
+                <Typography variant="h5">
                 Copyright© Beatriz Lazo Tamayo
                 </Typography>
                 

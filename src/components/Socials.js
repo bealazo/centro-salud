@@ -17,7 +17,7 @@ function Socials(){
         <div className="container-socials">
 
             <div>
-                <Typography variant="h4">
+                <Typography variant="h5">
                 ¡Síguenos en todas nuestras Redes!
                 </Typography>
                                 
@@ -25,8 +25,8 @@ function Socials(){
             <div>
                   <Grid >
                     <Icon style={{cursor:"pointer"}} onClick={handleClick} color="primary" fontSize="large">facebook</Icon>
-                    <InstagramIcon color="secondary" fontSize="large"/>
-                    <LinkedInIcon fontSize="large"/>
+                    <InstagramIcon color="secondary" fontSize="large" style={{cursor:"pointer"}}/>
+                    <LinkedInIcon fontSize="large" style={{cursor:"pointer"}}/>
                     </Grid>
             </div>
             
