@@ -1,21 +1,23 @@
 {
   "files": {
-    "main.css": "/centro-salud/static/css/main.cac3ef69.css",
-    "main.js": "/centro-salud/static/js/main.4691d991.js",
+    "main.css": "/centro-salud/static/css/main.649bda5c.css",
+    "main.js": "/centro-salud/static/js/main.391f614d.js",
     "static/js/787.15bb1808.chunk.js": "/centro-salud/static/js/787.15bb1808.chunk.js",
+    "static/media/avatar9.png": "/centro-salud/static/media/avatar9.1ca5b3de97869646a6a4.png",
+    "static/media/avatar10.png": "/centro-salud/static/media/avatar10.dcbaca40bdfd70e14444.png",
+    "static/media/contact1.png": "/centro-salud/static/media/contact1.354ddbaf251451c85dd3.png",
+    "static/media/avatar11.png": "/centro-salud/static/media/avatar11.2b8417f63aa18e4a6b81.png",
+    "static/media/home1.png": "/centro-salud/static/media/home1.6e3798e5cc197f65c5d6.png",
     "static/media/banner.jpg": "/centro-salud/static/media/banner.1f1a17ec85e0abaa04cc.jpg",
+    "static/media/avatar8.png": "/centro-salud/static/media/avatar8.6db6c63ed0ce35b8a119.png",
     "static/media/bannersocials.jpg": "/centro-salud/static/media/bannersocials.0eabe24bacbfabdb060e.jpg",
-    "static/media/avatar1.jpg": "/centro-salud/static/media/avatar1.f41c8e8945a813a8e4dd.jpg",
-    "static/media/avatar4.jpg": "/centro-salud/static/media/avatar4.d4ffab59ffeafc63c0f4.jpg",
-    "static/media/avatar2.jpg": "/centro-salud/static/media/avatar2.f5f3766189c12c88f0a0.jpg",
-    "static/media/avatar3.jpg": "/centro-salud/static/media/avatar3.d84c5333951cd65e197c.jpg",
     "index.html": "/centro-salud/index.html",
-    "main.cac3ef69.css.map": "/centro-salud/static/css/main.cac3ef69.css.map",
-    "main.4691d991.js.map": "/centro-salud/static/js/main.4691d991.js.map",
+    "main.649bda5c.css.map": "/centro-salud/static/css/main.649bda5c.css.map",
+    "main.391f614d.js.map": "/centro-salud/static/js/main.391f614d.js.map",
     "787.15bb1808.chunk.js.map": "/centro-salud/static/js/787.15bb1808.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cac3ef69.css",
-    "static/js/main.4691d991.js"
+    "static/css/main.649bda5c.css",
+    "static/js/main.391f614d.js"
   ]
 }
