@@ -21,7 +21,7 @@ function Layout() {
     
   return (
    
-      <Routes>
+      <Routes  basename={process.env.PUBLIC_URL}>
          <Route exact path="/" element={<Home/>}/>
         
         <Route exact path="/home" element={<Home/>}/>
