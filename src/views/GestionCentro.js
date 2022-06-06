@@ -20,9 +20,26 @@ import EditPatient from '../components/EditPatient';
 import EditPersonal from '../components/EditPersonal';
 import EditConsult from '../components/EditConsult';
 import EditDepartment from '../components/EditDepartment';
+import Charts from "../components/Charts";
+import PrintIcon from '@material-ui/icons/Print';
+import Grid from '@material-ui/core/Grid';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { useMediaQuery } from "react-responsive";
 
  
 function GestionCentro() {
+
+   //Manejar ancho de la pantalla para definir ancho del grafico
+   const isDesktop = useMediaQuery({
+    query: "(min-width: 1224px)"
+  });
+  const isTablet = useMediaQuery({
+    query: "(max-width: 1224px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 786px)"
+  });
     
   //Para obtener el user y el valor booleano de las listas(para saber cual pasar al componente ListComponent) y de las variables controlan que formulario para agregar y editar mostrar, todo esto lo obtengo del contexto
   const [store, dispatch] = useContext(StoreContext);
@@ -42,6 +59,13 @@ function GestionCentro() {
   const {editper} = store;
   const {editcon} = store;
   const {editdep} = store;
+  const {charts} = store;
+  const{sanitarios}=store;
+  const{pacientes}=store;
+  const{consultas}=store;
+  const{departamentos}=store;
+  const{personal}=store;
+
   //Para controlar los datos de la fila a mostrar en el formulario de edición
   const {row_edit_doctor} = store;
   const {row_edit_pac} = store;
@@ -77,8 +101,15 @@ function GestionCentro() {
     {  dispatch({type:types.changelistacon,  payload:{listacon: true}});}
     if(text=="DEPARTAMENTOS")
     {  dispatch({type:types.changelistadep,  payload:{listadep: true}});}
+
+    //Para mostrar los gráficos
+    if(text=="GRÁFICOS"){
+      console.log("entre a graficos")
+      dispatch({type:types.showcharts,  payload:{charts: true}});
+    }
   }
- 
+
+   
   //Para mostrar el formulario de agregar en dependencia del listado que este mostrando
   const handleClickNew=()=>{
       if(listapac.listapac==true){
@@ -100,7 +131,94 @@ function GestionCentro() {
       dispatch({type:types.changeadddep,  payload:{adddep: true}});
     }
   }
-  
+  //Para imprimir la tabla en dependencia del listado que este mostrando
+    const headingSanitarios=[  { title: "DNI", field: "dni", },
+    { title: "NOMBRE", field: "nombre"},
+    { title: "APELLIDOS", field: "apellidos"},
+    { title: "TLFNO.", field: 'telefono'},
+    { title: "CATEG.", field: "categoria"},
+    { title: "ESP.", field: "especialidad"},
+    { title: "ANTIG.", field: "antiguedad"},
+    { title: "SALARIO", field: "salario"}];
+    const headingPacientes=[  { title: "DNI", field: "dni", },
+    { title: "NOMBRE", field: "nombre"},
+    { title: "APELLIDOS", field: "apellidos"},
+    { title: "TELÉFONO", field: 'telefono'},
+    { title: "SEG.SOCIAL", field: "numero_seguridad_social"},
+    { title: "HIST.CLÍNICA", field: "codigo_historia_clinica"},];
+    const headingPersonal=[  { title: "DNI", field: "dni", },
+    { title: "NOMBRE", field: "nombre"},
+    { title: "APELL.", field: "apellidos"},
+    { title: "TLFNO.", field: 'telefono'},
+    { title: "CÓD.", field: "codigo_personal"},   
+    { title: "ANTIG.", field: "antiguedad"},
+    { title: "CARGO", field: "cargo"},
+    { title: "SAL.", field: "salario"},
+    { title: "DPTO", field: "codigo_dpto"},
+    { title: "ASC.", field: "derecho_ascenso"}];
+    const headingConsultas=[ { title: "NÚMERO DE CONSULTA", field: "numero_consulta"},
+    { title: "CÓDIGO DE SERVICIO", field: "codigo_servicio"},
+    { title: "NOMBRE DE SERVICIO", field: 'nombre_servicio'},
+    { title: "PLANTA", field: "planta"}];
+    const headingDepartamentos=[ { title: "CÓDIGO", field: "codigo_departamento"},
+    { title: "NOMBRE", field: "nombre_departamento"}
+  ];
+    
+    
+  const handleClickPrint=()=>{
+    if(listapac.listapac==true){
+      const doc = new jsPDF()
+      doc.text("Pacientes", 20, 10)
+      doc.autoTable({
+        theme: "grid",
+        columns: headingPacientes.map((head) => ({ header:head.title, dataKey: head.field})),
+        body: pacientes
+      })
+      doc.save('table.pdf')
+    
+  }
+  else if(listasan.listasan==true){
+    const doc = new jsPDF()
+    doc.text("Sanitarios", 20, 10)
+    doc.autoTable({
+      theme: "grid",
+      columns: headingSanitarios.map((head) => ({ header:head.title, dataKey: head.field})),
+      body: sanitarios
+    })
+    doc.save('table.pdf')
+  }
+  else if(listaper.listaper==true){
+    const doc = new jsPDF()
+      doc.text("Personal", 20, 10)
+      doc.autoTable({
+        theme: "grid",
+        columns: headingPersonal.map((head) => ({ header:head.title, dataKey: head.field})),
+        body: personal
+      })
+      doc.save('table.pdf')
+  }
+  else if(listacon.listacon==true){
+    const doc = new jsPDF()
+      doc.text("Consultas", 20, 10)
+      doc.autoTable({
+        theme: "grid",
+        columns: headingConsultas.map((head) => ({ header:head.title, dataKey: head.field})),
+        body: consultas
+      })
+      doc.save('table.pdf')
+  }
+  else if(listadep.listadep==true){
+    const doc = new jsPDF()
+    doc.text("Departamentos", 20, 10)
+    doc.autoTable({
+      theme: "grid",
+      columns: headingDepartamentos.map((head) => ({ header:head.title, dataKey: head.field})),
+      body: departamentos
+    })
+    doc.save('table.pdf')
+   
+  }
+}
    
   //Para mostrar el formulario de editar en dependencia del listado que este mostrando para modificar un elemento de la lista, lo paso
   // a traves de los componentes listComponent a CustomizedTables para poder obtener los parametros
@@ -150,10 +268,24 @@ function GestionCentro() {
         <section>
         <article>
        {listapac|| listasan|| listaper|| listacon|| listadep?
-        <div  className="button-new">
+        isDesktop?
+        <Grid container spacing={1} className="group-button-new-print">
+        <Grid item xs={1}>
           <Button  onClick={handleClickNew} variant="contained" color="primary">Nuevo</Button>
-         
-        </div>
+          </Grid>
+          <Grid item xs={1}>
+          <Button  onClick={handleClickPrint} variant="contained" ><PrintIcon></PrintIcon>Pdf</Button>
+          </Grid>
+        </Grid>:isMobile?
+          <Grid container spacing={1} className="group-button-new-print">
+          <Grid item xs={2}>
+            <Button  onClick={handleClickNew} variant="contained" color="primary">Nuevo</Button>
+            </Grid>
+            <Grid item xs={2}>
+            <Button  onClick={handleClickPrint} variant="contained" ><PrintIcon></PrintIcon>Pdf</Button>
+            </Grid>
+          </Grid>:null     
+     
         :null
         }
 
@@ -162,6 +294,7 @@ function GestionCentro() {
         listaper.listaper==true?<ListComponent listar="Personal" handleModify={handleModify}/>:
         listacon.listacon==true?<ListComponent listar="Consultas" handleModify={handleModify}/>:
         listadep.listadep==true?<ListComponent listar="Departamentos" handleModify={handleModify}/>:
+        charts.charts==true?<Charts/>: 
         <p> Seleccione una opción del menú </p>
         }
         </article>
@@ -185,7 +318,7 @@ function GestionCentro() {
           null
         }
         </article>
-    
+         
         </section>
       </main>
         

@@ -22,6 +22,7 @@ import GroupIcon from '@material-ui/icons/Group';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import HealingIcon from '@material-ui/icons/Healing';
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 
 
 
@@ -92,7 +93,8 @@ const useStyles = makeStyles((theme) => ({
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
+  };  
+ 
 
 return(
     <div className={classes.root}>
@@ -142,6 +144,15 @@ return(
     {['CONSULTAS', 'DEPARTAMENTOS'].map((text, index) => (
       <ListItem button key={text}onClick={()=>handleListItem(text)}>
         <ListItemIcon>{text=="CONSULTAS" ? <HealingIcon /> : <ListAltIcon />}</ListItemIcon>
+        <ListItemText primary={text} />
+      </ListItem>
+    ))}
+  </List>
+  <Divider />
+  <List>
+    {['GRÁFICOS'].map((text, index) => (
+      <ListItem button key={text}onClick={()=>handleListItem(text)}>
+        <ListItemIcon>{text=="GRÁFICOS" ? <AssessmentIcon/> : <ListAltIcon />}</ListItemIcon>
         <ListItemText primary={text} />
       </ListItem>
     ))}

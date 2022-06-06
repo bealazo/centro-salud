@@ -44,6 +44,9 @@ const types={
       change_row_edit_per:"row_edit_per",
       change_row_edit_con:"row_edit_con",
       change_row_edit_dep:"row_edit_dep",
+
+      //tipo para mostrar u ocultar los gráficos
+      showcharts:"show_charts"
     
 }
 
@@ -80,7 +83,10 @@ const initialStore={
     row_edit_pac:"",
     row_edit_per:"",
     row_edit_con:"",
-    row_edit_dep:""
+    row_edit_dep:"",
+
+    //Para mostrar u ocultar los gráficos
+    charts:false
 }
 
 
@@ -108,7 +114,8 @@ const StoreReducer = (state,action)=> {
                 addsan:false,
                 addper:false,
                 addcon:false,
-                adddep:false}
+                adddep:false,
+                charts:false}
         case types.changelistasan:
              return{
                         ...state,
@@ -121,7 +128,8 @@ const StoreReducer = (state,action)=> {
                         addsan:false,
                         addper:false,
                         addcon:false,
-                        adddep:false}
+                        adddep:false,
+                        charts:false}
        case types.changelistaper:
               return{
                           ...state,
@@ -134,7 +142,8 @@ const StoreReducer = (state,action)=> {
                        addsan:false,
                        addper:false,
                        addcon:false,
-                       adddep:false}
+                       adddep:false,
+                       charts:false}
         case types.changelistacon:
                 return{
                          ...state,
@@ -147,7 +156,8 @@ const StoreReducer = (state,action)=> {
                        addsan:false,
                        addper:false,
                        addcon:false,
-                       adddep:false}
+                       adddep:false,
+                       charts:false}
          case types.changelistadep:
                  return{
                             ...state,
@@ -160,7 +170,8 @@ const StoreReducer = (state,action)=> {
                           addsan:false,
                           addper:false,
                           addcon:false,
-                          adddep:false}
+                          adddep:false,
+                          charts:false}
                              case types.changeaddpac:
                                 return{
                                     ...state,
@@ -281,6 +292,20 @@ const StoreReducer = (state,action)=> {
                     return{
                     ...state,
                     row_edit_dep:action.payload.row_edit_dep}
+         case types.showcharts:
+                   return{
+                   ...state,
+                   listapac:false,
+                   listasan:false,
+                   listaper:false,
+                   listacon:false,
+                   listadep:false,
+                   addpac:false,
+                   addsan:false,
+                   addper:false,
+                   addcon:false,
+                   adddep:false,
+                   charts:action.payload}
               
         default:
             return state;
