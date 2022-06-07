@@ -130,27 +130,15 @@ function Home() {
            <Grid item xs={12}>
           <MediaCard title="Profesionalidad" imagen={card1} texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
        unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-       dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-
-       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-       unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
        dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam."/>
           </Grid>
           <Grid item xs={12}>
          <MediaCard title="Empatía"imagen={card2} texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
        unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-       dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-
-       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-       unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
        dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam."/>
        </Grid>
           <Grid item xs={12}>
          <MediaCard title="Dedicación" imagen={card3} texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-       unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-       dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-
-       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
        unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
        dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam."/>
        </Grid>

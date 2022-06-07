@@ -69,7 +69,7 @@ return(
             <Grid item xs={12}>           
             <CChart
                     type="line"
-                    width={400} height={300}
+                    width={300} height={200}
                     data={{
                         labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
                         datasets: [
@@ -89,7 +89,7 @@ return(
         <Grid item xs={12}>
         <CChart            
                 type="bar"
-                width={400} height={300}
+                width={300} height={200}
                 data={{
                     labels: ['Pediatría', 'Geriatría', 'Medicina interna', 'Psicología', 'Cardiología', 'Neumología', 'Reumatología'],
                     datasets: [
@@ -138,7 +138,7 @@ return(
       <Grid item xs={12} >
       <CChart
             type="doughnut"
-            width={400} height={300}
+            width={300} height={200}
             data={{
               
                 labels: ['0-18', '19-59', '>60'],
