@@ -142,6 +142,14 @@
       .contact-image{
         width:50%;
       }
+      .container-charts{
+        width:100%;
+        padding-top: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
         
     }
 
@@ -254,6 +262,14 @@
     }
     .contact-image{
       width:100%;
+    }
+    .container-charts-movil{
+      width:90%;
+      padding-top: 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
    
   }
@@ -382,14 +398,6 @@
   justify-content: center;
 }
 
-.container-charts{
-  width:100%;
-  padding-top: 5%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 .container-cards-home{
    display: flex;
   flex-direction: row;

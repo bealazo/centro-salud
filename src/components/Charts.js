@@ -65,11 +65,11 @@ return(
                         /> 
              </Grid>
          </Grid> :isMobile?
-            <Grid container className="container-charts" spacing={5}> 
+            <Grid container className="container-charts-movil" spacing={5}> 
             <Grid item xs={12}>           
             <CChart
                     type="line"
-                    width={300} height={200}
+                    width={250} height={200}
                     data={{
                         labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
                         datasets: [
@@ -89,7 +89,7 @@ return(
         <Grid item xs={12}>
         <CChart            
                 type="bar"
-                width={300} height={200}
+                width={250} height={200}
                 data={{
                     labels: ['Pediatría', 'Geriatría', 'Medicina interna', 'Psicología', 'Cardiología', 'Neumología', 'Reumatología'],
                     datasets: [
@@ -130,7 +130,7 @@ return(
             />
       </Grid>
     </Grid>:isMobile?
-     <Grid container className="container-charts">
+     <Grid container className="container-charts-movil">
      <Typography variant="body1" align="center">
         Rango de edades de pacientes atendidos primer semestre
     </Typography>
@@ -138,7 +138,7 @@ return(
       <Grid item xs={12} >
       <CChart
             type="doughnut"
-            width={300} height={200}
+            width={250} height={200}
             data={{
               
                 labels: ['0-18', '19-59', '>60'],
