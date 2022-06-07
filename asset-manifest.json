@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/centro-salud/static/css/main.ea2240d7.css",
-    "main.js": "/centro-salud/static/js/main.ba2d3350.js",
+    "main.css": "/centro-salud/static/css/main.a7d23615.css",
+    "main.js": "/centro-salud/static/js/main.55576e50.js",
     "static/js/498.f5535c77.chunk.js": "/centro-salud/static/js/498.f5535c77.chunk.js",
     "static/js/703.a1553fc5.chunk.js": "/centro-salud/static/js/703.a1553fc5.chunk.js",
     "static/js/198.aeb6ecf8.chunk.js": "/centro-salud/static/js/198.aeb6ecf8.chunk.js",
@@ -17,16 +17,17 @@
     "static/media/banner4.jpg": "/centro-salud/static/media/banner4.0213d586baa1fd5f92b9.jpg",
     "static/media/avatar8.png": "/centro-salud/static/media/avatar8.6db6c63ed0ce35b8a119.png",
     "static/media/bannersocials.jpg": "/centro-salud/static/media/bannersocials.0eabe24bacbfabdb060e.jpg",
+    "static/media/medicalicon.png": "/centro-salud/static/media/medicalicon.731b0d3dc6513199bb3b.png",
     "index.html": "/centro-salud/index.html",
-    "main.ea2240d7.css.map": "/centro-salud/static/css/main.ea2240d7.css.map",
-    "main.ba2d3350.js.map": "/centro-salud/static/js/main.ba2d3350.js.map",
+    "main.a7d23615.css.map": "/centro-salud/static/css/main.a7d23615.css.map",
+    "main.55576e50.js.map": "/centro-salud/static/js/main.55576e50.js.map",
     "498.f5535c77.chunk.js.map": "/centro-salud/static/js/498.f5535c77.chunk.js.map",
     "703.a1553fc5.chunk.js.map": "/centro-salud/static/js/703.a1553fc5.chunk.js.map",
     "198.aeb6ecf8.chunk.js.map": "/centro-salud/static/js/198.aeb6ecf8.chunk.js.map",
     "787.15bb1808.chunk.js.map": "/centro-salud/static/js/787.15bb1808.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ea2240d7.css",
-    "static/js/main.ba2d3350.js"
+    "static/css/main.a7d23615.css",
+    "static/js/main.55576e50.js"
   ]
 }
