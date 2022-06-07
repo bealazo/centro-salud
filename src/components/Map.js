@@ -30,7 +30,7 @@ function Map(){
             />:isMobile?<GoogleMaps
             //Tengo que crearla en console.developers. google.com
             apiKey={"AIzaSyCWAvgKKSGxFhNwXa-E08_zMZCTZtKNXhI"}
-            style={{width:"50vw", height:"50vh"}}
+            style={{width:"60vw", height:"40vh"}}
             zoom={12}
             center={{
                 lat:40.4127355,
