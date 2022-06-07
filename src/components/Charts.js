@@ -74,7 +74,7 @@ return(
                         labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
                         datasets: [
                         {
-                            label: "Pacientes atendidos primer semestre",
+                            label: "Total Pacientes",
                             backgroundColor: "rgba(220, 220, 220, 0.2)",
                             borderColor: "rgba(220, 220, 220, 1)",
                             pointBackgroundColor: "rgba(220, 220, 220, 1)",
@@ -94,7 +94,7 @@ return(
                     labels: ['Pediatría', 'Geriatría', 'Medicina interna', 'Psicología', 'Cardiología', 'Neumología', 'Reumatología'],
                     datasets: [
                     {
-                        label: 'Pacientes atendidos por especialidad',
+                        label: 'Pacientes/especialidad',
                         backgroundColor: '#f87979',
                         data: [40, 20, 12, 39, 10, 40, 39, 80],
                     },
@@ -110,7 +110,7 @@ return(
    {isDesktop?
      <Grid container className="container-charts">
      <Typography variant="body1" align="center">
-        Rango de edades de pacientes atendidos primer semestre
+       Rango de edades pacientes
     </Typography>
     
       <Grid item xs={12} >
@@ -132,7 +132,7 @@ return(
     </Grid>:isMobile?
      <Grid container className="container-charts-movil">
      <Typography variant="body1" align="center">
-        Rango de edades de pacientes atendidos primer semestre
+        Rango de edades pacientes
     </Typography>
     
       <Grid item xs={12} >
