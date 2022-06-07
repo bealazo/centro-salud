@@ -69,7 +69,7 @@ function Contacto() {
      
     <div className="App">
        <header>
-          <Header options={options}/>
+          <Header options={options} removemedicalicon={false}/>
           <Banner banner={banner} title="Centro de salud" subtitle="...tu salud nos importa..."/>  
        </header>
   

@@ -256,7 +256,7 @@ function GestionCentro() {
      
     <div className="App">
        <header>
-          <Header options={options}/>        
+          <Header options={options} removemedicalicon={true}/>        
        </header>
            
      
@@ -278,10 +278,10 @@ function GestionCentro() {
           </Grid>
         </Grid>:isMobile?
           <Grid container spacing={1} className="group-button-new-print">
-          <Grid item xs={2}>
+          <Grid item xs={3}>
             <Button  onClick={handleClickNew} variant="contained" color="primary">Nuevo</Button>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
             <Button  onClick={handleClickPrint} variant="contained" ><PrintIcon></PrintIcon>Pdf</Button>
             </Grid>
           </Grid>:null     
@@ -322,9 +322,7 @@ function GestionCentro() {
         </section>
       </main>
         
-      <footer>
-        <Footer/>
-      </footer>
+     
       </div>
       
     );

@@ -80,7 +80,7 @@ function Login() {
     return (
     <div className="App">
        <header>
-          <Header options={options}/>         
+          <Header options={options} removemedicalicon={false}/>         
        </header>
   
       <main className="main-container-login">

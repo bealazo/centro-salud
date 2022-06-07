@@ -20,6 +20,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+import medicalicon from "../images/medicalicon.png";
+
 //PARA MENÚ DESPLEGABLE CON ESTILOS CUANDO SE LOGUEA UN USER
 const StyledMenu = withStyles({
   paper: {
@@ -57,6 +59,9 @@ function Header(props){
 
      //Opciones del Menú
      const options =props.options;
+
+     //Quitar el ícono medico en la ventana de gestión centro
+     const removemedicalicon=props.removemedicalicon;
      
      //Para obtener el user del contexto
   const [store, dispatch] = useContext(StoreContext);
@@ -87,10 +92,13 @@ function Header(props){
     return(
 
       <div className="App-header">
-      <Grid item xs={2}>
-      <Icon fontSize="large">medical_information</Icon>
-      </Grid>
 
+        {removemedicalicon==false?
+      <Grid item xs={2}>
+        <img src={medicalicon} width="60" height="auto"/>
+      {/* <Icon style={{ fontSize: 45}}>local_hospital</Icon> */}
+      </Grid>: null
+      }
         <Grid className="menu-container" item xs={10}>
 
        {options.map((option,index) =>        
