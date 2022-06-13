@@ -10,9 +10,12 @@ Permite visualizar además algunas estadísticas del centro.
 ## Demo
 
  Para verlo funcionando, ingrese aquí: https://bealazo.github.io/centro-salud/
- Credenciales:
- Usuario:Prueba
- Contraseña:Prueba*22
+ 
+ Credenciales para iniciar sesión:
+ 
+ Usuario: Prueba
+
+ Contraseña: Prueba*22
 
 
 ## Tech Stack
