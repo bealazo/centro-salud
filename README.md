@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Centro de salud
 
@@ -27,3 +28,9 @@ Permite visualizar además algunas estadísticas del centro.
 
 - [@bealazo](https://github.com/bealazo)
 
+=======
+Proyecto creado con Reactjs. Para visualizarlo ingrese aquí:https://bealazo.github.io/centro-salud/
+Credenciales de prueba para inicio de sesión:
+User: Prueba
+Pass: Prueba*22
+>>>>>>> 2e5fb1c41b11ea85ea0ef9e9d51beffdc6e1d196
