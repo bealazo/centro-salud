@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # Centro de salud
 
 Proyecto que cuenta con una página de inicio, contacto y login.
@@ -12,6 +10,9 @@ Permite visualizar además algunas estadísticas del centro.
 ## Demo
 
  Para verlo funcionando, ingrese aquí: https://bealazo.github.io/centro-salud/
+ Credenciales:
+ Usuario:Prueba
+ Contraseña:Prueba*22
 
 
 ## Tech Stack
@@ -27,10 +28,3 @@ Permite visualizar además algunas estadísticas del centro.
 ## Authors
 
 - [@bealazo](https://github.com/bealazo)
-
-=======
-Proyecto creado con Reactjs. Para visualizarlo ingrese aquí:https://bealazo.github.io/centro-salud/
-Credenciales de prueba para inicio de sesión:
-User: Prueba
-Pass: Prueba*22
->>>>>>> 2e5fb1c41b11ea85ea0ef9e9d51beffdc6e1d196
