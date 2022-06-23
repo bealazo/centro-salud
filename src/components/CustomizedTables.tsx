@@ -17,6 +17,8 @@ import { types } from '../store/StoreReducer';
 import {TextField} from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
+import { MouseEventHandler } from 'react';
+
 
 //Estilos de las tablas
 const StyledTableCell = withStyles((theme) => ({
@@ -44,8 +46,12 @@ const StyledTableCell = withStyles((theme) => ({
     });
 
 
+    type Props = {
+      handleModify:Function,
+      listar: string,
+    }
   //Componente para conformar las tablas
-  function CustomizedTables(props) {
+  const CustomizedTables=({handleModify, listar }:Props)=> {
 
      //Para obtener las listas del estado global
   const [store, dispatch] = useContext(StoreContext);
@@ -65,10 +71,10 @@ const StyledTableCell = withStyles((theme) => ({
 
   //Para obtener el método implementado y pasado desde la vista GestionCentro para modificar un elemento de la lista y poder aqui pasarle
   //los parametros que espera(la fila que quiero modificar y el nombre de la lista a la que pertenece)
-  const handleModify=props.handleModify;
+ // const handleModify=handleModify;
 
   //Para eliminar un elemento de la lista
-  const handleDelete=(row,list_name)=>{
+  const handleDelete=(row:{dni: string; numero_consulta: number; codigo_departamento:number},list_name:string):void=>{
      
       if(list_name=="pacientes")      
       {
@@ -110,7 +116,7 @@ const StyledTableCell = withStyles((theme) => ({
   };
 
   //Para filtro de búsqueda de tabla sanitarios
-  const handleChangeSearchSan=(e,head)=>{
+  const handleChangeSearchSan=(e:string,head:string):void=>{
 
     //Guardo la lista actual
        let oldList1=sanitarios;
@@ -154,7 +160,7 @@ const StyledTableCell = withStyles((theme) => ({
       };
   }
   //Para filtro de búsqueda de tabla pacientes
-  const handleChangeSearchPac=(e,head)=>{
+  const handleChangeSearchPac=(e:string,head:string):void=>{
 
     //Guardo la lista actual
        let oldList1=pacientes;
@@ -193,7 +199,7 @@ const StyledTableCell = withStyles((theme) => ({
       };
   }
    //Para filtro de búsqueda de tabla personal
-   const handleChangeSearchPer=(e,head)=>{
+   const handleChangeSearchPer=(e:string,head:string):void=>{
 
     //Guardo la lista actual
        let oldList1=personal;
@@ -243,7 +249,7 @@ const StyledTableCell = withStyles((theme) => ({
       };
   }
    //Para filtro de búsqueda de tabla consultas
-   const handleChangeSearchCon=(e,head)=>{
+   const handleChangeSearchCon=(e:string,head:string):void=>{
 
     //Guardo la lista actual
        let oldList1=consultas;
@@ -275,7 +281,7 @@ const StyledTableCell = withStyles((theme) => ({
       };
   }
    //Para filtro de búsqueda de tabla departamentos
-   const handleChangeSearchDep=(e,head)=>{
+   const handleChangeSearchDep=(e:string,head:string):void=>{
 
     //Guardo la lista actual
        let oldList1=departamentos;
@@ -311,7 +317,7 @@ const StyledTableCell = withStyles((theme) => ({
 
   
     
-    if(props.listar=="Sanitarios"){
+    if(listar=="Sanitarios"){
     return (
       <>
   
@@ -365,7 +371,7 @@ const StyledTableCell = withStyles((theme) => ({
     );
   }
   
-  else if(props.listar=="Pacientes"){
+  else if(listar=="Pacientes"){
       return (
         <TableContainer className={classes.table} component={Paper}>
           <Table  aria-label="customized table">
@@ -407,7 +413,7 @@ const StyledTableCell = withStyles((theme) => ({
         </TableContainer>
       );
     }
-    else if(props.listar=="Personal"){
+    else if(listar=="Personal"){
         return (
           <TableContainer className={classes.table} component={Paper}>
             <Table  aria-label="customized table">
@@ -453,7 +459,7 @@ const StyledTableCell = withStyles((theme) => ({
           </TableContainer>
         );
       }
-      else if(props.listar=="Consultas"){
+      else if(listar=="Consultas"){
         return (
           <TableContainer  className={classes.table} component={Paper}>
             <Table aria-label="customized table">
@@ -493,7 +499,7 @@ const StyledTableCell = withStyles((theme) => ({
           </TableContainer>
         );
       }
-      else if(props.listar=="Departamentos"){
+      else if(listar=="Departamentos"){
         return (
           <TableContainer className={classes.table} component={Paper}>
             <Table  aria-label="customized table">

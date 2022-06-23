@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import ListComponent from "../components/List";
 import LateralMenu from "../components/LateralMenu";
 
@@ -28,7 +27,7 @@ import 'jspdf-autotable';
 import { useMediaQuery } from "react-responsive";
 
  
-function GestionCentro() {
+const GestionCentro=()=> {
 
    //Manejar ancho de la pantalla para definir ancho del grafico
    const isDesktop = useMediaQuery({
@@ -81,7 +80,7 @@ function GestionCentro() {
 
   
   //Para mostrar y/o ocultar listados de pacientes, sanitarios... 
-  const handleListItem=(text)=>{
+  const handleListItem=(text:string):void=>{
       
     if(text=="PACIENTES")
     {
@@ -111,7 +110,7 @@ function GestionCentro() {
 
    
   //Para mostrar el formulario de agregar en dependencia del listado que este mostrando
-  const handleClickNew=()=>{
+  const handleClickNew=():void=>{
       if(listapac.listapac==true){
         dispatch({type:types.changeaddpac,  payload:{addpac: true}});
       
@@ -168,7 +167,8 @@ function GestionCentro() {
   const handleClickPrint=()=>{
     if(listapac.listapac==true){
       const doc = new jsPDF()
-      doc.text("Pacientes", 20, 10)
+      doc.text("Pacientes", 20, 10)     
+      //@ts-ignore 
       doc.autoTable({
         theme: "grid",
         columns: headingPacientes.map((head) => ({ header:head.title, dataKey: head.field})),
@@ -180,6 +180,7 @@ function GestionCentro() {
   else if(listasan.listasan==true){
     const doc = new jsPDF()
     doc.text("Sanitarios", 20, 10)
+    //@ts-ignore 
     doc.autoTable({
       theme: "grid",
       columns: headingSanitarios.map((head) => ({ header:head.title, dataKey: head.field})),
@@ -190,6 +191,7 @@ function GestionCentro() {
   else if(listaper.listaper==true){
     const doc = new jsPDF()
       doc.text("Personal", 20, 10)
+      //@ts-ignore 
       doc.autoTable({
         theme: "grid",
         columns: headingPersonal.map((head) => ({ header:head.title, dataKey: head.field})),
@@ -200,6 +202,7 @@ function GestionCentro() {
   else if(listacon.listacon==true){
     const doc = new jsPDF()
       doc.text("Consultas", 20, 10)
+      //@ts-ignore 
       doc.autoTable({
         theme: "grid",
         columns: headingConsultas.map((head) => ({ header:head.title, dataKey: head.field})),
@@ -210,6 +213,7 @@ function GestionCentro() {
   else if(listadep.listadep==true){
     const doc = new jsPDF()
     doc.text("Departamentos", 20, 10)
+    //@ts-ignore 
     doc.autoTable({
       theme: "grid",
       columns: headingDepartamentos.map((head) => ({ header:head.title, dataKey: head.field})),
@@ -223,7 +227,7 @@ function GestionCentro() {
   //Para mostrar el formulario de editar en dependencia del listado que este mostrando para modificar un elemento de la lista, lo paso
   // a traves de los componentes listComponent a CustomizedTables para poder obtener los parametros
   //que necesito(la fila de la lista que quiero modificar y el nombre de la lista a la que pertence dicha fila)
-  const handleModify=(row,list_name)=>{
+  const handleModify=(row:Record<string, any>, list_name:string):void=>{
      
     if(list_name=="sanitarios"&&listasan.listasan==true){     
        dispatch({type:types.change_row_edit_doctor,  payload:{row_edit_doctor: row}});

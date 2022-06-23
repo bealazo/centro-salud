@@ -28,6 +28,7 @@ const StyledMenu = withStyles({
     border: '1px solid #d3d4d5',
   },
 })((props) => (
+  //@ts-ignore
   <Menu
     elevation={0}
     getContentAnchorEl={null}
@@ -48,6 +49,7 @@ const StyledMenuItem = withStyles((theme) => ({
     '&:focus': {
       backgroundColor: theme.palette.common.white,
       '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        //@ts-ignore
         color: theme.palette.common.info,
       },
     },
@@ -55,13 +57,18 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 //FIN DE CODIGO PARA MENU DESPLEGABLE CON ESTILOS CUANDO SE LOGUEA UN USER
 
-function Header(props){
+type Props = {
+  removemedicalicon:boolean,
+  options: string[],
+}
+
+const Header= ({removemedicalicon,options}:Props) =>{
 
      //Opciones del Menú
-     const options =props.options;
+     //const options =options;
 
      //Quitar el ícono medico en la ventana de gestión centro
-     const removemedicalicon=props.removemedicalicon;
+     //const removemedicalicon=removemedicalicon;
      
      //Para obtener el user del contexto
   const [store, dispatch] = useContext(StoreContext);
@@ -136,6 +143,8 @@ function Header(props){
         <p> {user.user} </p>
            <Icon fontSize="large">account_circle</Icon>
       </Button>
+      {
+      //@ts-ignore
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorElPC}
@@ -147,14 +156,18 @@ function Header(props){
           <ListItemIcon>
             <ExitToAppIcon fontSize="small" />
           </ListItemIcon>
+          {
+          //@ts-ignore
           <ListItemText primary="Cerrar Sesión"  sx={{ color: "white" }} onClick={()=>{dispatch({type: types.authLogout})}}/>
+          }
         </StyledMenuItem>
        </StyledMenu>
+      }
     </div>
            
       </>
     
-          }
+     }
        
         </Grid>)}             
         </Grid>
@@ -173,6 +186,8 @@ function Header(props){
         <p> {user.user} </p>
            <Icon fontSize="large">account_circle</Icon>
       </Button>
+      {
+      //@ts-ignore
       <StyledMenu
         id="customized-menu-movil"
         anchorEl={anchorEl}
@@ -184,9 +199,13 @@ function Header(props){
           <ListItemIcon>
             <ExitToAppIcon fontSize="small" />
           </ListItemIcon>
+          {
+          //@ts-ignore
           <ListItemText primary="Cerrar Sesión"  sx={{ color: "white" }} onClick={()=>{dispatch({type: types.authLogout})}}/>
+          }
         </StyledMenuItem>
        </StyledMenu>
+      }
       </>: 
        <>
         {/*Si no hay un user logueado lo que recibe el header en las props son las opciones del menu normales*/}
