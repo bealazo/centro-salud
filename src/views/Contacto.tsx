@@ -6,12 +6,14 @@ import {Button} from '@material-ui/core';
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
+//@ts-ignore
 import banner from "../images/banner.jpg";
+//@ts-ignore
 import contact1 from "../images/contact1.png";
 
 import Map from "../components/Map";
 
-function Contacto() {
+const Contacto=()=> {
 
    //Para pasar las opciones del menú al header
    const options=[
@@ -20,29 +22,33 @@ function Contacto() {
     "Iniciar sesión"
   ];
    
-  const [name_value, setNameValue] = React.useState("");
-  const [phone_value, setPhoneValue] = React.useState("");
-  const [email_value, setEmailValue] = React.useState("");
-  const [message_value, setMessageValue] = React.useState("");
+  const [name_value, setNameValue] = React.useState<string>("");
+  const [phone_value, setPhoneValue] = React.useState<number>(0);
+  const [email_value, setEmailValue] = React.useState<string>("");
+  const [message_value, setMessageValue] = React.useState<string>("");
   /*Para mostrar u ocultar el mensaje de envío exitoso */
-  const [show_message, setShowMessage] = React.useState(false);
+  const [show_message, setShowMessage] = React.useState<boolean>(false);
    /*Para mostrar u ocultar el mensaje de error de envío */
-   const [show_error_message, setShowErrorMessage] = React.useState(false);
+   const [show_error_message, setShowErrorMessage] = React.useState<boolean>(false);
 
 
-  const handleChangeName = (event) => {
-    setNameValue(event.target.value);
+  const handleChangeName = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setNameValue(target.value);
   };
-  const handleChangePhone = (event) => {
-    setPhoneValue(event.target.value);
+  const handleChangePhone = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setPhoneValue(Number(target.value));
   };
-  const handleChangeEmail = (event) => {
-    setEmailValue(event.target.value);
+  const handleChangeEmail = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setEmailValue(target.value);
   };
-  const handleChangeMessage = (event) => {
-    setMessageValue(event.target.value);
+  const handleChangeMessage = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setMessageValue(target.value);
   };
-  const handleClickSend = (event) => {
+  const handleClickSend = (event:React.MouseEvent):void=> {
     event.preventDefault();
  
 
@@ -59,7 +65,7 @@ function Contacto() {
     /*ENVIAR A API */
 
     setNameValue("");
-    setPhoneValue("");
+    setPhoneValue(0);
     setEmailValue("");
     setMessageValue("");   
  

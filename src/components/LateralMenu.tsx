@@ -25,11 +25,14 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 
 
+//Tipado Props
+type Props = {
+  handleListItem:Function
+}
 
 {/**Componente menú lateral*/}
-function LateralMenu(props){
+const LateralMenu=({handleListItem}:Props)=>{
 
-const handleListItem=props.handleListItem;
 
 //Estilos del menú
 const drawerWidth = 240;

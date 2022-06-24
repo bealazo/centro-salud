@@ -20,6 +20,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+//@ts-ignore
 import medicalicon from "../images/medicalicon.png";
 
 //PARA MENÚ DESPLEGABLE CON ESTILOS CUANDO SE LOGUEA UN USER
@@ -57,6 +58,7 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 //FIN DE CODIGO PARA MENU DESPLEGABLE CON ESTILOS CUANDO SE LOGUEA UN USER
 
+//Tipado Props
 type Props = {
   removemedicalicon:boolean,
   options: string[],
@@ -64,12 +66,7 @@ type Props = {
 
 const Header= ({removemedicalicon,options}:Props) =>{
 
-     //Opciones del Menú
-     //const options =options;
-
-     //Quitar el ícono medico en la ventana de gestión centro
-     //const removemedicalicon=removemedicalicon;
-     
+  
      //Para obtener el user del contexto
   const [store, dispatch] = useContext(StoreContext);
   const{user}=store;

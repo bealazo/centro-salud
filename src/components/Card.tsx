@@ -16,6 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
+//Tipado Props
 type Props = {
   title:string,
   imagen: string,

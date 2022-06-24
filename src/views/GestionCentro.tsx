@@ -26,6 +26,13 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { useMediaQuery } from "react-responsive";
 
+//Interfaces para tipado
+import Paciente from "../interfaces/Paciente";
+import Personal from "../interfaces/Personal";
+import Sanitario from "../interfaces/Sanitario";
+import Departamento from "../interfaces/Departamento";
+import Consulta from "../interfaces/Consulta";
+
  
 const GestionCentro=()=> {
 
@@ -39,45 +46,38 @@ const GestionCentro=()=> {
   const isMobile = useMediaQuery({
     query: "(max-width: 786px)"
   });
-    
+
+  
   //Para obtener el user y el valor booleano de las listas(para saber cual pasar al componente ListComponent) y de las variables controlan que formulario para agregar y editar mostrar, todo esto lo obtengo del contexto
   const [store, dispatch] = useContext(StoreContext);
-  const{user}=store;
-  const{listapac}=store;
-  const{listasan}=store;
-  const{listaper}=store;
-  const{listacon}=store;
-  const{listadep}=store;
-  const {addpac} = store;
-  const {addsan} = store;
-  const {addper} = store;
-  const {addcon} = store;
-  const {adddep} = store;
-  const {editpac} = store;
-  const {editsan} = store;
-  const {editper} = store;
-  const {editcon} = store;
-  const {editdep} = store;
-  const {charts} = store;
-  const{sanitarios}=store;
-  const{pacientes}=store;
-  const{consultas}=store;
-  const{departamentos}=store;
-  const{personal}=store;
-
-  //Para controlar los datos de la fila a mostrar en el formulario de edición
-  const {row_edit_doctor} = store;
-  const {row_edit_pac} = store;
-  const {row_edit_per} = store;
-  const {row_edit_con} = store;
-  const {row_edit_dep} = store;
+  const user:string=store.user;
+  const listapac:boolean=store.listapac.listapac;
+  const listasan:boolean=store.listasan.listasan;
+  const listaper:boolean=store.listaper.listaper;
+  const listacon:boolean=store.listacon.listacon;
+  const listadep:boolean=store.listadep.listadep;
+  const addpac:boolean = store.addpac.addpac;
+  const addsan:boolean = store.addsan.addsan;
+  const addper:boolean = store.addper.addper;
+  const addcon:boolean = store.addcon.addcon;
+  const adddep:boolean = store.adddep.adddep;
+  const editpac:boolean = store.editpac.editpac;
+  const editsan:boolean = store.editsan.editsan;
+  const editper:boolean = store.editper.editper;
+  const editcon:boolean = store.editcon.editcon;
+  const editdep:boolean = store.editdep.editdep;
+  const charts:boolean = store.charts.charts;
+  const pacientes:Paciente[]=store.pacientes;
+  const sanitarios:Sanitario[]=store.sanitarios;
+  const personal:Personal[]=store.personal;
+  const consultas:Consulta[]=store.consultas;
+  const departamentos:Departamento[]=store.departamentos;
   
   //Para pasar las opciones del menú al header
   const options=[
-     user.user
-   
+     user   
     ];      
-
+  
   
   //Para mostrar y/o ocultar listados de pacientes, sanitarios... 
   const handleListItem=(text:string):void=>{
@@ -111,22 +111,22 @@ const GestionCentro=()=> {
    
   //Para mostrar el formulario de agregar en dependencia del listado que este mostrando
   const handleClickNew=():void=>{
-      if(listapac.listapac==true){
+      if(listapac==true){
         dispatch({type:types.changeaddpac,  payload:{addpac: true}});
       
      // navigate("/gestion-centro/nuevo-paciente");
     }
-    else if(listasan.listasan==true){
+    else if(listasan==true){
       dispatch({type:types.changeaddsan,  payload:{addsan: true}});
     }
-    else if(listaper.listaper==true){
+    else if(listaper==true){
       dispatch({type:types.changeaddper,  payload:{addper: true}});
       
     }
-    else if(listacon.listacon==true){
+    else if(listacon==true){
       dispatch({type:types.changeaddcon,  payload:{addcon: true}});
     }
-    else if(listadep.listadep==true){
+    else if(listadep==true){
       dispatch({type:types.changeadddep,  payload:{adddep: true}});
     }
   }
@@ -165,7 +165,7 @@ const GestionCentro=()=> {
     
     
   const handleClickPrint=()=>{
-    if(listapac.listapac==true){
+    if(listapac==true){
       const doc = new jsPDF()
       doc.text("Pacientes", 20, 10)     
       //@ts-ignore 
@@ -177,7 +177,7 @@ const GestionCentro=()=> {
       doc.save('table.pdf')
     
   }
-  else if(listasan.listasan==true){
+  else if(listasan==true){
     const doc = new jsPDF()
     doc.text("Sanitarios", 20, 10)
     //@ts-ignore 
@@ -188,7 +188,7 @@ const GestionCentro=()=> {
     })
     doc.save('table.pdf')
   }
-  else if(listaper.listaper==true){
+  else if(listaper==true){
     const doc = new jsPDF()
       doc.text("Personal", 20, 10)
       //@ts-ignore 
@@ -199,7 +199,7 @@ const GestionCentro=()=> {
       })
       doc.save('table.pdf')
   }
-  else if(listacon.listacon==true){
+  else if(listacon==true){
     const doc = new jsPDF()
       doc.text("Consultas", 20, 10)
       //@ts-ignore 
@@ -210,7 +210,7 @@ const GestionCentro=()=> {
       })
       doc.save('table.pdf')
   }
-  else if(listadep.listadep==true){
+  else if(listadep==true){
     const doc = new jsPDF()
     doc.text("Departamentos", 20, 10)
     //@ts-ignore 
@@ -229,27 +229,27 @@ const GestionCentro=()=> {
   //que necesito(la fila de la lista que quiero modificar y el nombre de la lista a la que pertence dicha fila)
   const handleModify=(row:Record<string, any>, list_name:string):void=>{
      
-    if(list_name=="sanitarios"&&listasan.listasan==true){     
+    if(list_name=="sanitarios"&&listasan==true){     
        dispatch({type:types.change_row_edit_doctor,  payload:{row_edit_doctor: row}});
         dispatch({type:types.changeeditsan,  payload:{editsan: true}});
       
      }
-     if(list_name=="pacientes"&&listapac.listapac==true){     
+     if(list_name=="pacientes"&&listapac==true){     
       dispatch({type:types.change_row_edit_pac,  payload:{row_edit_pac: row}});
        dispatch({type:types.changeeditpac,  payload:{editpac: true}});
      
     }
-    if(list_name=="personal"&&listaper.listaper==true){     
+    if(list_name=="personal"&&listaper==true){     
       dispatch({type:types.change_row_edit_per,  payload:{row_edit_per: row}});
        dispatch({type:types.changeeditper,  payload:{editper: true}});
      
     }
-    if(list_name=="consultas"&&listacon.listacon==true){     
+    if(list_name=="consultas"&&listacon==true){     
       dispatch({type:types.change_row_edit_con,  payload:{row_edit_con: row}});
        dispatch({type:types.changeeditcon,  payload:{editcon: true}});
      
     }
-    if(list_name=="departamentos"&&listadep.listadep==true){     
+    if(list_name=="departamentos"&&listadep==true){     
       dispatch({type:types.change_row_edit_dep,  payload:{row_edit_dep: row}});
        dispatch({type:types.changeeditdep,  payload:{editdep: true}});
      
@@ -293,32 +293,32 @@ const GestionCentro=()=> {
         :null
         }
 
-        {listapac.listapac==true?<ListComponent listar="Pacientes" handleModify={handleModify}/>:
-        listasan.listasan==true?<ListComponent listar="Sanitarios" handleModify={handleModify}/>:
-        listaper.listaper==true?<ListComponent listar="Personal" handleModify={handleModify}/>:
-        listacon.listacon==true?<ListComponent listar="Consultas" handleModify={handleModify}/>:
-        listadep.listadep==true?<ListComponent listar="Departamentos" handleModify={handleModify}/>:
-        charts.charts==true?<Charts/>: 
+        {listapac==true?<ListComponent listar="Pacientes" handleModify={handleModify}/>:
+        listasan==true?<ListComponent listar="Sanitarios" handleModify={handleModify}/>:
+        listaper==true?<ListComponent listar="Personal" handleModify={handleModify}/>:
+        listacon==true?<ListComponent listar="Consultas" handleModify={handleModify}/>:
+        listadep==true?<ListComponent listar="Departamentos" handleModify={handleModify}/>:
+        charts==true?<Charts/>: 
         <p> Seleccione una opción del menú </p>
         }
         </article>
         <article>
         {
-          addpac.addpac==true?<AddPatient/>:
-          addsan.addsan==true?<AddDoctor/>:
-          addper.addper==true?<AddPersonal/>:
-          addcon.addcon==true?<AddConsult/>:
-          adddep.adddep==true?<AddDepartment/>:
+          addpac==true?<AddPatient/>:
+          addsan==true?<AddDoctor/>:
+          addper==true?<AddPersonal/>:
+          addcon==true?<AddConsult/>:
+          adddep==true?<AddDepartment/>:
           null
         }
         </article>
         <article>
         {
-          editsan.editsan==true?<EditDoctor/>:  
-          editpac.editpac==true?<EditPatient/>:   
-          editper.editper==true?<EditPersonal/>:   
-          editcon.editcon==true?<EditConsult/>:    
-          editdep.editdep==true?<EditDepartment/>: 
+          editsan==true?<EditDoctor/>:  
+          editpac==true?<EditPatient/>:   
+          editper==true?<EditPersonal/>:   
+          editcon==true?<EditConsult/>:    
+          editdep==true?<EditDepartment/>: 
           null
         }
         </article>

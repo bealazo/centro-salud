@@ -9,36 +9,42 @@ import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
 import { types } from '../store/StoreReducer';
 
-function AddConsult(){
+//Tipado
+import Consulta from "../interfaces/Consulta"
+
+const AddConsult=()=>{
    
     //Para obtener el estado global, en este caso la lista de consultas actual
     const [store, dispatch] = useContext(StoreContext);
-    const{consultas}=store;
-    const{addcon}=store;
-
+    const consultas:Consulta[]=store.consultas;
+   
     //Estado inicial para guardar los valores de los inputs
-    const [num_value, setNumValue] = React.useState("");   
-    const [cod_ser_value, setCodSerValue] = React.useState("");
+    const [num_value, setNumValue] = React.useState(0);   
+    const [cod_ser_value, setCodSerValue] = React.useState(0);
     const [nom_ser_value, setNomSerValue] = React.useState("");
-    const [pla_value, setPlaValue] = React.useState("");
+    const [pla_value, setPlaValue] = React.useState(0);
 
     //Cambio el estado inicial del input correspondiente
-    const handleChangeNum = (event) => {
-      setNumValue(event.target.value);
+    const handleChangeNum = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setNumValue(Number(target.value));
     };
-    const handleChangeCodSer = (event) => {
-      setCodSerValue(event.target.value);
+    const handleChangeCodSer = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setCodSerValue(Number(target.value));
     };
-    const handleChangeNomSer = (event) => {
-      setNomSerValue(event.target.value);
+    const handleChangeNomSer = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setNomSerValue(target.value);
     };
-    const handleChangePla = (event) => {
-      setPlaValue(event.target.value);
+    const handleChangePla = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setPlaValue(Number(target.value));
     };
     
 
     //Añadir el elemento a la lista de consultas
-    const handleClickSave=()=>{   
+    const handleClickSave=():void=>{   
    
    const item= {numero_consulta: num_value,
     codigo_servicio: cod_ser_value,
@@ -51,13 +57,13 @@ function AddConsult(){
   dispatch({type:types.addconlistacon,  payload:{consultas:consultas}});
 
   //Limpio el formulario
-  setNumValue("");
-  setCodSerValue("");
+  setNumValue(0);
+  setCodSerValue(0);
   setNomSerValue("");
-  setPlaValue("");
+  setPlaValue(0);
   
   }
-  const handleClickCancel=()=>{   
+  const handleClickCancel=():void=>{   
 
     //Oculto el formulario
     dispatch({type:types.changeaddcon,  payload:{addcon: false}});
@@ -115,7 +121,7 @@ function AddConsult(){
 
             <Grid item xs={5}>
             <div className="button-form">              
-            <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+            <Button  onClick={handleClickCancel} variant="contained" color="inherit">Cancelar</Button>
             </div>
             </Grid>
             <Grid item xs={5}>

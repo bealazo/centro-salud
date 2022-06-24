@@ -26,18 +26,20 @@ function Login() {
   const [store, dispatch] = useContext(StoreContext);
   const{user}=store;//usuario actual del estado global
 
-  const [user_value, setUserValue] = React.useState("");
-  const [pass_value, setPassValue] = React.useState("");
-  const [show_error, setShowError] = React.useState(false);
+  const [user_value, setUserValue] = React.useState<string>("");
+  const [pass_value, setPassValue] = React.useState<string>("");
+  const [show_error, setShowError] = React.useState<boolean>(false);
   
  
-  const handleChangeUser = (event) => {
-    setUserValue(event.target.value);
+  const handleChangeUser = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setUserValue(target.value);
   };
-  const handleChangePass = (event) => {
-    setPassValue(event.target.value);
+  const handleChangePass = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setPassValue(target.value);
   };
-  const handleClickSend = (event) => {
+  const handleClickSend = (event:React.MouseEvent):void => {
     event.preventDefault();
      
     /*ENVIAR A API a ver si son correctos, como no hay api creo un array de objetos users que pueden loguearse:*/
@@ -128,4 +130,3 @@ function Login() {
   }
   
   export default Login;
-  

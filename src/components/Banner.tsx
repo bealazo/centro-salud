@@ -2,6 +2,7 @@ import * as React from 'react';
 //import '../App.css'; NO HACE FALTA, YA LA IMPORTÉ EN APP
 import {Typography} from '@material-ui/core';
 
+//Tipado Props
 type Props = {
     banner:string,
     title: string,

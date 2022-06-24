@@ -168,7 +168,7 @@ function AddDoctor(){
 
             <Grid item xs={5}>
             <div className="button-form">              
-            <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+            <Button  onClick={handleClickCancel} variant="contained" color="inherit">Cancelar</Button>
             </div>
             </Grid>
             <Grid item xs={5}>

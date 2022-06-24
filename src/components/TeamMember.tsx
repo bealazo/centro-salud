@@ -7,21 +7,29 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 
-function TeamMember(props) {
+//Tipado Props
+type Props = {
+    avatar:string,
+    name: string,
+    description:string,
+    position:number
+  }
+
+const TeamMember=({avatar,name,description,position}:Props)=> {
 
    
-     if(props.position%2==0){
+     if(position%2==0){
         return(
             
         <div className="member-wrapper-left">
             <div className="container-member">
-                <img src={props.avatar} className="avatar"/>
+                <img src={avatar} className="avatar"/>
                 <div className="member-text">
                     <Typography variant="h6">
-                    {props.name}
+                    {name}
                     </Typography>        
                     <Typography variant="body1" gutterBottom>
-                    {props.description}
+                    {description}
                     </Typography>
                     <Grid >
                     <Icon color="primary" fontSize="small">facebook</Icon>
@@ -40,10 +48,10 @@ function TeamMember(props) {
           <div className="container-member member-right-pc">
                <div className="member-text">
                     <Typography variant="h6">
-                    {props.name}
+                    {name}
                     </Typography>        
                     <Typography variant="body1" gutterBottom>
-                    {props.description}
+                    {description}
                     </Typography>
                     <Grid >
                     <Icon color="primary" fontSize="small">facebook</Icon>
@@ -51,16 +59,16 @@ function TeamMember(props) {
                     <LinkedInIcon fontSize="small"/>
                     </Grid>
                 </div>       
-                <img src={props.avatar} className="avatar"/>         
+                <img src={avatar} className="avatar"/>         
           </div>
           <div className="container-member member-right-movil">
-             <img src={props.avatar} className="avatar"/>  
+             <img src={avatar} className="avatar"/>  
                <div className="member-text">
                     <Typography variant="h6">
-                    {props.name}
+                    {name}
                     </Typography>        
                     <Typography variant="body1" gutterBottom>
-                    {props.description}
+                    {description}
                     </Typography>
                     <Grid >
                     <Icon color="primary" fontSize="small">facebook</Icon>

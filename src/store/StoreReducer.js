@@ -115,6 +115,11 @@ const StoreReducer = (state,action)=> {
                 addper:false,
                 addcon:false,
                 adddep:false,
+                editsan:false,
+                editper:false,
+                editcon:false,
+                editdep:false,
+                editpac:false,
                 charts:false}
         case types.changelistasan:
              return{
@@ -129,6 +134,11 @@ const StoreReducer = (state,action)=> {
                         addper:false,
                         addcon:false,
                         adddep:false,
+                        editsan:false,
+                        editper:false,
+                        editcon:false,
+                        editdep:false,
+                        editpac:false,
                         charts:false}
        case types.changelistaper:
               return{
@@ -143,6 +153,11 @@ const StoreReducer = (state,action)=> {
                        addper:false,
                        addcon:false,
                        adddep:false,
+                       editsan:false,
+                       editper:false,
+                       editcon:false,
+                       editdep:false,
+                       editpac:false,
                        charts:false}
         case types.changelistacon:
                 return{
@@ -157,6 +172,11 @@ const StoreReducer = (state,action)=> {
                        addper:false,
                        addcon:false,
                        adddep:false,
+                       editsan:false,
+                       editper:false,
+                       editcon:false,
+                       editdep:false,
+                       editpac:false,
                        charts:false}
          case types.changelistadep:
                  return{
@@ -171,6 +191,11 @@ const StoreReducer = (state,action)=> {
                           addper:false,
                           addcon:false,
                           adddep:false,
+                          editsan:false,
+                          editper:false,
+                          editcon:false,
+                          editdep:false,
+                          editpac:false,
                           charts:false}
                              case types.changeaddpac:
                                 return{
@@ -179,7 +204,12 @@ const StoreReducer = (state,action)=> {
                                     addsan:false,
                                     addper:false,
                                     addcon:false,
-                                    adddep:false}
+                                    adddep:false,
+                                    editsan:false,
+                                    editper:false,
+                                    editcon:false,
+                                    editdep:false,
+                                    editpac:false,}
                             case types.changeaddsan:
                                  return{
                                      ...state,
@@ -187,7 +217,12 @@ const StoreReducer = (state,action)=> {
                                      addsan:action.payload,
                                      addper:false,
                                      addcon:false,
-                                     adddep:false}
+                                     adddep:false,
+                                     editsan:false,
+                                     editper:false,
+                                     editcon:false,
+                                     editdep:false,
+                                     editpac:false,}
                            case types.changeaddper:
                                   return{
                                        ...state,
@@ -195,7 +230,12 @@ const StoreReducer = (state,action)=> {
                                      addsan:false,
                                      addper:action.payload,
                                      addcon:false,
-                                     adddep:false}
+                                     adddep:false,
+                                     editsan:false,
+                                     editper:false,
+                                     editcon:false,
+                                     editdep:false,
+                                     editpac:false,}
                             case types.changeaddcon:
                                     return{
                                        ...state,
@@ -203,7 +243,12 @@ const StoreReducer = (state,action)=> {
                                       addsan:false,
                                       addper:false,
                                       addcon:action.payload,
-                                      adddep:false}
+                                      adddep:false,
+                                      editsan:false,
+                                        editper:false,
+                                        editcon:false,
+                                        editdep:false,
+                                        editpac:false,}
                              case types.changeadddep:
                                      return{
                                         ...state,
@@ -211,7 +256,12 @@ const StoreReducer = (state,action)=> {
                                        addsan:false,
                                        addper:false,
                                        addcon:false,
-                                       adddep:action.payload}
+                                       adddep:action.payload,
+                                       editsan:false,
+                                       editper:false,
+                                       editcon:false,
+                                       editdep:false,
+                                       editpac:false,}
                                        case types.changeeditpac:
                                         return{
                                             ...state,
@@ -219,7 +269,12 @@ const StoreReducer = (state,action)=> {
                                             editsan:false,
                                             editper:false,
                                             editcon:false,
-                                            editdep:false}
+                                            editdep:false,
+                                            addpac:false,
+                                            addsan:false,
+                                            addper:false,
+                                            addcon:false,
+                                            adddep:false}
                                     case types.changeeditsan:
                                          return{
                                              ...state,
@@ -227,7 +282,12 @@ const StoreReducer = (state,action)=> {
                                              editsan:action.payload,
                                              editper:false,
                                              editcon:false,
-                                             editdep:false}
+                                             editdep:false,
+                                             addpac:false,
+                                            addsan:false,
+                                            addper:false,
+                                            addcon:false,
+                                            adddep:false}
                                    case types.changeeditper:
                                           return{
                                                ...state,
@@ -235,7 +295,12 @@ const StoreReducer = (state,action)=> {
                                              editsan:false,
                                              editper:action.payload,
                                              editcon:false,
-                                             editdep:false}
+                                             editdep:false,
+                                             addpac:false,
+                                            addsan:false,
+                                            addper:false,
+                                            addcon:false,
+                                            adddep:false}
                                     case types.changeeditcon:
                                             return{
                                                ...state,
@@ -243,7 +308,12 @@ const StoreReducer = (state,action)=> {
                                               editsan:false,
                                               editper:false,
                                               editcon:action.payload,
-                                              editdep:false}
+                                              editdep:false,
+                                              addpac:false,
+                                              addsan:false,
+                                              addper:false,
+                                              addcon:false,
+                                              adddep:false}
                                      case types.changeeditdep:
                                              return{
                                                 ...state,
@@ -251,7 +321,12 @@ const StoreReducer = (state,action)=> {
                                                editsan:false,
                                                editper:false,
                                                editcon:false,
-                                               editdep:action.payload}
+                                               editdep:action.payload,
+                                               addpac:false,
+                                               addsan:false,
+                                               addper:false,
+                                               addcon:false,
+                                               adddep:false}
             case types.addpaclistapac:
                 return{
                 ...state,
@@ -305,6 +380,11 @@ const StoreReducer = (state,action)=> {
                    addper:false,
                    addcon:false,
                    adddep:false,
+                   editpac:false,
+                   editsan:false,
+                   editper:false,
+                   editcon:false,
+                   editdep:false,
                    charts:action.payload}
               
         default:

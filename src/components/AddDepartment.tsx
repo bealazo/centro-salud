@@ -9,28 +9,32 @@ import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
 import { types } from '../store/StoreReducer';
 
-function AddDepartment(){
+//Tipado
+import Departamento from "../interfaces/Departamento"
+
+const AddDepartment=()=>{
  
     //Para obtener el estado global, en este caso la lista de departamentos actual
     const [store, dispatch] = useContext(StoreContext);
-    const{departamentos}=store;
-    const{adddep}=store;
-
+    const departamentos:Departamento[]=store.departamentos;
+    
     //Estado inicial para guardar los valores de los inputs
-    const [cod_value, setCodValue] = React.useState("");   
+    const [cod_value, setCodValue] = React.useState(0);   
     const [nom_value, setNomValue] = React.useState("");
 
     //Cambio el estado inicial del input correspondiente
-    const handleChangeCod = (event) => {
-      setCodValue(event.target.value);
+    const handleChangeCod=(event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setCodValue(Number(target.value));
     };
-    const handleChangeNom = (event) => {
-      setNomValue(event.target.value);
+    const handleChangeNom = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setNomValue(target.value);
     };
      
 
     //Añadir el elemento a la lista de departamentos
-    const handleClickSave=()=>{   
+    const handleClickSave=():void=>{   
    
    const item= {codigo_departamento: cod_value,
     nombre_departamento: nom_value,
@@ -42,10 +46,10 @@ function AddDepartment(){
   dispatch({type:types.adddeplistadep,  payload:{departamentos:departamentos}});
 
   //Limpio el formulario
-  setCodValue("");
+  setCodValue(0);
   setNomValue("");
   }
-  const handleClickCancel=()=>{   
+  const handleClickCancel=():void=>{   
 
     //Oculto el formulario
     dispatch({type:types.changeadddep,  payload:{adddep: false}});
@@ -86,7 +90,7 @@ function AddDepartment(){
 
               <Grid item xs={5}>
               <div className="button-form">              
-              <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+              <Button  onClick={handleClickCancel} variant="contained" color="inherit">Cancelar</Button>
               </div>
               </Grid>
               <Grid item xs={5}>

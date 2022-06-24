@@ -15,9 +15,7 @@ function Layout() {
   //Para obtener el user del contexto
   const [store, dispatch] = useContext(StoreContext);
   const{user}=store;
-  console.log("user")
-
-  
+ 
     
   return (
    

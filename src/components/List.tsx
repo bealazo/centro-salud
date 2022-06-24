@@ -1,52 +1,57 @@
 import * as React from 'react';
 //import '../App.css'; NO HACE FALTA, YA LA IMPORTÉ EN APP
 import {Typography} from '@material-ui/core';
-import CustomizedTables from "../components/CustomizedTables";
+import CustomizedTables from "./CustomizedTables";
 
+//Tipado Props
+type Props = {
+  handleModify:Function,
+  listar: string,
+}
 
-function ListComponent(props){
+const ListComponent=({handleModify,listar}:Props)=>{
 
     return(
         <div className="container-table">
 
             <div>
-                {props.listar=="Pacientes"?
+                {listar=="Pacientes"?
                 <>
                   <Typography variant="h6" align="left">
-                  Listado de {props.listar}
+                  Listado de {listar}
                  </Typography>
-                <CustomizedTables listar={props.listar} handleModify={props.handleModify}/>
+                <CustomizedTables listar={listar} handleModify={handleModify}/>
                 </>:
-                props.listar=="Sanitarios"?
+                listar=="Sanitarios"?
                 <>
                   <Typography variant="h6" align="left">
-                  Listado de {props.listar}
+                  Listado de {listar}
                  </Typography>
-                <CustomizedTables listar={props.listar} handleModify={props.handleModify}/>
+                <CustomizedTables listar={listar} handleModify={handleModify}/>
                 </>:
-                 props.listar=="Personal"?
+                 listar=="Personal"?
                  <>
                    <Typography variant="h6" align="left">
-                   Listado de {props.listar}
+                   Listado de {listar}
                   </Typography>
-                 <CustomizedTables listar={props.listar} handleModify={props.handleModify}/>
+                 <CustomizedTables listar={listar} handleModify={handleModify}/>
                  </>:
-                  props.listar=="Consultas"?
+                  listar=="Consultas"?
                   <>
                     <Typography variant="h6" align="left">
-                    Listado de {props.listar}
+                    Listado de {listar}
                    </Typography>
-                  <CustomizedTables listar={props.listar} handleModify={props.handleModify}/>
+                  <CustomizedTables listar={listar} handleModify={handleModify}/>
                   </>:
-                  props.listar=="Departamentos"?
+                  listar=="Departamentos"?
                   <>
                     <Typography variant="h6" align="left">
-                    Listado de {props.listar}
+                    Listado de {listar}
                    </Typography>
-                  <CustomizedTables listar={props.listar} handleModify={props.handleModify}/>
+                  <CustomizedTables listar={listar} handleModify={handleModify}/>
                   </>:
                 <Typography variant="h6">
-                {props.listar}
+                {listar}
                </Typography>
                }
              

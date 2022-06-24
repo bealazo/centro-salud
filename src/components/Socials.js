@@ -6,7 +6,7 @@ import {Icon} from '@material-ui/core';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
-function Socials(){
+const Socials=()=>{
 
     const handleClick = () => {
         console.log("di click");
