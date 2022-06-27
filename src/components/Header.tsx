@@ -20,7 +20,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-//@ts-ignore
 import medicalicon from "../images/medicalicon.png";
 
 //PARA MENÚ DESPLEGABLE CON ESTILOS CUANDO SE LOGUEA UN USER

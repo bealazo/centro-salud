@@ -6,9 +6,8 @@ import {Button} from '@material-ui/core';
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
-//@ts-ignore
+
 import banner from "../images/banner.jpg";
-//@ts-ignore
 import contact1 from "../images/contact1.png";
 
 import Map from "../components/Map";

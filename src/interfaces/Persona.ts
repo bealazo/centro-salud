@@ -2,7 +2,7 @@ interface Persona{
     dni: string,
     nombre: string,
     apellidos:string,
-    telefono:number,
+    telefono:string,
      
   }
   export default Persona;

@@ -9,18 +9,21 @@ import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
 import { types } from '../store/StoreReducer';
 
+import Consulta from "../interfaces/Consulta";
 
-function EditConsult(){
+
+const EditConsult=()=>{
    
    //Para obtener el estado global, en este caso la lista de consultas actual
    const [store, dispatch] = useContext(StoreContext);
-   const{consultas}=store;
-   const{editcon}=store;
-   //Para obtener los datos de la fila a mostrar en el formulario de edición
-   const {row_edit_con} = store;
+   const consultas:Consulta[]=store.consultas;
   
-    //Guardo el dni inicial para hacer la búsqueda del elemento a modificar en la lista
+   //Para obtener los datos de la fila a mostrar en el formulario de edición
+   const row_edit_con:Consulta = store.row_edit_con;
+  
+    //Guardo el numero de consulta inicial para hacer la búsqueda del elemento a modificar en la lista
      const num_con_initial= row_edit_con.numero_consulta;
+
    //Variables iniciales para guardar los valores de los inputs
    const [num_con_value, setNumValue] = React.useState(row_edit_con.numero_consulta);
    const [cod_ser_value, setCodSerValue] = React.useState(row_edit_con.codigo_servicio);
@@ -28,23 +31,26 @@ function EditConsult(){
    const [pla_value, setPlaValue] = React.useState(row_edit_con.planta);
   
    //Cambio el estado inicial del input correspondiente
-   const handleChangeNum = (event) => {
-    setNumValue(event.target.value);
-   };
-   const handleChangeCodSer = (event) => {
-    setCodSerValue(event.target.value)
-     
-   };
-   const handleChangeNomSer= (event) => {
-    setNomSerValue(event.target.value);
-   };
-   const handleChangePla = (event) => {
-    setPlaValue(event.target.value);
-   };
+   const handleChangeNum = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setNumValue(Number(target.value));
+  };
+  const handleChangeCodSer = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setCodSerValue(Number(target.value));
+  };
+  const handleChangeNomSer = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setNomSerValue(target.value);
+  };
+  const handleChangePla = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setPlaValue(Number(target.value));
+  };
  
 
    //Editar el elemento de la lista de consultas
-   const handleClickSave=()=>{   
+   const handleClickSave=():void=>{   
    consultas.map(item=>
         {if(item.numero_consulta==num_con_initial)
             {
@@ -67,7 +73,7 @@ function EditConsult(){
 
  
  }
- const handleClickCancel=()=>{   
+ const handleClickCancel=():void=>{   
 
         //Oculto el formulario
         dispatch({type:types.changeeditcon,  payload:{editcon:false}});
@@ -88,10 +94,10 @@ function EditConsult(){
        >    <Grid className="containter-form-addpatient-inputs-pc" item xs={12}>
 
             <Grid item xs={2}>
-            <TextField value={num_con_value} onChange={handleChangeNum} required id="outlined-basic" label="Número consulta" variant="outlined" />
+            <TextField value={num_con_value} type="number" onChange={handleChangeNum} required id="outlined-basic" label="Número consulta" variant="outlined" />
             </Grid>
             <Grid item xs={2}>
-            <TextField  value={cod_ser_value} onChange={handleChangeCodSer} required id="outlined-basic" label="Código servicio" variant="outlined" />
+            <TextField  value={cod_ser_value} type="number" onChange={handleChangeCodSer} required id="outlined-basic" label="Código servicio" variant="outlined" />
             </Grid>
           
             
@@ -103,7 +109,7 @@ function EditConsult(){
             <TextField  value={nom_ser_value} onChange={handleChangeNomSer} id="outlined-basic" label="Nombre servicio" variant="outlined" />
             </Grid>
              <Grid item xs={2}>
-             <TextField   value={pla_value} onChange={handleChangePla} id="outlined-basic" label="Planta" variant="outlined" />
+             <TextField   value={pla_value} type="number" onChange={handleChangePla} id="outlined-basic" label="Planta" variant="outlined" />
              </Grid>
            
              </Grid>
@@ -112,17 +118,17 @@ function EditConsult(){
              <Grid className="containter-form-addpatient-inputs-movil" item xs={12}>
 
              <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-             <TextField value={num_con_value} onChange={handleChangeNum} required id="outlined-basic" label="Número consulta" variant="outlined" />
+             <TextField value={num_con_value} type="number" onChange={handleChangeNum} required id="outlined-basic" label="Número consulta" variant="outlined" />
              </Grid>
              <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-             <TextField  value={cod_ser_value} onChange={handleChangeCodSer} required id="outlined-basic" label="Código servicio" variant="outlined" />
+             <TextField  value={cod_ser_value} type="number" onChange={handleChangeCodSer} required id="outlined-basic" label="Código servicio" variant="outlined" />
              </Grid>
              <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
              <TextField  value={nom_ser_value} onChange={handleChangeNomSer} id="outlined-basic" label="Nombre servicio" variant="outlined" />
              </Grid>
 
              <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-             <TextField   value={pla_value} onChange={handleChangePla} id="outlined-basic" label="Planta" variant="outlined" />
+             <TextField   value={pla_value} type="number" onChange={handleChangePla} id="outlined-basic" label="Planta" variant="outlined" />
              </Grid>
            
              </Grid>
@@ -130,7 +136,7 @@ function EditConsult(){
 
               <Grid item xs={5}>
               <div className="button-form">              
-              <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+              <Button  onClick={handleClickCancel} variant="contained" color="inherit">Cancelar</Button>
               </div>
               </Grid>
               <Grid item xs={5}>

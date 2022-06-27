@@ -26,7 +26,7 @@ import { useMediaQuery } from "react-responsive";
 
 
 
-function Home() {
+const Home=()=> {
 
    //Manejar ancho de la pantalla para definir ancho del grafico
    const isDesktop = useMediaQuery({
@@ -159,7 +159,7 @@ function Home() {
 
       <section>
 
-        <Banner banner={bannersocials}/>
+        <Banner banner={bannersocials} />
         <Socials/>
 
       </section>

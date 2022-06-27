@@ -9,15 +9,17 @@ import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
 import { types } from '../store/StoreReducer';
 
+//Tipado
+import Sanitario from "../interfaces/Sanitario";
 
-function EditDoctor(){
+const EditDoctor=()=>{
    
    //Para obtener el estado global, en este caso la lista de sanitarios actual
    const [store, dispatch] = useContext(StoreContext);
-   const{sanitarios}=store;
-   const{editsan}=store;
+   const sanitarios:Sanitario[]=store.sanitarios;
+
    //Para obtener los datos de la fila a mostrar en el formulario de edición
-   const {row_edit_doctor} = store;
+   const row_edit_doctor:Sanitario = store.row_edit_doctor;
   
     //Guardo el dni inicial para hacer la búsqueda del elemento a modificar en la lista
      const dni_initial= row_edit_doctor.dni;
@@ -32,35 +34,41 @@ function EditDoctor(){
    const [sal_value, setSalValue] = React.useState(row_edit_doctor.salario);
  
    //Cambio el estado inicial del input correspondiente
-   const handleChangeDni = (event) => {
-     setDniValue(event.target.value);
+   const handleChangeDni = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+     setDniValue(target.value);
    };
-   const handleChangeName = (event) => {
-       setNameValue(event.target.value)
-     
-     console.log(name_value)
+   const handleChangeName = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+     setNameValue(target.value);
    };
-   const handleChangeLastname = (event) => {
-   setLastNameValue(event.target.value);
+   const handleChangeLastname = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setLastNameValue(target.value);
    };
-   const handleChangePhone = (event) => {
-    setPhoneValue(event.target.value);
+   const handleChangePhone = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+     setPhoneValue(target.value);
    };
-   const handleChangeCat = (event) => {
-    setCatValue(event.target.value);
+   const handleChangeCat = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+     setCatValue(target.value);
    };
-   const handleChangeEsp = (event) => {
-    setEspValue(event.target.value);
+   const handleChangeEsp = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+     setEspValue(target.value);
    };
-   const handleChangeAnt = (event) => {
-    setAntValue(event.target.value);
+   const handleChangeAnt = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setAntValue(Number(target.value));
   };
-  const handleChangeSal = (event) => {
-    setSalValue(event.target.value);
+  const handleChangeSal = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setSalValue(Number(target.value));
   };
 
    //Editar el elemento de la lista de sanitarios
-   const handleClickSave=()=>{   
+   const handleClickSave=():void=>{   
    sanitarios.map(item=>
         {if(item.dni==dni_initial)
             {
@@ -89,7 +97,7 @@ function EditDoctor(){
 
  
  }
- const handleClickCancel=()=>{   
+ const handleClickCancel=():void=>{   
 
         //Oculto el formulario
         dispatch({type:types.changeeditsan,  payload:{editsan:false}});
@@ -138,10 +146,10 @@ function EditDoctor(){
              <Grid className="containter-form-addpatient-inputs-pc" item xs={12}>
 
               <Grid item xs={2}>
-              <TextField  value={ant_value}  onChange={handleChangeAnt} id="outlined-basic" label="Antiguedad" variant="outlined" />
+              <TextField  value={ant_value} type="number"  onChange={handleChangeAnt} id="outlined-basic" label="Antiguedad" variant="outlined" />
               </Grid>
               <Grid item xs={2}>
-              <TextField  value={sal_value}  onChange={handleChangeSal} required id="outlined-basic" label="Salario" variant="outlined" />
+              <TextField  value={sal_value}  type="number" onChange={handleChangeSal} required id="outlined-basic" label="Salario" variant="outlined" />
               </Grid>
             
               </Grid>
@@ -168,10 +176,10 @@ function EditDoctor(){
              <TextField   value={esp_value} onChange={handleChangeEsp} required id="outlined-basic" label="Especialidad" variant="outlined" />
              </Grid>
              <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-             <TextField  value={ant_value}   onChange={handleChangeAnt}  id="outlined-basic" label="Antiguedad" variant="outlined" />
+             <TextField  value={ant_value}   type="number" onChange={handleChangeAnt}  id="outlined-basic" label="Antiguedad" variant="outlined" />
              </Grid>
              <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-             <TextField  value={sal_value}  onChange={handleChangeSal} required id="outlined-basic" label="Salario" variant="outlined" />
+             <TextField  value={sal_value}  type="number" onChange={handleChangeSal} required id="outlined-basic" label="Salario" variant="outlined" />
              </Grid>
 
              </Grid>
@@ -179,7 +187,7 @@ function EditDoctor(){
 
               <Grid item xs={5}>
               <div className="button-form">              
-              <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+              <Button  onClick={handleClickCancel} variant="contained" color="inherit">Cancelar</Button>
               </div>
               </Grid>
               <Grid item xs={5}>

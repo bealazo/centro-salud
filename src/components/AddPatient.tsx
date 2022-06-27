@@ -9,43 +9,51 @@ import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
 import { types } from '../store/StoreReducer';
 
-function AddPatient(){
+//Tipado
+import Paciente from "../interfaces/Paciente"
+
+const AddPatient=()=>{
 
     //Para obtener el estado global, en este caso la lista de pacientes actual
     const [store, dispatch] = useContext(StoreContext);
-    const{pacientes}=store;
-    const{addpac}=store;
-
+    const pacientes:Paciente[]=store.pacientes;
+    
     //Estado inicial para guardar los valores de los inputs
     const [dni_value, setDniValue] = React.useState("");
     const [name_value, setNameValue] = React.useState("");
     const [phone_value, setPhoneValue] = React.useState("");
     const [lastname_value, setLastnameValue] = React.useState("");
-    const [sec_value, setSecValue] = React.useState("");
+    const [sec_value, setSecValue] = React.useState(0);
     const [cod_value, setCodValue] = React.useState("");
 
     //Cambio el estado inicial del input correspondiente
-    const handleChangeDni = (event) => {
-      setDniValue(event.target.value);
+    const handleChangeDni = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setDniValue(target.value);
     };
-    const handleChangeName = (event) => {
-      setNameValue(event.target.value);
+    const handleChangeName = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setNameValue(target.value);
     };
-    const handleChangeLastname = (event) => {
-      setLastnameValue(event.target.value);
+    const handleChangeLastname = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setLastnameValue(target.value);
     };
-    const handleChangePhone = (event) => {
-      setPhoneValue(event.target.value);
+    const handleChangePhone = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setPhoneValue(target.value);
     };
-    const handleChangeSecurity = (event) => {
-      setSecValue(event.target.value);
+    const handleChangeSecurity = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setSecValue(Number(target.value));
     };
-    const handleChangeCod = (event) => {
-      setCodValue(event.target.value);
+    const handleChangeCod = (event:React.ChangeEvent):void => {
+      let target = event.target as HTMLInputElement;
+      setCodValue(target.value);
     };
 
     //Añadir el elemento a la lista de pacientes
-    const handleClickSave=()=>{   
+    const handleClickSave=():void=>{   
    
    const item= {dni: dni_value,
    nombre: name_value,
@@ -64,11 +72,11 @@ function AddPatient(){
   setNameValue("");
   setLastnameValue("");
   setPhoneValue("");
-  setSecValue("");
+  setSecValue(0);
   setCodValue("");
 
   }
-  const handleClickCancel=()=>{   
+  const handleClickCancel=():void=>{   
 
     //Oculto el formulario
     dispatch({type:types.changeaddpac,  payload:{addpac: false}});
@@ -104,7 +112,7 @@ function AddPatient(){
               <TextField  value={phone_value} onChange={handleChangePhone} id="outlined-basic" label="Teléfono" variant="outlined" />
               </Grid>
               <Grid item xs={2}>
-              <TextField   value={sec_value} onChange={handleChangeSecurity} required id="outlined-basic" label="Número seguridad social" variant="outlined" />
+              <TextField  type="number" value={sec_value} onChange={handleChangeSecurity} required id="outlined-basic" label="Número seguridad social" variant="outlined" />
               </Grid>
               <Grid item xs={2}>
               <TextField  value={cod_value} onChange={handleChangeCod} required id="outlined-basic" label="Código historia clínica" variant="outlined" />
@@ -128,7 +136,7 @@ function AddPatient(){
               <TextField  value={phone_value} onChange={handleChangePhone}  id="outlined-basic" label="Teléfono" variant="outlined" />
               </Grid>
               <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-              <TextField  value={sec_value} onChange={handleChangeSecurity} required id="outlined-basic" label="Número seguridad social" variant="outlined" />
+              <TextField type="number" value={sec_value} onChange={handleChangeSecurity} required id="outlined-basic" label="Número seguridad social" variant="outlined" />
               </Grid>
               <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
               <TextField  value={cod_value} onChange={handleChangeCod} required id="outlined-basic" label="Código historia clínica" variant="outlined" />
@@ -139,7 +147,7 @@ function AddPatient(){
 
               <Grid item xs={5}>
               <div className="button-form">              
-              <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+              <Button  onClick={handleClickCancel} variant="contained" color="inherit">Cancelar</Button>
               </div>
               </Grid>
               <Grid item xs={5}>

@@ -5,8 +5,8 @@ import {Typography} from '@material-ui/core';
 //Tipado Props
 type Props = {
     banner:string,
-    title: string,
-    subtitle: string,
+    title?: string,
+    subtitle?: string,
   }
 
 const Banner=({ banner, title, subtitle }:Props)=>{

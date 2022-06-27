@@ -9,15 +9,17 @@ import {useContext} from 'react';
 import { StoreContext } from '../store/StoreProvider';
 import { types } from '../store/StoreReducer';
 
+//Tipado
+import Personal from "../interfaces/Personal"
 
-function EditPersonal(){
+const EditPersonal=()=>{
    
    //Para obtener el estado global, en este caso la lista de personal actual
    const [store, dispatch] = useContext(StoreContext);
-   const{personal}=store;
-   const{editper}=store;
+   const personal:Personal[]=store.personal;
+
    //Para obtener los datos de la fila a mostrar en el formulario de edición
-   const {row_edit_per} = store;
+   const row_edit_per:Personal = store.row_edit_per;
   
     //Guardo el dni inicial para hacer la búsqueda del elemento a modificar en la lista
      const dni_initial= row_edit_per.dni;
@@ -34,40 +36,49 @@ function EditPersonal(){
    const [der_value, setDerValue] = React.useState(row_edit_per.derecho_ascenso);
  
    //Cambio el estado inicial del input correspondiente
-   const handleChangeDni = (event) => {
-     setDniValue(event.target.value);
-   };
-   const handleChangeName = (event) => {
-       setNameValue(event.target.value)
-  
-   };
-   const handleChangeLastname = (event) => {
-   setLastNameValue(event.target.value);
-   };
-   const handleChangePhone = (event) => {
-    setPhoneValue(event.target.value);
-   };
-   const handleChangeCodPer = (event) => {
-    setCodPerValue(event.target.value);
-   };
-   const handleChangeCar = (event) => {
-    setCarValue(event.target.value);
-   };
-   const handleChangeAnt = (event) => {
-    setAntValue(event.target.value);
+   const handleChangeDni = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setDniValue(target.value);
   };
-  const handleChangeSal = (event) => {
-    setSalValue(event.target.value);
+  const handleChangeName = (event:React.ChangeEvent):void=> {
+    let target = event.target as HTMLInputElement;
+    setNameValue(target.value);
   };
-  const handleChangeCodDpto = (event) => {
-    setCodDptoValue(event.target.value);
+  const handleChangeLastname = (event:React.ChangeEvent):void=> {
+    let target = event.target as HTMLInputElement;
+    setLastNameValue(target.value);
   };
-  const handleChangeDer = (event) => {
-    setDerValue(event.target.value);
+  const handleChangePhone = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setPhoneValue(target.value);
   };
+  const handleChangeCodPer= (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setCodPerValue(target.value);
+  };
+  const handleChangeCar = (event:React.ChangeEvent):void => {
+    let target = event.target as HTMLInputElement;
+    setCarValue(target.value);
+  };
+  const handleChangeAnt = (event:React.ChangeEvent):void=> {
+    let target = event.target as HTMLInputElement;
+   setAntValue(Number(target.value));
+ };
+ const handleChangeSal = (event:React.ChangeEvent):void=> {
+  let target = event.target as HTMLInputElement;
+   setSalValue(Number(target.value));
+ };
+ const handleChangeCodDpto = (event:React.ChangeEvent):void => {
+  let target = event.target as HTMLInputElement;
+  setCodDptoValue(Number(target.value));
+};
+const handleChangeDer = (event:React.ChangeEvent):void => {
+  let target = event.target as HTMLInputElement;
+  setDerValue(target.value);
+};
 
    //Editar el elemento de la lista de personal
-   const handleClickSave=()=>{   
+   const handleClickSave=():void=>{   
    personal.map(item=>
         {if(item.dni==dni_initial)
             {
@@ -96,7 +107,7 @@ function EditPersonal(){
 
  
  }
- const handleClickCancel=()=>{   
+ const handleClickCancel=():void=>{   
 
         //Oculto el formulario
         dispatch({type:types.changeeditper,  payload:{editper:false}});
@@ -155,7 +166,7 @@ function EditPersonal(){
               <Grid className="containter-form-addpatient-inputs-pc" item xs={12}>
 
                 <Grid item xs={2}>
-                <TextField  value={cod_dpto_value}  onChange={handleChangeCodDpto} id="outlined-basic" label="Código departamento" variant="outlined" />
+                <TextField type="number" value={cod_dpto_value}  onChange={handleChangeCodDpto} id="outlined-basic" label="Código departamento" variant="outlined" />
                 </Grid>
                 <Grid item xs={2}>
                 <TextField  value={der_value}  onChange={handleChangeDer} id="outlined-basic" label="Derecho ascenso" variant="outlined" />
@@ -192,7 +203,7 @@ function EditPersonal(){
              <TextField  type="number" value={sal_value}  onChange={handleChangeSal} required id="outlined-basic" label="Salario" variant="outlined" />
              </Grid>
              <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
-             <TextField  value={cod_dpto_value}  onChange={handleChangeCodDpto} id="outlined-basic" label="Código departamento" variant="outlined" />
+             <TextField type="number" value={cod_dpto_value}  onChange={handleChangeCodDpto} id="outlined-basic" label="Código departamento" variant="outlined" />
              </Grid>
              <Grid className="containter-form-addpatient-inputs-item-movil" item xs={12}>
              <TextField  value={der_value}  onChange={handleChangeDer} id="outlined-basic" label="Derecho ascenso" variant="outlined" />
@@ -203,7 +214,7 @@ function EditPersonal(){
 
               <Grid item xs={5}>
               <div className="button-form">              
-              <Button  onClick={handleClickCancel} variant="contained" color="info">Cancelar</Button>
+              <Button  onClick={handleClickCancel} variant="contained" color="inherit">Cancelar</Button>
               </div>
               </Grid>
               <Grid item xs={5}>
