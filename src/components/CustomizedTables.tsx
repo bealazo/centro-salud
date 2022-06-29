@@ -11,7 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { Icon } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 import { StoreContext } from '../store/StoreProvider';
 import { types } from '../store/StoreReducer';
 import {TextField} from '@material-ui/core';
@@ -23,7 +23,7 @@ import Personal from "../interfaces/Personal";
 import Sanitario from "../interfaces/Sanitario";
 import Departamento from "../interfaces/Departamento";
 import Consulta from "../interfaces/Consulta";
-import Persona from '../interfaces/Persona';
+
 
 //Estilos de las tablas
 const StyledTableCell = withStyles((theme) => ({
@@ -59,258 +59,263 @@ const StyledTableCell = withStyles((theme) => ({
   const CustomizedTables=({handleModify, listar }:Props)=> {
 
   //Para obtener las listas del estado global
-  const [store, dispatch] = useContext(StoreContext);
+  const [store, dispatch,readListados,addListados,deleteListados] = useContext(StoreContext);
   const pacientes:Paciente[]=store.pacientes;
   const sanitarios:Sanitario[]=store.sanitarios;
   const personal:Personal[]=store.personal;
   const consultas:Consulta[]=store.consultas;
   const departamentos:Departamento[]=store.departamentos;
+  
+  //Variable de control para ejecutar el useEffect y obligar al componente a rerenderizar cuando se haya eliminado un elemento de las listas
+   const [ctrl_del_lis, setCDL] = React.useState<boolean>(false);
+
+  //Variables de control para mostrar resultados de búsqueda
+  const [ctrl_search_pac, setCSP] = React.useState<boolean>(false);
+  const [ctrl_search_san, setCSS] = React.useState<boolean>(false);
+  const [ctrl_search_per, setCSPe] = React.useState<boolean>(false);
+  const [ctrl_search_con, setCSC] = React.useState<boolean>(false);
+  const [ctrl_search_dep, setCSD] = React.useState<boolean>(false);
+
+  //Para obtener el listado actualizado del estado global, llamo a la función que se conecta a la API y actualiza el estado global, función implementada en
+  //StoreProvider, pongo las variables de control para actualizar el listado cada vez que se haya eliminado un elemento, pongo la variable listar para rerenderizar
+  //el componente cada vez que cambie el listado
+  useEffect(() => {
+     // ⬅️
+    const getResponse = async () => {
+      await readListados(listar);
+      return;
+    };
+    getResponse();
+  }, [ctrl_del_lis,listar]);
 
  
   //Para guardar el estado inicial de la lista para cuando la barra de búsqueda esté vacía
   const [oldListSan, setOldListSan] = React.useState<Array<Sanitario>>(sanitarios);
-  const [oldListPac, setOldListPac] = React.useState<Array<Paciente>>(pacientes);
+  const [oldListPac, setOldListPac] = React.useState<Array<Paciente>>(pacientes); 
   const [oldListPer, setOldListPer] = React.useState<Array<Personal>>(personal);
   const [oldListCon, setOldListCon] = React.useState<Array<Consulta>>(consultas);
   const [oldListDep, setOldListDep] = React.useState<Array<Departamento>>(departamentos);
   
-
-  //Para obtener el método implementado y pasado desde la vista GestionCentro para modificar un elemento de la lista y poder aqui pasarle
-  //los parametros que espera(la fila que quiero modificar y el nombre de la lista a la que pertenece)
- // const handleModify=handleModify;
 
   //Para eliminar un elemento de la lista
   const handleDelete=(row:Record<string, any>,list_name:string):void=>{
      
       if(list_name=="pacientes")      
       {
-       var new_pacientes=pacientes.filter((item:Paciente) => item.dni !== row.dni);
-        //envio la accion en el payload al store reducer para modificar el estado global
-        //OJO: ME SIRVE EL MISMO TIPO QUE PARA AÑADIR NUEVOS ITEMS A LA LISTA, PUESTO QUE LA ACCION PARA ESE TIPO ES MODIFICAR EL LISTADO EXISTENTE SUSTITUYENDOLO 
-        //CON EL NUEVO LISTADO PASADO
-           dispatch({type:types.addpaclistapac,  payload:{pacientes:new_pacientes}});
-           setOldListPac(new_pacientes);
+        setCDL(!ctrl_del_lis)
+        deleteListados(row,list_name);
+       
        }
       else if(list_name=="sanitarios")      
        {
-        var new_sanitarios=sanitarios.filter((item:Sanitario) => item.dni !== row.dni);
+          setCDL(!ctrl_del_lis)
+          deleteListados(row,list_name);
          
-            dispatch({type:types.addsanlistasan,  payload:{sanitarios:new_sanitarios}});
-            setOldListSan(new_sanitarios);
         }
         else if(list_name=="personal")      
         {
-         var new_personal=personal.filter((item:Personal) => item.dni !== row.dni);
+          setCDL(!ctrl_del_lis)
+          deleteListados(row,list_name);
           
-             dispatch({type:types.addperlistaper,  payload:{personal:new_personal}});
-             setOldListPer(new_personal);
          }
          else if(list_name=="consultas")      
         {
-         var new_consultas=consultas.filter((item:Consulta) => item.numero_consulta !== row.numero_consulta);
+          setCDL(!ctrl_del_lis)
+          deleteListados(row,list_name);
           
-             dispatch({type:types.addconlistacon,  payload:{consultas:new_consultas}});
-             setOldListCon(new_consultas);
          }
          else if(list_name=="departamentos")      
          {
-          var new_departamentos=departamentos.filter((item:Departamento) => item.codigo_departamento !== row.codigo_departamento);
-           
-              dispatch({type:types.adddeplistadep,  payload:{departamentos:new_departamentos}});
-              setOldListDep(new_departamentos);
+           setCDL(!ctrl_del_lis)
+          deleteListados(row,list_name);
+         
           }
   };
 
-  //Para filtro de búsqueda de tabla sanitarios
- 
+  //Para filtro de búsqueda de tabla sanitarios 
   const handleChangeSearchSan=(e:string,head:string):void=>{
 
-    //Guardo la lista actual
-       let oldList1=sanitarios;
-    //Si escribo algo en la barra de búsqueda, pregunto si lo que escribo esta dentro de la columna correspondiente de acuerdo al head y filtro el resultado,
+     //Si escribo algo en la barra de búsqueda, pregunto si lo que escribo esta dentro de la columna correspondiente de acuerdo al head y filtro el resultado,
     //gurdandolo en una nueva lista
       if(e!==""){
+        setCSS(true)
         let newList:Sanitario[]=[];
           if(head=="DNI"){
-          newList=oldList1.filter((sanitario:Sanitario)=>sanitario.dni.toLowerCase().includes(e.toLowerCase()));
+          newList=oldListSan.filter((sanitario:Sanitario)=>sanitario.dni.toLowerCase().includes(e.toLowerCase()));
         }
         else if(head=="NOMBRE"){
-          newList=oldList1.filter((sanitario:Sanitario)=>sanitario.nombre.toLowerCase().includes(e.toLowerCase()));
+          newList=oldListSan.filter((sanitario:Sanitario)=>sanitario.nombre.toLowerCase().includes(e.toLowerCase()));
           }
         else if(head=="APELLIDOS"){
-           newList=oldList1.filter((sanitario:Sanitario)=>sanitario.apellidos.toLowerCase().includes(e.toLowerCase()));
+           newList=oldListSan.filter((sanitario:Sanitario)=>sanitario.apellidos.toLowerCase().includes(e.toLowerCase()));
           }
          else if(head=="TELÉFONO"){
-            newList=oldList1.filter((sanitario:Sanitario)=>sanitario.telefono.toString().includes(e));
+            newList=oldListSan.filter((sanitario:Sanitario)=>sanitario.telefono.toString().includes(e));
          }
          else if(head=="CATEGORÍA"){
-          newList=oldList1.filter((sanitario:Sanitario)=>sanitario.categoria.toLowerCase().includes(e.toLowerCase()));
+          newList=oldListSan.filter((sanitario:Sanitario)=>sanitario.categoria.toLowerCase().includes(e.toLowerCase()));
         }
        else if(head=="ESPECIALIDAD"){
-         newList=oldList1.filter((sanitario:Sanitario)=>sanitario.especialidad.toLowerCase().includes(e.toLowerCase()));
+         newList=oldListSan.filter((sanitario:Sanitario)=>sanitario.especialidad.toLowerCase().includes(e.toLowerCase()));
         }
         else if(head=="ANTIGUEDAD"){
-          newList=oldList1.filter((sanitario:Sanitario)=>sanitario.antiguedad.toString().includes(e));
+          newList=oldListSan.filter((sanitario:Sanitario)=>sanitario.antiguedad.toString().includes(e));
           }
         else if(head=="SALARIO"){
-          newList=oldList1.filter((sanitario:Sanitario)=>sanitario.salario.toString().includes(e));
+          newList=oldListSan.filter((sanitario:Sanitario)=>sanitario.salario.toString().includes(e));
           }     
           
         //actualizo el estado global con la el resultado de la búsqueda
-        dispatch({type:types.addsanlistasan, payload:{sanitarios:newList}});
-      
+        setOldListSan(newList)
+       
       }
       else{
-     
-        dispatch({type:types.addsanlistasan, payload:{sanitarios:oldListSan}});
-       
+        setOldListSan(sanitarios)
+        setCSS(false)
+      
       };
   }
   //Para filtro de búsqueda de tabla pacientes
   const handleChangeSearchPac=(e:string,head:string):void=>{
-
-    //Guardo la lista actual
-       let oldList1=pacientes;
+         
     //Si escribo algo en la barra de búsqueda, pregunto si lo que escribo esta dentro de la columna correspondiente de acuerdo al head y filtro el resultado,
     //gurdandolo en una nueva lista
       if(e!==""){
+        setCSP(true)
         let newList:Paciente[]=[];
           if(head=="DNI"){
-          newList=oldList1.filter((paciente:Paciente)=>paciente.dni.toLowerCase().includes(e.toLowerCase()));
+            newList=oldListPac.filter((paciente:Paciente)=>paciente.dni.toLowerCase().includes(e.toLowerCase()));
         }
         else if(head=="NOMBRE"){
-          newList=oldList1.filter((paciente:Paciente)=>paciente.nombre.toLowerCase().includes(e.toLowerCase()));
-          }
+          newList=oldListPac.filter((paciente:Paciente)=>paciente.nombre.toLowerCase().includes(e.toLowerCase()));
+         }
         else if(head=="APELLIDOS"){
-           newList=oldList1.filter((paciente:Paciente)=>paciente.apellidos.toLowerCase().includes(e.toLowerCase()));
+           newList=oldListPac.filter((paciente:Paciente)=>paciente.apellidos.toLowerCase().includes(e.toLowerCase()));
           }
          else if(head=="TELÉFONO"){
-            newList=oldList1.filter((paciente:Paciente)=>paciente.telefono.toString().includes(e));
+            newList=oldListPac.filter((paciente:Paciente)=>paciente.telefono.toString().includes(e));
          }
          else if(head=="NÚMERO SEG. SOCIAL"){
-          newList=oldList1.filter((paciente:Paciente)=>paciente.numero_seguridad_social.toString().includes(e));
+          newList=oldListPac.filter((paciente:Paciente)=>paciente.numero_seguridad_social.toString().includes(e));
         }
        else if(head=="CÓDIGO HIST. CLÍNICA"){
-        newList=oldList1.filter((paciente:Paciente)=>paciente.codigo_historia_clinica.toLowerCase().includes(e.toLowerCase()));
+        newList=oldListPac.filter((paciente:Paciente)=>paciente.codigo_historia_clinica.toLowerCase().includes(e.toLowerCase()));
         }
        
           
-        //actualizo el estado global con la el resultado de la búsqueda
-        dispatch({type:types.addpaclistapac, payload:{pacientes:newList}});
-      
+        //actualizo el estado local con la el resultado de la búsqueda
+        setOldListPac(newList)
+       
       }
       else{
-     
-        dispatch({type:types.addpaclistapac, payload:{pacientes:oldListPac}});
-       
+        setOldListPac(pacientes)
+        setCSP(false)
+      
       };
   }
    //Para filtro de búsqueda de tabla personal
    const handleChangeSearchPer=(e:string,head:string):void=>{
 
-    //Guardo la lista actual
-       let oldList1=personal;
     //Si escribo algo en la barra de búsqueda, pregunto si lo que escribo esta dentro de la columna correspondiente de acuerdo al head y filtro el resultado,
     //gurdandolo en una nueva lista
       if(e!==""){
+        setCSPe(true)
         let newList:Personal[]=[];
           if(head=="DNI"){
-          newList=oldList1.filter((personal:Personal)=>personal.dni.toLowerCase().includes(e.toLowerCase()));
+          newList=oldListPer.filter((personal:Personal)=>personal.dni.toLowerCase().includes(e.toLowerCase()));
         }
         else if(head=="NOMBRE"){
-          newList=oldList1.filter((personal:Personal)=>personal.nombre.toLowerCase().includes(e.toLowerCase()));
+          newList=oldListPer.filter((personal:Personal)=>personal.nombre.toLowerCase().includes(e.toLowerCase()));
           }
         else if(head=="APELLIDOS"){
-           newList=oldList1.filter((personal:Personal)=>personal.apellidos.toLowerCase().includes(e.toLowerCase()));
+           newList=oldListPer.filter((personal:Personal)=>personal.apellidos.toLowerCase().includes(e.toLowerCase()));
           }
          else if(head=="TELÉFONO"){
-            newList=oldList1.filter((personal:Personal)=>personal.telefono.toString().includes(e));
+            newList=oldListPer.filter((personal:Personal)=>personal.telefono.toString().includes(e));
          }
          else if(head=="CÓDIGO"){
-          newList=oldList1.filter((personal:Personal)=>personal.codigo_personal.toLowerCase().includes(e.toLowerCase()));
+          newList=oldListPer.filter((personal:Personal)=>personal.codigo_personal.toLowerCase().includes(e.toLowerCase()));
         }
        else if(head=="CARGO"){
-        newList=oldList1.filter((personal:Personal)=>personal.cargo.toLowerCase().includes(e.toLowerCase()));
+        newList=oldListPer.filter((personal:Personal)=>personal.cargo.toLowerCase().includes(e.toLowerCase()));
         }
         else if(head=="ANTIGUEDAD"){
-              newList=oldList1.filter((personal:Personal)=>personal.antiguedad.toString().includes(e));
+              newList=oldListPer.filter((personal:Personal)=>personal.antiguedad.toString().includes(e));
           }
         else if(head=="SALARIO"){
-          newList=oldList1.filter((personal:Personal)=>personal.salario.toString().includes(e));
+          newList=oldListPer.filter((personal:Personal)=>personal.salario.toString().includes(e));
           }  
         else if(head=="DPTO"){
-            newList=oldList1.filter((personal:Personal)=>personal.codigo_dpto.toString().includes(e));
+            newList=oldListPer.filter((personal:Personal)=>personal.codigo_dpto.toString().includes(e));
             }  
         else if(head=="ASCENSO"){
-              newList=oldList1.filter((personal:Personal)=>personal.derecho_ascenso.toLowerCase().includes(e.toLowerCase()));
+              newList=oldListPer.filter((personal:Personal)=>personal.derecho_ascenso.toLowerCase().includes(e.toLowerCase()));
            }        
           
         //actualizo el estado global con la el resultado de la búsqueda
-        dispatch({type:types.addperlistaper, payload:{personal:newList}});
-      
+        setOldListPer(newList)
+       
       }
       else{
-     
-        dispatch({type:types.addperlistaper, payload:{personal:oldListPer}});
-       
+        setOldListPer(personal)
+        setCSPe(false)
+      
       };
   }
    //Para filtro de búsqueda de tabla consultas
    const handleChangeSearchCon=(e:string,head:string):void=>{
 
-    //Guardo la lista actual
-       let oldList1=consultas;
     //Si escribo algo en la barra de búsqueda, pregunto si lo que escribo esta dentro de la columna correspondiente de acuerdo al head y filtro el resultado,
     //gurdandolo en una nueva lista
       if(e!==""){
+        setCSC(true)
         let newList:Consulta[]=[];
           if(head=="NÚMERO DE CONSULTA"){
-          newList=oldList1.filter((consulta:Consulta)=>consulta.numero_consulta.toString().includes(e));
+          newList=oldListCon.filter((consulta:Consulta)=>consulta.numero_consulta.toString().includes(e));
         }
         else if(head=="CÓDIGO DE SERVICIO"){
-          newList=oldList1.filter((consulta:Consulta)=>consulta.codigo_servicio.toString().includes(e));
+          newList=oldListCon.filter((consulta:Consulta)=>consulta.codigo_servicio.toString().includes(e));
           }
         else if(head=="NOMBRE DE SERVICIO"){
-           newList=oldList1.filter((consulta:Consulta)=>consulta.nombre_servicio.toLowerCase().includes(e.toLowerCase()));
+           newList=oldListCon.filter((consulta:Consulta)=>consulta.nombre_servicio.toLowerCase().includes(e.toLowerCase()));
           }
          else if(head=="PLANTA"){
-            newList=oldList1.filter((consulta:Consulta)=>consulta.planta.toString().includes(e));
+            newList=oldListCon.filter((consulta:Consulta)=>consulta.planta.toString().includes(e));
          }
        
         //actualizo el estado global con la el resultado de la búsqueda
-        dispatch({type:types.addconlistacon, payload:{consultas:newList}});
-      
+        setOldListCon(newList)
+       
       }
       else{
-     
-        dispatch({type:types.addconlistacon, payload:{consultas:oldListCon}});
-       
+        setOldListCon(consultas)
+        setCSC(false)
+      
       };
   }
    //Para filtro de búsqueda de tabla departamentos
    const handleChangeSearchDep=(e:string,head:string):void=>{
 
-    //Guardo la lista actual
-       let oldList1=departamentos;
     //Si escribo algo en la barra de búsqueda, pregunto si lo que escribo esta dentro de la columna correspondiente de acuerdo al head y filtro el resultado,
     //gurdandolo en una nueva lista
       if(e!==""){
+        setCSD(true)
         let newList:Departamento[]=[];
           if(head=="CÓDIGO"){
-          newList=oldList1.filter((departamento:Departamento)=>departamento.codigo_departamento.toString().includes(e));
+          newList=oldListDep.filter((departamento:Departamento)=>departamento.codigo_departamento.toString().includes(e));
         }
         else if(head=="NOMBRE"){
-          newList=oldList1.filter((departamento:Departamento)=>departamento.nombre_departamento.toLowerCase().includes(e.toLowerCase()));
+          newList=oldListDep.filter((departamento:Departamento)=>departamento.nombre_departamento.toLowerCase().includes(e.toLowerCase()));
           }
       
         //actualizo el estado global con la el resultado de la búsqueda
-        dispatch({type:types.adddeplistadep, payload:{departamentos:newList}});
-      
+        setOldListDep(newList)
+       
       }
       else{
-     
-        dispatch({type:types.adddeplistadep, payload:{departamentos:oldListDep}});
-       
+        setOldListDep(departamentos)
+        setCSD(false)
+      
       };
   }
      
@@ -327,7 +332,7 @@ const StyledTableCell = withStyles((theme) => ({
     if(listar=="Sanitarios"){
     return (
       <>
-  
+   
      <TableContainer className={classes.table} component={Paper}>
     
         <Table  aria-label="customized table">
@@ -356,7 +361,22 @@ const StyledTableCell = withStyles((theme) => ({
            </TableRow>
           </TableHead>
           <TableBody>
-            {sanitarios.map((row:Sanitario) => (
+            {ctrl_search_san!==true?
+            sanitarios.map((row:Sanitario) => (
+              <StyledTableRow key={row.dni}>
+               
+               <StyledTableCell align="right">{row.dni}</StyledTableCell>
+               <StyledTableCell align="right">{row.nombre}</StyledTableCell>
+               <StyledTableCell align="right">{row.apellidos}</StyledTableCell>
+               <StyledTableCell align="right">{row.telefono}</StyledTableCell>
+                <StyledTableCell align="right">{row.categoria}</StyledTableCell>
+                <StyledTableCell align="right">{row.especialidad}</StyledTableCell>
+                <StyledTableCell align="right">{row.antiguedad}</StyledTableCell>
+                <StyledTableCell align="right">{row.salario}</StyledTableCell>
+                <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"sanitarios")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"sanitarios")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+               </StyledTableRow>
+            )):
+            oldListSan.map((row:Sanitario) => (
               <StyledTableRow key={row.dni}>
                
                <StyledTableCell align="right">{row.dni}</StyledTableCell>
@@ -379,7 +399,7 @@ const StyledTableCell = withStyles((theme) => ({
   }
   
   else if(listar=="Pacientes"){
-      return (
+       return (
         <TableContainer className={classes.table} component={Paper}>
           <Table  aria-label="customized table">
             <TableHead>
@@ -403,7 +423,20 @@ const StyledTableCell = withStyles((theme) => ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {pacientes.map((row:Paciente) => (
+              {ctrl_search_pac!==true?
+              pacientes.map((row:Paciente) => (
+                <StyledTableRow key={row.dni}>
+                 
+                  <StyledTableCell align="right">{row.dni}</StyledTableCell>
+                  <StyledTableCell align="right">{row.nombre}</StyledTableCell>
+                  <StyledTableCell align="right">{row.apellidos}</StyledTableCell>
+                  <StyledTableCell align="right">{row.telefono}</StyledTableCell>
+                  <StyledTableCell align="right">{row.numero_seguridad_social}</StyledTableCell>
+                  <StyledTableCell align="right">{row.codigo_historia_clinica}</StyledTableCell>
+                  <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"pacientes")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"pacientes")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+                </StyledTableRow>
+              )):
+              oldListPac.map((row:Paciente) => (
                 <StyledTableRow key={row.dni}>
                  
                   <StyledTableCell align="right">{row.dni}</StyledTableCell>
@@ -445,7 +478,24 @@ const StyledTableCell = withStyles((theme) => ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {personal.map((row:Personal) => (
+                {ctrl_search_per!==true?
+                personal.map((row:Personal) => (
+                  <StyledTableRow key={row.dni}>
+                   
+                    <StyledTableCell align="right">{row.dni}</StyledTableCell>
+                    <StyledTableCell align="right">{row.nombre}</StyledTableCell>
+                    <StyledTableCell align="right">{row.apellidos}</StyledTableCell>
+                    <StyledTableCell align="right">{row.telefono}</StyledTableCell>
+                    <StyledTableCell align="right">{row.codigo_personal}</StyledTableCell>
+                    <StyledTableCell align="right">{row.antiguedad}</StyledTableCell>
+                    <StyledTableCell align="right">{row.cargo}</StyledTableCell>
+                    <StyledTableCell align="right">{row.salario}</StyledTableCell>
+                    <StyledTableCell align="right">{row.codigo_dpto}</StyledTableCell>
+                    <StyledTableCell align="right">{row.derecho_ascenso}</StyledTableCell>
+                    <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"personal")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"personal")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+                  </StyledTableRow>
+                )):
+                oldListPer.map((row:Personal) => (
                   <StyledTableRow key={row.dni}>
                    
                     <StyledTableCell align="right">{row.dni}</StyledTableCell>
@@ -491,7 +541,18 @@ const StyledTableCell = withStyles((theme) => ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {consultas.map((row:Consulta) => (
+                {ctrl_search_con!==true?
+                consultas.map((row:Consulta) => (
+                  <StyledTableRow key={row.numero_consulta}>
+                   
+                    <StyledTableCell align="center">{row.numero_consulta}</StyledTableCell>
+                    <StyledTableCell align="center">{row.codigo_servicio}</StyledTableCell>
+                    <StyledTableCell align="right">{row.nombre_servicio}</StyledTableCell>
+                    <StyledTableCell align="right">{row.planta}</StyledTableCell>
+                    <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"consultas")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"consultas")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+                  </StyledTableRow>
+                )):
+                oldListCon.map((row:Consulta) => (
                   <StyledTableRow key={row.numero_consulta}>
                    
                     <StyledTableCell align="center">{row.numero_consulta}</StyledTableCell>
@@ -507,6 +568,7 @@ const StyledTableCell = withStyles((theme) => ({
         );
       }
       else if(listar=="Departamentos"){
+        
         return (
           <TableContainer className={classes.table} component={Paper}>
             <Table  aria-label="customized table">
@@ -531,7 +593,17 @@ const StyledTableCell = withStyles((theme) => ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {departamentos.map((row:Departamento) => (
+                {ctrl_search_dep!==true?
+                departamentos.map((row:Departamento) => (
+                  <StyledTableRow key={row.codigo_departamento}>
+                   
+                    <StyledTableCell align="right">{row.codigo_departamento}</StyledTableCell>
+                    <StyledTableCell align="right">{row.nombre_departamento}</StyledTableCell>
+                    <StyledTableCell align="right">  <IconButton aria-label="edit" onClick={()=>handleModify(row,"departamentos")}>  <Icon color="primary" fontSize="small">create</Icon></IconButton><IconButton aria-label="delete" onClick={()=>handleDelete(row,"departamentos")}>  <Icon color="secondary" fontSize="small">delete</Icon></IconButton></StyledTableCell>
+                  
+                  </StyledTableRow>
+                )):
+                oldListDep.map((row:Departamento) => (
                   <StyledTableRow key={row.codigo_departamento}>
                    
                     <StyledTableCell align="right">{row.codigo_departamento}</StyledTableCell>

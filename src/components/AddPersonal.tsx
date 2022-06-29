@@ -14,7 +14,7 @@ import Personal from "../interfaces/Personal"
 
 const AddPersonal=()=>{
   //Para obtener el estado global, en este caso la lista de personal actual
-  const [store, dispatch] = useContext(StoreContext);
+  const [store, dispatch,readListados,addListados] = useContext(StoreContext);
   const personal:Personal[]=store.personal;
 
   //Estado inicial para guardar los valores de los inputs
@@ -72,36 +72,38 @@ const handleChangeDer = (event:React.ChangeEvent):void => {
 };
 
   //Añadir el elemento a la lista de personal
-  const handleClickSave=():void=>{   
- 
- const item= {dni: dni_value,
- nombre: name_value,
- apellidos:lastname_value,
- telefono:phone_value,
- codigo_personal:cod_per_value,
- cargo:car_value,
- antiguedad:ant_value,
- salario:sal_value,
- codigo_dpto:cod_dep_value,
- derecho_ascenso:der_value
-}
-personal.push(item);
+  const handleClickSave=(e):void=>{   
+    e.preventDefault();
+  const item= {dni: dni_value,
+  nombre: name_value,
+  apellidos:lastname_value,
+  telefono:phone_value,
+  codigo_personal:cod_per_value,
+  cargo:car_value,
+  antiguedad:ant_value,
+  salario:sal_value,
+  codigo_dpto:cod_dep_value,
+  derecho_ascenso:der_value
+  }
+   //llamo a la función addListados del StoreProvider que se encarga de enviar los datos a la API agregando el item al listado actual y actualizar el estado global
+   let listado=""
+   if(store.addper.addper==true){
+   listado="personal"
+   }
+   addListados(item,listado);
 
-//envio la accion en el payload al store reducer para modificar el estado global
-dispatch({type:types.addperlistaper,  payload:{personal:personal}});
-
-//Limpio el formulario
-setDniValue("");
-setNameValue("");
-setLastnameValue("");
-setPhoneValue("");
-setCodPerValue("");
-setCarValue("");
-setAntValue(0);
-setSalValue(0);
-setCodDepValue(0);
-setDerValue("");
-}
+  //Limpio el formulario
+  setDniValue("");
+  setNameValue("");
+  setLastnameValue("");
+  setPhoneValue("");
+  setCodPerValue("");
+  setCarValue("");
+  setAntValue(0);
+  setSalValue(0);
+  setCodDepValue(0);
+  setDerValue("");
+  }
 const handleClickCancel=():void=>{   
 
   //Oculto el formulario

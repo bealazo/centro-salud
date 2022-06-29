@@ -14,87 +14,89 @@ import Sanitario from "../interfaces/Sanitario"
 
 const AddDoctor=()=>{
 
-   //Para obtener el estado global, en este caso la lista de sanitarios actual
-   const [store, dispatch] = useContext(StoreContext);
-   const sanitarios:Sanitario[]=store.sanitarios;
-   
-   //Estado inicial para guardar los valores de los inputs
-   const [dni_value, setDniValue] = React.useState("");
-   const [name_value, setNameValue] = React.useState("");
-   const [phone_value, setPhoneValue] = React.useState("");
-   const [lastname_value, setLastnameValue] = React.useState("");
-   const [cat_value, setCatValue] = React.useState("");
-   const [esp_value, setEspValue] = React.useState("");
-   const [ant_value, setAntValue] = React.useState(0);
-   const [sal_value, setSalValue] = React.useState(0);
+        //Para obtener el estado global, en este caso la lista de sanitarios actual
+        const [store, dispatch,readListados,addListados] = useContext(StoreContext);
+        const sanitarios:Sanitario[]=store.sanitarios;
+        
+        //Estado inicial para guardar los valores de los inputs
+        const [dni_value, setDniValue] = React.useState("");
+        const [name_value, setNameValue] = React.useState("");
+        const [phone_value, setPhoneValue] = React.useState("");
+        const [lastname_value, setLastnameValue] = React.useState("");
+        const [cat_value, setCatValue] = React.useState("");
+        const [esp_value, setEspValue] = React.useState("");
+        const [ant_value, setAntValue] = React.useState(0);
+        const [sal_value, setSalValue] = React.useState(0);
 
-   //Cambio el estado inicial del input correspondiente
-   const handleChangeDni = (event:React.ChangeEvent):void => {
-    let target = event.target as HTMLInputElement;
-     setDniValue(target.value);
-   };
-   const handleChangeName = (event:React.ChangeEvent):void => {
-    let target = event.target as HTMLInputElement;
-     setNameValue(target.value);
-   };
-   const handleChangeLastname = (event:React.ChangeEvent):void => {
-    let target = event.target as HTMLInputElement;
-     setLastnameValue(target.value);
-   };
-   const handleChangePhone = (event:React.ChangeEvent):void => {
-    let target = event.target as HTMLInputElement;
-     setPhoneValue(target.value);
-   };
-   const handleChangeCat = (event:React.ChangeEvent):void => {
-    let target = event.target as HTMLInputElement;
-     setCatValue(target.value);
-   };
-   const handleChangeEsp = (event:React.ChangeEvent):void => {
-    let target = event.target as HTMLInputElement;
-     setEspValue(target.value);
-   };
-   const handleChangeAnt = (event:React.ChangeEvent):void => {
-    let target = event.target as HTMLInputElement;
-    setAntValue(Number(target.value));
-  };
-  const handleChangeSal = (event:React.ChangeEvent):void => {
-    let target = event.target as HTMLInputElement;
-    setSalValue(Number(target.value));
-  };
+        //Cambio el estado inicial del input correspondiente
+        const handleChangeDni = (event:React.ChangeEvent):void => {
+          let target = event.target as HTMLInputElement;
+          setDniValue(target.value);
+        };
+        const handleChangeName = (event:React.ChangeEvent):void => {
+          let target = event.target as HTMLInputElement;
+          setNameValue(target.value);
+        };
+        const handleChangeLastname = (event:React.ChangeEvent):void => {
+          let target = event.target as HTMLInputElement;
+          setLastnameValue(target.value);
+        };
+        const handleChangePhone = (event:React.ChangeEvent):void => {
+          let target = event.target as HTMLInputElement;
+          setPhoneValue(target.value);
+        };
+        const handleChangeCat = (event:React.ChangeEvent):void => {
+          let target = event.target as HTMLInputElement;
+          setCatValue(target.value);
+        };
+        const handleChangeEsp = (event:React.ChangeEvent):void => {
+          let target = event.target as HTMLInputElement;
+          setEspValue(target.value);
+        };
+        const handleChangeAnt = (event:React.ChangeEvent):void => {
+          let target = event.target as HTMLInputElement;
+          setAntValue(Number(target.value));
+        };
+        const handleChangeSal = (event:React.ChangeEvent):void => {
+          let target = event.target as HTMLInputElement;
+          setSalValue(Number(target.value));
+        };
 
-   //Añadir el elemento a la lista de sanitarios
-   const handleClickSave=():void=>{   
-  
-  const item= {dni: dni_value,
-  nombre: name_value,
-  apellidos:lastname_value,
-  telefono:phone_value,
-  categoria:cat_value,
-  especialidad:esp_value,
-  antiguedad:ant_value,
-  salario:sal_value
- }
- sanitarios.push(item);
- 
- //envio la accion en el payload al store reducer para modificar el estado global
- dispatch({type:types.addsanlistasan,  payload:{sanitarios:sanitarios}});
+        //Añadir el elemento a la lista de sanitarios
+        const handleClickSave=(e):void=>{   
+          e.preventDefault();
+        const item= {dni: dni_value,
+        nombre: name_value,
+        apellidos:lastname_value,
+        telefono:phone_value,
+        categoria:cat_value,
+        especialidad:esp_value,
+        antiguedad:ant_value,
+        salario:sal_value
+      }
+        //llamo a la función addListados del StoreProvider que se encarga de enviar los datos a la API agregando el item al listado actual y actualizar el estado global
+        let listado=""
+        if(store.addsan.addsan==true){
+        listado="sanitarios"
+        }
+        addListados(item,listado);
 
- //Limpio el formulario
- setDniValue("");
- setNameValue("");
- setLastnameValue("");
- setPhoneValue("");
- setCatValue("");
- setEspValue("");
- setAntValue(0);
- setSalValue(0);
- }
- const handleClickCancel=():void=>{   
+      //Limpio el formulario
+      setDniValue("");
+      setNameValue("");
+      setLastnameValue("");
+      setPhoneValue("");
+      setCatValue("");
+      setEspValue("");
+      setAntValue(0);
+      setSalValue(0);
+      }
+      const handleClickCancel=():void=>{   
 
-  //Oculto el formulario
-  dispatch({type:types.changeaddsan,  payload:{addsan: false}});
+        //Oculto el formulario
+        dispatch({type:types.changeaddsan,  payload:{addsan: false}});
 
-}
+      }
 
    return(
 

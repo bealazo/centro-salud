@@ -1,0 +1,313 @@
+{
+  "pacientes": [
+    {
+      "id": 1,
+      "dni": "29033641M",
+      "nombre": "Caridad",
+      "apellidos": "Ballesteros Castillo",
+      "telefono": "625789102",
+      "numero_seguridad_social": 247295332921,
+      "codigo_historia_clinica": "0000000211"
+    },
+    {
+      "id": 2,
+      "dni": "51310395V",
+      "nombre": "Constantino",
+      "apellidos": "Diaz Barrios",
+      "telefono": "755861389",
+      "numero_seguridad_social": 165651962891,
+      "codigo_historia_clinica": "0000000212"
+    },
+    {
+      "dni": "720886",
+      "nombre": "Enrique",
+      "apellidos": "Conde",
+      "telefono": "605483756",
+      "numero_seguridad_social": 214215400790,
+      "codigo_historia_clinica": "0000000213",
+      "id": 3
+    },
+    {
+      "dni": "75763067D",
+      "nombre": "Nad",
+      "apellidos": "Amaya Barbero",
+      "telefono": "714436150",
+      "numero_seguridad_social": 148175851090,
+      "codigo_historia_clinica": "0000000214",
+      "id": 4
+    }
+  ],
+  "sanitarios": [
+    {
+      "id": 1,
+      "dni": "20569836Q",
+      "nombre": "Mariano",
+      "apellidos": "Cardenas Oliver",
+      "telefono": 693840304,
+      "categoria": "Médico",
+      "especialidad": "Psicología",
+      "antiguedad": 5,
+      "salario": 36000
+    },
+    {
+      "id": 2,
+      "dni": "30210818L",
+      "nombre": "Bartolome",
+      "apellidos": "Piñero Andreu",
+      "telefono": 645813149,
+      "categoria": "Médico",
+      "especialidad": "Medicina Interna",
+      "antiguedad": 2,
+      "salario": 36000
+    },
+    {
+      "id": 3,
+      "dni": "68215574N",
+      "nombre": "Sonia",
+      "apellidos": "Ferreira Becerra",
+      "telefono": 689929226,
+      "categoria": "Enfermera",
+      "especialidad": "Cardiología",
+      "antiguedad": 3,
+      "salario": 24000
+    },
+    {
+      "dni": "88103187P",
+      "nombre": "Ana",
+      "apellidos": "Mata Costa",
+      "telefono": 632121414,
+      "categoria": "Médico",
+      "especialidad": "Oftalmología",
+      "antiguedad": 6,
+      "salario": 36000,
+      "id": 4
+    }
+  ],
+  "personal": [
+    {
+      "id": 1,
+      "dni": "03429966E",
+      "nombre": "Enric",
+      "apellidos": "Rivera Valls",
+      "telefono": 706706114,
+      "codigo_personal": "000P3",
+      "antiguedad": 2,
+      "cargo": "Ing. Informático",
+      "salario": 20400,
+      "codigo_dpto": 226,
+      "derecho_ascenso": "NO"
+    },
+    {
+      "id": 2,
+      "dni": "24676502D",
+      "nombre": "Maria Trinidad",
+      "apellidos": "Fraile Paez",
+      "telefono": 666172546,
+      "codigo_personal": "000P4",
+      "antiguedad": 5,
+      "cargo": "Auxiliar",
+      "salario": 15000,
+      "codigo_dpto": 227,
+      "derecho_ascenso": "SI"
+    },
+    {
+      "dni": "29244719N",
+      "nombre": "Tamara",
+      "apellidos": "Roca Sastrel",
+      "telefono": 721285234,
+      "codigo_personal": "000P1",
+      "antiguedad": 10,
+      "cargo": "Secretaria",
+      "salario": 15000,
+      "codigo_dpto": 224,
+      "derecho_ascenso": "SI",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "dni": "52170183L",
+      "nombre": "Saturnino",
+      "apellidos": "Guerra Carvajal",
+      "telefono": 720945589,
+      "codigo_personal": "000P2",
+      "antiguedad": 1,
+      "cargo": "Ing. Electricista",
+      "salario": 15000,
+      "codigo_dpto": 223,
+      "derecho_ascenso": "NO"
+    }
+  ],
+  "consultas": [
+    {
+      "id": 2,
+      "numero_consulta": 2,
+      "codigo_servicio": 123,
+      "nombre_servicio": "Pediatría",
+      "planta": 1
+    },
+    {
+      "id": 3,
+      "numero_consulta": 3,
+      "codigo_servicio": 123,
+      "nombre_servicio": "Pediatría",
+      "planta": 1
+    },
+    {
+      "id": 4,
+      "numero_consulta": 4,
+      "codigo_servicio": 124,
+      "nombre_servicio": "Geriatría",
+      "planta": 2
+    },
+    {
+      "id": 5,
+      "numero_consulta": 5,
+      "codigo_servicio": 124,
+      "nombre_servicio": "Geriatría",
+      "planta": 2
+    },
+    {
+      "id": 6,
+      "numero_consulta": 6,
+      "codigo_servicio": 124,
+      "nombre_servicio": "Geriatría",
+      "planta": 2
+    },
+    {
+      "id": 7,
+      "numero_consulta": 7,
+      "codigo_servicio": 125,
+      "nombre_servicio": "Psicología",
+      "planta": 2
+    },
+    {
+      "id": 8,
+      "numero_consulta": 8,
+      "codigo_servicio": 125,
+      "nombre_servicio": "Psicología",
+      "planta": 2
+    },
+    {
+      "id": 9,
+      "numero_consulta": 9,
+      "codigo_servicio": 125,
+      "nombre_servicio": "Psicología",
+      "planta": 2
+    },
+    {
+      "id": 10,
+      "numero_consulta": 10,
+      "codigo_servicio": 126,
+      "nombre_servicio": "Oftalmología",
+      "planta": 2
+    },
+    {
+      "id": 11,
+      "numero_consulta": 11,
+      "codigo_servicio": 126,
+      "nombre_servicio": "Oftalmología",
+      "planta": 2
+    },
+    {
+      "id": 12,
+      "numero_consulta": 12,
+      "codigo_servicio": 126,
+      "nombre_servicio": "Oftalmología",
+      "planta": 2
+    },
+    {
+      "numero_consulta": 13,
+      "codigo_servicio": 127,
+      "nombre_servicio": "Cardiología",
+      "planta": 1,
+      "id": 13
+    },
+    {
+      "id": 14,
+      "numero_consulta": 14,
+      "codigo_servicio": 127,
+      "nombre_servicio": "Cardiología",
+      "planta": 1
+    },
+    {
+      "id": 15,
+      "numero_consulta": 15,
+      "codigo_servicio": 127,
+      "nombre_servicio": "Cardiología",
+      "planta": 1
+    },
+    {
+      "id": 16,
+      "numero_consulta": 16,
+      "codigo_servicio": 128,
+      "nombre_servicio": "Medicina Interna",
+      "planta": 3
+    },
+    {
+      "id": 17,
+      "numero_consulta": 17,
+      "codigo_servicio": 128,
+      "nombre_servicio": "Medicina Interna",
+      "planta": 3
+    },
+    {
+      "id": 18,
+      "numero_consulta": 18,
+      "codigo_servicio": 128,
+      "nombre_servicio": "Medicina Interna",
+      "planta": 3
+    },
+    {
+      "id": 19,
+      "numero_consulta": 19,
+      "codigo_servicio": 129,
+      "nombre_servicio": "Reumatología",
+      "planta": 3
+    },
+    {
+      "id": 20,
+      "numero_consulta": 20,
+      "codigo_servicio": 129,
+      "nombre_servicio": "Reumatología",
+      "planta": 3
+    },
+    {
+      "id": 21,
+      "numero_consulta": 21,
+      "codigo_servicio": 129,
+      "nombre_servicio": "Reumatología",
+      "planta": 3
+    },
+    {
+      "id": 22,
+      "numero_consulta": 22,
+      "codigo_servicio": 130,
+      "nombre_servicio": "Neumología",
+      "planta": 3
+    },
+    {
+      "id": 23,
+      "numero_consulta": 23,
+      "codigo_servicio": 130,
+      "nombre_servicio": "Neumología",
+      "planta": 3
+    }
+  ],
+  "departamentos": [
+    {
+      "codigo_departamento": 223,
+      "nombre_departamento": "Mantenimiento",
+      "id": 1
+    },
+    {
+      "codigo_departamento": 224,
+      "nombre_departamento": "Recursos Humanos",
+      "id": 2
+    },
+    {
+      "codigo_departamento": 225,
+      "nombre_departamento": "Informática",
+      "id": 3
+    }
+  ]
+}

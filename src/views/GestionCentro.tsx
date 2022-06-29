@@ -50,7 +50,7 @@ const GestionCentro=()=> {
   
   //Para obtener el user y el valor booleano de las listas(para saber cual pasar al componente ListComponent) y de las variables controlan que formulario para agregar y editar mostrar, todo esto lo obtengo del contexto
   const [store, dispatch] = useContext(StoreContext);
-  const user:string=store.user;
+  const user:string=store.user.user;
   const listapac:boolean=store.listapac.listapac;
   const listasan:boolean=store.listasan.listasan;
   const listaper:boolean=store.listaper.listaper;
@@ -75,10 +75,9 @@ const GestionCentro=()=> {
   
   //Para pasar las opciones del menú al header
   const options=[
-     user   
+     user  
     ];      
-  
-  
+    
   //Para mostrar y/o ocultar listados de pacientes, sanitarios... 
   const handleListItem=(text:string):void=>{
       
@@ -113,8 +112,7 @@ const GestionCentro=()=> {
   const handleClickNew=():void=>{
       if(listapac==true){
         dispatch({type:types.changeaddpac,  payload:{addpac: true}});
-      
-     // navigate("/gestion-centro/nuevo-paciente");
+    
     }
     else if(listasan==true){
       dispatch({type:types.changeaddsan,  payload:{addsan: true}});
@@ -234,9 +232,10 @@ const GestionCentro=()=> {
         dispatch({type:types.changeeditsan,  payload:{editsan: true}});
       
      }
-     if(list_name=="pacientes"&&listapac==true){     
-      dispatch({type:types.change_row_edit_pac,  payload:{row_edit_pac: row}});
-       dispatch({type:types.changeeditpac,  payload:{editpac: true}});
+     if(list_name=="pacientes"&&listapac==true){   
+        
+       dispatch({type:types.change_row_edit_pac,  payload:{row_edit_pac: row}});
+       dispatch({type:types.changeeditpac,  payload:{editpac: true}});      
      
     }
     if(list_name=="personal"&&listaper==true){     

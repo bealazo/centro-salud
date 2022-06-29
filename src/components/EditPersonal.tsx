@@ -15,7 +15,7 @@ import Personal from "../interfaces/Personal"
 const EditPersonal=()=>{
    
    //Para obtener el estado global, en este caso la lista de personal actual
-   const [store, dispatch] = useContext(StoreContext);
+   const [store, dispatch,readListados,addListados,deleteListados,editListados] = useContext(StoreContext);
    const personal:Personal[]=store.personal;
 
    //Para obtener los datos de la fila a mostrar en el formulario de edición
@@ -92,16 +92,18 @@ const handleChangeDer = (event:React.ChangeEvent):void => {
               item.salario=sal_value;
               item.codigo_dpto=cod_dpto_value;
               item.derecho_ascenso=der_value;
+
+                //llamo a la función editListados del StoreProvider que se encarga de enviar los datos a la API editando el item del listado actual
+                let listado=""
+                if(store.editper.editper==true){
+                listado="personal"
+                }
+                editListados(item,listado); 
               
             }         
 
         });
     
-        //envio la accion en el payload al store reducer para modificar el estado global
-        //OJO: ME SIRVE EL MISMO TIPO QUE PARA AÑADIR NUEVOS ITEMS A LA LISTA, PUESTO QUE LA ACCION PARA ESE TIPO ES MODIFICAR EL LISTADO EXISTENTE SUSTITUYENDOLO 
-        //CON EL NUEVO LISTADO PASADO
-        dispatch({type:types.addsanlistaper,  payload:{personal:personal}});
-
         //Oculto el formulario
         dispatch({type:types.changeeditper,  payload:{editper:false}});
 

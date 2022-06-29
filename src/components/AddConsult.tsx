@@ -15,7 +15,7 @@ import Consulta from "../interfaces/Consulta"
 const AddConsult=()=>{
    
     //Para obtener el estado global, en este caso la lista de consultas actual
-    const [store, dispatch] = useContext(StoreContext);
+    const [store, dispatch,readListados,addListados] = useContext(StoreContext);
     const consultas:Consulta[]=store.consultas;
    
     //Estado inicial para guardar los valores de los inputs
@@ -44,24 +44,26 @@ const AddConsult=()=>{
     
 
     //Añadir el elemento a la lista de consultas
-    const handleClickSave=():void=>{   
-   
-   const item= {numero_consulta: num_value,
-    codigo_servicio: cod_ser_value,
-    nombre_servicio:nom_ser_value,
-    planta:pla_value
-  }
-  consultas.push(item);
-  
-  //envio la accion en el payload al store reducer para modificar el estado global
-  dispatch({type:types.addconlistacon,  payload:{consultas:consultas}});
+    const handleClickSave=(e):void=>{   
+      e.preventDefault();
+      const item= {numero_consulta: num_value,
+        codigo_servicio: cod_ser_value,
+        nombre_servicio:nom_ser_value,
+        planta:pla_value
+      }
+     //llamo a la función addListados del StoreProvider que se encarga de enviar los datos a la API agregando el item al listado actual y actualizar el estado global
+     let listado=""
+     if(store.addcon.addcon==true){
+     listado="consultas"
+     }
+     addListados(item,listado);
 
-  //Limpio el formulario
-  setNumValue(0);
-  setCodSerValue(0);
-  setNomSerValue("");
-  setPlaValue(0);
-  
+      //Limpio el formulario
+      setNumValue(0);
+      setCodSerValue(0);
+      setNomSerValue("");
+      setPlaValue(0);
+      
   }
   const handleClickCancel=():void=>{   
 

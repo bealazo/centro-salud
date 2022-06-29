@@ -15,7 +15,7 @@ import Consulta from "../interfaces/Consulta";
 const EditConsult=()=>{
    
    //Para obtener el estado global, en este caso la lista de consultas actual
-   const [store, dispatch] = useContext(StoreContext);
+   const [store, dispatch,readListados,addListados,deleteListados,editListados] = useContext(StoreContext);
    const consultas:Consulta[]=store.consultas;
   
    //Para obtener los datos de la fila a mostrar en el formulario de edición
@@ -58,16 +58,18 @@ const EditConsult=()=>{
               item.codigo_servicio= cod_ser_value;
               item.nombre_servicio=nom_ser_value;
               item.planta=pla_value;
+
+                //llamo a la función editListados del StoreProvider que se encarga de enviar los datos a la API editando el item del listado actual
+                let listado=""
+                if(store.editcon.editcon==true){
+                listado="consultas"
+                }
+                editListados(item,listado); 
                          
             }         
 
         });
       
-        //envio la accion en el payload al store reducer para modificar el estado global
-        //OJO: ME SIRVE EL MISMO TIPO QUE PARA AÑADIR NUEVOS ITEMS A LA LISTA, PUESTO QUE LA ACCION PARA ESE TIPO ES MODIFICAR EL LISTADO EXISTENTE SUSTITUYENDOLO 
-        //CON EL NUEVO LISTADO PASADO
-        dispatch({type:types.addsanlistacon,  payload:{consultas:consultas}});
-
         //Oculto el formulario
         dispatch({type:types.changeeditcon,  payload:{editcon:false}});
 

@@ -15,7 +15,7 @@ import Departamento from "../interfaces/Departamento"
 const AddDepartment=()=>{
  
     //Para obtener el estado global, en este caso la lista de departamentos actual
-    const [store, dispatch] = useContext(StoreContext);
+    const [store, dispatch,readListados,addListados] = useContext(StoreContext);
     const departamentos:Departamento[]=store.departamentos;
     
     //Estado inicial para guardar los valores de los inputs
@@ -34,20 +34,21 @@ const AddDepartment=()=>{
      
 
     //Añadir el elemento a la lista de departamentos
-    const handleClickSave=():void=>{   
-   
-   const item= {codigo_departamento: cod_value,
-    nombre_departamento: nom_value,
-  
-  }
-  departamentos.push(item);
-  
-  //envio la accion en el payload al store reducer para modificar el estado global
-  dispatch({type:types.adddeplistadep,  payload:{departamentos:departamentos}});
-
-  //Limpio el formulario
-  setCodValue(0);
-  setNomValue("");
+    const handleClickSave=(e):void=>{   
+      e.preventDefault();
+      const item= {codigo_departamento: cod_value,
+        nombre_departamento: nom_value,
+      
+      }
+      //llamo a la función addListados del StoreProvider que se encarga de enviar los datos a la API agregando el item al listado actual y actualizar el estado global
+      let listado=""
+      if(store.adddep.adddep==true){
+      listado="departamentos"
+      }
+      addListados(item,listado);
+      //Limpio el formulario
+      setCodValue(0);
+      setNomValue("");
   }
   const handleClickCancel=():void=>{   
 

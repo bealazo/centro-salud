@@ -15,7 +15,7 @@ import Paciente from "../interfaces/Paciente"
 const AddPatient=()=>{
 
     //Para obtener el estado global, en este caso la lista de pacientes actual
-    const [store, dispatch] = useContext(StoreContext);
+    const [store, dispatch,readListados,addListados] = useContext(StoreContext);
     const pacientes:Paciente[]=store.pacientes;
     
     //Estado inicial para guardar los valores de los inputs
@@ -53,27 +53,30 @@ const AddPatient=()=>{
     };
 
     //Añadir el elemento a la lista de pacientes
-    const handleClickSave=():void=>{   
+    const handleClickSave=(e):void=>{   
    
-   const item= {dni: dni_value,
-   nombre: name_value,
-   apellidos:lastname_value,
-   telefono:phone_value,
-   numero_seguridad_social:sec_value,
-   codigo_historia_clinica:cod_value
-  }
-  pacientes.push(item);
-  
-  //envio la accion en el payload al store reducer para modificar el estado global
-  dispatch({type:types.addpaclistapac,  payload:{pacientes:pacientes}});
-
-  //Limpio el formulario
-  setDniValue("");
-  setNameValue("");
-  setLastnameValue("");
-  setPhoneValue("");
-  setSecValue(0);
-  setCodValue("");
+        e.preventDefault();
+      const item= {dni: dni_value,
+      nombre: name_value,
+      apellidos:lastname_value,
+      telefono:phone_value,
+      numero_seguridad_social:sec_value,
+      codigo_historia_clinica:cod_value
+        }
+      //llamo a la función addListados del StoreProvider que se encarga de enviar los datos a la API agregando el item al listado actual y actualizar el estado global
+        let listado=""
+        if(store.addpac.addpac==true){
+        listado="pacientes"
+        }
+        addListados(item,listado);
+      
+        //Limpio el formulario
+        setDniValue("");
+        setNameValue("");
+        setLastnameValue("");
+        setPhoneValue("");
+        setSecValue(0);
+        setCodValue("");
 
   }
   const handleClickCancel=():void=>{   

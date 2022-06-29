@@ -171,7 +171,7 @@ const Header= ({removemedicalicon,options}:Props) =>{
 
     <Grid className="menu-movil-container" item xs={10}>
       {/*Si hay un user logueado lo que recibe el header en las props y en ese caso muestro el menu con cierre de sesion */}
-      {options==user.user?
+      {options[0]==user.user?
         <>
            <Button
         aria-controls="customized-menu-movil"
@@ -184,6 +184,7 @@ const Header= ({removemedicalicon,options}:Props) =>{
       </Button>
       {
       //@ts-ignore
+      
       <StyledMenu
         id="customized-menu-movil"
         anchorEl={anchorEl}

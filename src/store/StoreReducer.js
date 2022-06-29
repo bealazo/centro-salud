@@ -1,10 +1,9 @@
-
+/* 
 import * as pacientes from '../data/pacientes.json';
 import * as sanitarios from '../data/sanitarios.json';
 import * as personal from '../data/personal.json';
 import * as consultas from '../data/consultas.json';
-import * as departamentos from '../data/departamentos.json';
-
+import * as departamentos from '../data/departamentos.json'; */
 
 const types={
     authLogin:"auth - login",
@@ -24,13 +23,7 @@ const types={
     changeaddcon:"change-addcon",
     changeadddep:"change-adddep",
 
-    //tipos para agregar nuevos elementos a las listas
-    addpaclistapac:"add-paciente",
-    addsanlistasan:"add-sanitario",
-    addperlistaper:"add-personal",
-    addconlistacon:"add-consultas",
-    adddeplistadep:"add-departamentos",
-
+   
       //tipos para cambiar variable de control para cambiar los formularios de edición de acuerdo a la lista actual
       changeeditpac:"change-editpac",
       changeeditsan:"change-editsan",
@@ -46,8 +39,23 @@ const types={
       change_row_edit_dep:"row_edit_dep",
 
       //tipo para mostrar u ocultar los gráficos
-      showcharts:"show_charts"
-    
+      showcharts:"show_charts",
+
+      //tipo para leer los listados
+      read_pacientes:"READ_PACIENTES",
+      read_pacientes:"READ_SANITARIOS",
+      read_pacientes:"READ_PERSONAL",
+      read_pacientes:"READ_CONSULTAS",
+      read_pacientes:"READ_DEPARTAMENTOS",
+
+      //tipos para adicionar a los listados
+      add_paciente:"ADD_PACIENTE",
+      add_sanitario:"ADD_SANITARIO",
+      add_personal:"ADD_PERSONAL",
+      add_consulta:"ADD_CONSULTA",
+      add_departamento:"ADD_DEPARTAMENTO",
+
+   
 }
 
 //Estado global inicial
@@ -72,11 +80,11 @@ const initialStore={
       editcon:false,
       editdep:false,
     //Listas que cargo desde los .json porque no tengo conexión a api para obtenerlos de bases de datos
-    pacientes:pacientes.default,  
-    sanitarios:sanitarios.default,
-    personal:personal.default,
-    consultas:consultas.default,
-    departamentos:departamentos.default,
+    pacientes:[],  
+    sanitarios:[],
+    personal:[],
+    consultas:[],
+    departamentos:[],
 
     //Para los datos de la fila seleccionada para la edicion
     row_edit_doctor:"",
@@ -327,26 +335,27 @@ const StoreReducer = (state,action)=> {
                                                addper:false,
                                                addcon:false,
                                                adddep:false}
-            case types.addpaclistapac:
+            case "ADD_PACIENTE":
                 return{
                 ...state,
-                pacientes:action.payload.pacientes}
-            case types.addsanlistasan:
+               pacientes:[...state.pacientes, action.payload]             
+               }
+            case "ADD_SANITARIO":
                  return{
                  ...state,
-                sanitarios:action.payload.sanitarios}
-            case types.addperlistaper:
+                sanitarios:[...state.sanitarios, action.payload] }
+            case "ADD_PERSONAL":
                  return{
                  ...state,
-                 personal:action.payload.personal}
-            case types.addconlistacon:
+                 personal:[...state.personal, action.payload]}
+            case "ADD_CONSULTA":
                  return{
                  ...state,
-                consultas:action.payload.consultas}
-            case types.adddeplistadep:
+                consultas:[...state.consultas, action.payload]}
+            case "ADD_DEPARTAMENTO":
                 return{
                 ...state,
-                departamentos:action.payload.departamentos}
+                departamentos:[...state.departamentos, action.payload]}
           case types.change_row_edit_doctor:
                     return{
                     ...state,
@@ -386,7 +395,33 @@ const StoreReducer = (state,action)=> {
                    editcon:false,
                    editdep:false,
                    charts:action.payload}
-              
+
+     case "READ_PACIENTES":
+     return {
+      ...state,
+      pacientes: action.payload,
+      };
+      case "READ_SANITARIOS":
+        return {
+         ...state,
+         sanitarios: action.payload,
+         };
+     case "READ_PERSONAL":
+        return {
+        ...state,
+         personal: action.payload,
+        };
+    case "READ_CONSULTAS":
+        return {
+        ...state,
+         consultas: action.payload,
+        };
+    case "READ_DEPARTAMENTOS":
+        return {
+        ...state,
+        departamentos: action.payload,
+        };
+                   
         default:
             return state;
     }

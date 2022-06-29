@@ -15,7 +15,7 @@ import Paciente from "../interfaces/Paciente";
 const EditPatient=()=>{
    
    //Para obtener el estado global, en este caso la lista de pacientes actual
-   const [store, dispatch] = useContext(StoreContext);
+   const [store, dispatch,readListados,addListados,deleteListados,editListados] = useContext(StoreContext);
    const pacientes:Paciente[]=store.pacientes;
  
    //Para obtener los datos de la fila a mostrar en el formulario de edición
@@ -57,33 +57,34 @@ const EditPatient=()=>{
     setCodHistCliValue(target.value);
   };
    //Editar el elemento de la lista de pacientes
-   const handleClickSave=()=>{   
+   const handleClickSave=():void=>{   
    pacientes.map(item=>
         {if(item.dni==dni_initial)
             {
-                console.log(name_value)
               item.dni= dni_value;
               item.nombre= name_value;
               item.apellidos=lastname_value;
               item.telefono=phone_value;
               item.numero_seguridad_social=num_seg_soc;
-              item.codigo_historia_clinica=cod_hist_cli;
-             
-            }         
+              item.codigo_historia_clinica=cod_hist_cli;       
+              
+               //llamo a la función editListados del StoreProvider que se encarga de enviar los datos a la API editando el item del listado actual
+              let listado=""
+              if(store.editpac.editpac==true){
+              listado="pacientes"
+              }
+              editListados(item,listado); 
+            }  
+                       
 
-        });
-       
-        //envio la accion en el payload al store reducer para modificar el estado global
-        //OJO: ME SIRVE EL MISMO TIPO QUE PARA AÑADIR NUEVOS ITEMS A LA LISTA, PUESTO QUE LA ACCION PARA ESE TIPO ES MODIFICAR EL LISTADO EXISTENTE SUSTITUYENDOLO 
-        //CON EL NUEVO LISTADO PASADO
-        dispatch({type:types.addsanlistapac,  payload:{pacientes:pacientes}});
+        });      
 
         //Oculto el formulario
         dispatch({type:types.changeeditpac,  payload:{editpac:false}});
 
  
  }
- const handleClickCancel=()=>{   
+ const handleClickCancel=():void=>{   
 
         //Oculto el formulario
         dispatch({type:types.changeeditpac,  payload:{editpac:false}});
