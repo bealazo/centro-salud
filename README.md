@@ -20,7 +20,7 @@ Permite visualizar además algunas estadísticas del centro.
 
 ## Tech Stack
 
-**Client:** Reactjs
+**Client:** Reactjs, api context, typescript, axios
 
 
 ## Screenshots
